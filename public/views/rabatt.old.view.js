@@ -20,11 +20,6 @@ Vue.component('route-rabatt', {
 		}
 	},
 	methods: {
-		onFileChange(e) {
-			let files = event.target.files;
-			if (files.length) this.userimage = files[0];
-
-		},
 		postData(url = ``, data = {}) {
 		  // Default options are marked with *
 		    return fetch(url, {
@@ -41,10 +36,10 @@ Vue.component('route-rabatt', {
 			// Default options are marked with *
 				return fetch(url, {
 						method: "POST", // *GET, POST, PUT, DELETE, etc.
-						// headers: {
-						// 		"Content-Type": "multipart/form-data",
-						// 		// "Content-Type": "application/x-www-form-urlencoded",
-						// },
+						headers: {
+								"Content-Type": "multipart/form-data",
+								// "Content-Type": "application/x-www-form-urlencoded",
+						},
 						body: formdata // body data type must match "Content-Type" header
 				})
 				.then(response => response.json()); // parses response to JSON
@@ -58,30 +53,47 @@ Vue.component('route-rabatt', {
 			this.sent= null;
 			this.from=null;
 			this.text=null;
-			//console.log("HIGHTLIGHT"+ this.highlight.id);
-			this.bild = "./assets/" + this.highlight.bildnamn;
+			console.log("HIGHTLIGHT"+ this.highlight.id);
+			this.bild = "./assets/" + this.highlight.bildnamn
 			//this.$router.push(`/api/rabatt/${this.rabatt}`);
+		},
+
+		done() {
+			const self = this;
+			this.meddelande = this.text +"\nAvsändare: " +this.from;
+			this.subject = this.subjectMall + this.highlight.namn;
+			const params = { text: this.meddelande, subject: this.subject};
+			this.postData('/api/email', params)
+				.then(() => {
+					this.sent = "jacob";
+					console.log(this.sent);
+					// document.getElementById('feedback').style.display = 'none';
+					// document.getElementById('tack').style.display = 'flex';
+					// this.$router.push('/profile');
+					console.log("skickat")
+				}).catch(() => {
+					// console.log(error);
+					self.errorMessage = 'Incorrect credentials.';
+				// console.log(this.errorMessage);
+			});
 		},
 
 		doneImg() {
 			const self = this;
-			this.meddelande = this.text +"\nAvsändare: " +this.from;
-			this.subject = this.subjectMall + this.highlight.namn.toLowerCase();
+
 			let fd = new FormData();
-			fd.append('text', this.meddelande)
-			fd.append('subject', this.subject)
-			this.text="jacob";
-			this.sent = "sent";
-
-			//fd.append('text', `${this.text}`);
-			if (this.userimage !== null){
-				fd.append('img', this.userimage, 'bild.jpg');
-			}
-			this.userimage = null;
-
-			//console.log(this.userimage);
+			fd.append('img', this.userimage);
+			fd.append('text',this.text);
+			console.log(fd);
+			console.log(this.userimage);
 			this.postImg('/api/emailImg', fd)
 				.then(() => {
+					this.sent = "jacob";
+					console.log(this.sent);
+					// document.getElementById('feedback').style.display = 'none';
+					// document.getElementById('tack').style.display = 'flex';
+					// this.$router.push('/profile');
+					console.log("skickat")
 				}).catch(() => {
 					// console.log(error);
 					self.errorMessage = 'Incorrect credentials.';
@@ -96,9 +108,11 @@ Vue.component('route-rabatt', {
 		fetch(`/api/rabatter/${this.rabatt_in}`)
 			.then(res => res.json())
 			.then(data => {
-
+				console.log(data);
+				console.log(data.rabatt[0].width);
 				this.rabatt= data.rabatt[0];
 				this.vaxtlista = data.vaxter;
+				console.log(this.rabatt)
 				this.viewBox = "" + this.rabatt.x + " " + this.rabatt.y + " " + this.rabatt.width + " " + this.rabatt.height;
 
 
@@ -168,24 +182,22 @@ Vue.component('route-rabatt', {
 		<div id="feedback" v-if="this.highlight !== null && this.sent === null">
 
 				<h1 style="font-size:6vw;">Ge feedback!</h1>
-				Fyll i formuläret så skickas det till bostadsrättsföreningens grönansvariga. <p>
+				Fyll i formuläret så skickas det till bostadsrättsföreningens grönansvariga. Bifoga gärna en bild! <p>
 				<form v-on:submit.prevent="doneImg()">
+					<div class="form-group">
+						<label for="textbox">Meddelande</label>
+    				<input type="text" v-model="text" required class="form-control" rows="3" id="textbox" placeholder="Feedback här">
+					</div>
+					<div class="form-group">
+						<label for="email">Från</label>
+						<input type="email" v-model="from" required class="form-control" id="email" placeholder="Din email">
+					</div>
+					<div class="form-group">
+						<label for="bild">Bild</label>
+						<input type="file" name="bild" v-model="userimage" accept="image/">
+					</div>
 
-				<div class="form-group">
-					<label for="textbox">Meddelande</label>
-					<input type="text" v-model="text" required class="form-control" rows="3" id="textbox" placeholder="Feedback här">
-				</div>
-				<div class="form-group">
-					<label for="email">Från</label>
-					<input type="email" v-model="from" required class="form-control" id="email" placeholder="Din email">
-				</div>
-
-				<div class="form-group">
-					<label for="bild">Lägg till bild om du vill.</label><br>
-					<input type="file" name="bild" accept="image/" @change="onFileChange">
-				</div>
-
-					<button type="submit" class="btn btn-primary">Skicka feedback</button>
+						<button type="submit" class="btn btn-primary">Skicka feedback</button>
 				</form>
 
 

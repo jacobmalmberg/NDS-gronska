@@ -38,7 +38,7 @@ time_slot_dict[1] = []; //arrays for the time slots
 
  exports.get_rabatt = (rabatt_id_in) => rabatt_db.findAll({where: {id: rabatt_id_in}})
  .then(result =>{
-   console.log(result);
+   //console.log(result);
    return result;
 });
 

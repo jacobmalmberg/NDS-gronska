@@ -8,8 +8,12 @@ const router = require('./controllers/rest.controller.js');
 app.use('/api', router);
 
 // parse application/json
-const bodyParser = require('body-parser');
-app.use(bodyParser.json())
+//const bodyParser = require('body-parser');
+//app.use(bodyParser.json())
+// 
+// const formidable = require('express-formidable');
+// app.use(formidable());
+//app.use(bodyParser.json())
 
 const orm = require('./orm.js');
 const assistant_db = orm.assistant;

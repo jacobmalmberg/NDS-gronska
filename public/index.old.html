@@ -34,33 +34,32 @@
 
 <body>
     <div id="app">
+        <nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div v-on:click="redirect('/forening')" class="navbar-brand navbar-brand-centered" style="line-height: 1em; cursor: pointer;">BRF</div>
+                </div>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="navbar-brand" id="navbarStart" style="line-height: 1em; cursor: pointer;" class="navbar-brand" >BRF</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul id="navbarUl" class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer;">Växter</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer;">Djurliv</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer;">GYF</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer;">Om oss</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer;">Kontakt</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-brand-centered">
+                    <ul class="nav navbar-nav">
+                        <!--<li v-on:click="redirect('/admin_login')"><a style="cursor: pointer;">Admin</a></li>-->
+                        <li><a style="cursor: pointer;">Växter</a></li>
+                        <li><a style="cursor: pointer;">Djurliv</a></li>
+                        <li><a style="cursor: pointer;">GYF</a></li>
+                        <li><a style="cursor: pointer;">Om oss</a></li>
+                        <li><a style="cursor: pointer;">Kontakt</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
         <router-view></router-view>
     </div>
 
