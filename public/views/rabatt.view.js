@@ -41,6 +41,7 @@ Vue.component('route-rabatt', {
 			// Default options are marked with *
 				return fetch(url, {
 						method: "POST", // *GET, POST, PUT, DELETE, etc.
+						//https://github.com/github/fetch/issues/505
 						// headers: {
 						// 		"Content-Type": "multipart/form-data",
 						// 		// "Content-Type": "application/x-www-form-urlencoded",
@@ -115,16 +116,20 @@ Vue.component('route-rabatt', {
 
 	template: `
 
-	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-around;">
+	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
 
-		<div>
+		<div style="margin-top: 2em;">
 
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 				<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-					<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: not-allowed;" :points="vaxt.polygon" fill="#00F" opacity="1"></polygon>
+					<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: pointer;" :points="vaxt.polygon" fill="#00F" opacity="1"></polygon>
 					<polygon v-if="this.highlight !== null" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 			</svg>
 
+		</div>
+
+		<div v-if="this.rabatt !== null && this.highlight === null" style="margin-top: 2em;">
+			Tryck på en växt för att få veta mer!
 		</div>
 
 		<div v-if="this.rabatt !== null && this.highlight === null">
@@ -152,7 +157,7 @@ Vue.component('route-rabatt', {
 
 		</div>
 
-		<div v-if="this.highlight !== null" style = "display: flex; flex-direction: row; justify-content: space-between;">
+		<div v-if="this.highlight !== null" style = "margin-bottom:2em; display: flex; flex-direction: row; justify-content: space-between;">
 
 			<div>
 				<h1 style="font-size:6vw;">Skötselråd</h1>
@@ -163,6 +168,8 @@ Vue.component('route-rabatt', {
 				Näring: {{this.highlight.naring}}<br>
 				Jordmån: {{this.highlight.jordman}}
 			</div>
+
+
 		</div>
 
 		<div id="feedback" v-if="this.highlight !== null && this.sent === null">

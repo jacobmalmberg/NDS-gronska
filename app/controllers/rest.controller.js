@@ -76,6 +76,8 @@ router.get('/rabatter/:rabatt', function (req, res) {
 
 
 router.post('/emailImg', function (req, res) {
+  //https://codepen.io/Atinux/pen/qOvawK/
+  //https://flaviocopes.com/express-forms-files/
 
   new formidable.IncomingForm().parse(req, (err, fields, files) => {
     if (err) {
@@ -89,7 +91,7 @@ router.post('/emailImg', function (req, res) {
     if (files.img !== undefined){
       mailOptions = {
         to: 'ndsgronska@gmail.com',
-        from: 'jacob@gmail.com',
+        from: 'ndsgronska@gmail.com',
         subject: fields.subject,
         text: fields.text,
         attachments: [

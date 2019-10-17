@@ -1,7 +1,6 @@
 Vue.component('route-forening', {
   data() {
     return {
-      messages:  ['hello'],
       rabattlista: null,
       rabatt: null,
       x: 1288,
@@ -71,22 +70,23 @@ Vue.component('route-forening', {
 
   template: `
     <div class="container">
-        <section class="col-md-10 col-md-offset-1">
             <div>
-
+              <h1 style="font-size:3vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Välkommen till Högviltsgatans BRF.</h1>
+            </div>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2111 1219">
               <image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-                <polygon v-for="rabatt in rabattlista" v-on:click="say(rabatt)" style="cursor: not-allowed;" :points="rabatt.polygon" fill="#fff" opacity="0.5"></polygon>
+                <polygon v-for="rabatt in rabattlista" v-on:click="say(rabatt)" style="cursor: pointer;" :points="rabatt.polygon" fill="#fff" opacity="0.5"></polygon>
 
             </svg>
-
-            </div>
-
-
-
+            <div style=" text-align: center; margin-top: 2em;">
+        			Tryck på en rabatt för att få veta mer!
+        		</div>
 
 
-        </section>
+
+
+
+
     </div>
 	`
 });
