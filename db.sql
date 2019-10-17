@@ -1,25 +1,5 @@
 use intnetdb; # Byt till din egen
 
-drop table time_slots;
-drop table assistants; # Radera tabeller om de redan finns
-
-create table assistants (
-	id int NOT NULL AUTO_INCREMENT,
-	name varchar(64),
-	PRIMARY KEY (id)
-);
-
-create table time_slots (
-	id int NOT NULL AUTO_INCREMENT,
-	assistant_id int,
-	time varchar(64),
-	date int,
-	booked_by varchar(64),
-	reserved BOOLEAN,
-	PRIMARY KEY (id),
-	FOREIGN KEY (assistant_id) REFERENCES assistants(id) ON DELETE CASCADE
-);
-
 drop table vaxter;
 drop table rabatter;
 drop table foreningar;
@@ -313,22 +293,3 @@ INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" 
 ",
 "Klätterväxt som är vackert förgrenad. Har grova grenar och frodig grönska. Blommar fint i skuggan och har stora vita blad. Fäster bra direkt på murar, väggar och plank. God boplats för fåglar."
 , "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord");
-
-
-
-
-
-INSERT INTO assistants values (null, "Marcus");
-INSERT INTO assistants values (null, "Jacob");
-
-
-
-INSERT INTO time_slots values (null, 1, "09:00", 190201, "", false);
-INSERT INTO time_slots values (null, 1, "10:00", 190203, "", false);
-INSERT INTO time_slots values (null, 1, "09:00", 190226, "", false);
-INSERT INTO time_slots values (null, 1, "09:00", 190227, "", false);
-
-INSERT INTO time_slots values (null, 2, "15:00", 190223, "", false);
-INSERT INTO time_slots values (null, 2, "16:00", 190223, "", false);
-INSERT INTO time_slots values (null, 2, "08:00", 190224, "", false);
-INSERT INTO time_slots values (null, 2, "09:00", 190225, "", false);
