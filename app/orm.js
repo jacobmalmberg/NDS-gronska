@@ -36,41 +36,6 @@ sequelize.authenticate()
 //   }
 // });
 
-const Assistant = sequelize.define("assistant", {
-  id : {
-    type: Sequelize.INTEGER,
-    primaryKey: true
-  },
-  name: {
-    type: Sequelize.STRING
-  }
-}, {timestamps: false,
-});
-
-
-const Time_Slot = sequelize.define("time_slot",{
-  assistant_id: {
-    type: Sequelize.INTEGER
-  },
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true
-  },
-  time: {
-    type: Sequelize.STRING
-  },
-  date: {
-    type: Sequelize.INTEGER
-  },
-  booked_by: {
-    type: Sequelize.STRING
-  },
-  reserved: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
-  }
-}, {timestamps: false,
-});
 
 const Forening = sequelize.define("foreningar", {
   id : {
@@ -160,6 +125,9 @@ const Vaxt = sequelize.define("vaxter",{
   },
   jordman: {
     type: Sequelize.STRING
+  },
+  typ: {
+    type: Sequelize.STRING
   }
 }, {
   timestamps: false,
@@ -169,12 +137,9 @@ const Vaxt = sequelize.define("vaxter",{
 
 
 
-module.exports.assistant = Assistant;
 module.exports.forening = Forening;
 module.exports.rabatt = Rabatt;
 module.exports.vaxt = Vaxt;
-module.exports.time_slot =  Time_Slot;
-module.exports.sequelize = sequelize;
 
 
 

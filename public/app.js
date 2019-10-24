@@ -1,10 +1,8 @@
 const routes = [
 	{ path: '/', redirect: '/forening' },
-	{ path: '/forening', component: Vue.component('route-forening') },
-	{ path: '/booking_confirm', name:'booking_confirm', component: Vue.component('route-booking_confirm'), props: true },
-	{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
-	{ path: '/admin_login', component: Vue.component('route-admin_login') },
-	{ path: '/admin_page/:name', component: Vue.component('route-admin_page') }
+	{ path: '/forening',  name:'forening', component: Vue.component('route-forening') },
+	//{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
+	{ path: '/rabatt/:id', component: Vue.component('route-rabatt') },
 ];
 
 // Create VueRouter

@@ -1,7 +1,7 @@
 Vue.component('route-rabatt', {
 	data() {
 		return {
-			rabatt_in: this.$route.params.rabatt,
+			id: this.$route.params.id,
 			rabatt: null,
 			viewBox:"0 0 2111 1000",
 			viewBoxStor: "0 0 2111 1000",
@@ -15,6 +15,10 @@ Vue.component('route-rabatt', {
 			from: null,
 			sent: null,
 			userimage: null,
+			ekosystem: null,
+			ndstext: "Att naturen sköter sig själv är en del av stadsdelens strategi för hållbarhet. Läs mer på ",
+			ndslink: "http://www.norradjurgardsstaden2018.se/lat-naturen-gora-jobbet/",
+			rabattext: null
 
 
 		}
@@ -93,13 +97,18 @@ Vue.component('route-rabatt', {
 	},
 	beforeMount() {
 		//this.viewBox = "" + this.rabatt.x +" "+this.rabatt.y + " " +this.rabatt.width +
+		// if (this.rabatt_in === undefined) {
+		// 	this.$router.push({ name: 'forening' });
+		// }
 
-		fetch(`/api/rabatter/${this.rabatt_in}`)
+		fetch(`/api/rabatter/${this.id}`)
 			.then(res => res.json())
 			.then(data => {
 
 				this.rabatt= data.rabatt[0];
 				this.vaxtlista = data.vaxter;
+				this.ekosystem = data.text;
+				this.rabattext = this.ekosystem +this.ndstext;
 				this.viewBox = "" + this.rabatt.x + " " + this.rabatt.y + " " + this.rabatt.width + " " + this.rabatt.height;
 
 
@@ -118,7 +127,7 @@ Vue.component('route-rabatt', {
 
 	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
 
-		<div style="margin-top: 2em;">
+		<div>
 
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 				<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
@@ -128,21 +137,44 @@ Vue.component('route-rabatt', {
 
 		</div>
 
-		<div v-if="this.rabatt !== null && this.highlight === null" style="margin-top: 2em;">
+		<div v-if="this.rabatt !== null && this.highlight === null" style="margin-top: 1em; margin-bottom: 1em;">
 			Tryck på en växt för att få veta mer!
+		</div>
+
+		<div v-if="this.rabatt !== null && this.highlight === null">
+			<h1 style="font-size:6vw;">Om rabatten.</h1>
 		</div>
 
 		<div v-if="this.rabatt !== null && this.highlight === null">
 			Jorddjup: {{this.rabatt.jorddjup}} mm.
 		</div>
 
-		<div v-if="this.rabatt !== null && this.highlight === null">
+		<div style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === null">
 			Ytskikt: {{this.rabatt.ytskikt}}.
 		</div>
 
-		<div v-if="this.highlight !== null">
+		<div v-if="this.rabatt !== null && this.highlight === null">
+			<h1 style="font-size:6vw;">Växter i denna rabatt.</h1>
+		</div>
 
-			<h1 style="font-size:7vw;">{{this.highlight.namn}}</h1>
+		<div style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === null">
+			<li v-for="vaxt in vaxtlista" v-on:click="say(vaxt)">
+				<a style=" color: blue; cursor: pointer;"> {{vaxt.namn}} </a>
+			</li>
+		</div>
+
+		<div id="Ekosystem" v-if="this.rabatt !== null && this.highlight === null">
+
+				<h1 style="font-size:6vw;">Rabattens ekosystem.</h1>
+				{{this.rabattext}} <a v-bind:href=this.ndslink> {{this.ndslink}} </a>
+
+		</div>
+
+
+
+		<div style="margin-top: 1em; margin-bottom: 1em;" v-if="this.highlight !== null">
+
+			<u><h1 style="font-size:7vw;">{{this.highlight.namn}}</h1></u>
 		</div>
 
 		<div v-if="this.highlight !== null" style = "display: flex; flex-direction: row; justify-content: space-between;">
@@ -157,10 +189,10 @@ Vue.component('route-rabatt', {
 
 		</div>
 
-		<div v-if="this.highlight !== null" style = "margin-bottom:2em; display: flex; flex-direction: row; justify-content: space-between;">
+		<div v-if="this.highlight !== null" style = "margin-bottom:1em; display: flex; flex-direction: row; justify-content: space-between;">
 
 			<div>
-				<h1 style="font-size:6vw;">Skötselråd</h1>
+				<u><h1 style="font-size:6vw;">Skötselråd</h1></u>
 				Vatten: {{this.highlight.vatten}}<br>
 				Läge: {{this.highlight.lage}}<br>
 				Höjd: {{this.highlight.hojd}}<br>
@@ -174,7 +206,7 @@ Vue.component('route-rabatt', {
 
 		<div id="feedback" v-if="this.highlight !== null && this.sent === null">
 
-				<h1 style="font-size:6vw;">Ge feedback!</h1>
+				<u><h1 style="font-size:6vw;">Ge feedback!</h1></u>
 				Fyll i formuläret så skickas det till bostadsrättsföreningens grönansvariga. <p>
 				<form v-on:submit.prevent="doneImg()">
 
@@ -192,7 +224,7 @@ Vue.component('route-rabatt', {
 					<input type="file" name="bild" accept="image/" @change="onFileChange">
 				</div>
 
-					<button type="submit" class="btn btn-primary">Skicka feedback</button>
+					<button type="submit" class="btn btn-success">Skicka feedback</button>
 				</form>
 
 

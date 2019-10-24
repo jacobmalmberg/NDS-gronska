@@ -16,7 +16,8 @@ Vue.component('route-forening', {
       this.rabatt=message;
       console.log("rabattid"+ this.rabatt.id);
       //this.$router.push(`/api/rabatt/${this.rabatt}`);
-      this.$router.push({name: 'rabatt', params: {rabatt: message.id}});
+      //this.$router.push({name: 'rabatt', params: {rabatt: message.id}});
+      this.$router.push(`/rabatt/${this.rabatt.id}`);
     }
   },
   created() {
@@ -69,7 +70,7 @@ Vue.component('route-forening', {
 // </map>
 
   template: `
-    <div class="container">
+    <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
             <div>
               <h1 style="font-size:3vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Välkommen till Högviltsgatans BRF.</h1>
             </div>
@@ -81,12 +82,6 @@ Vue.component('route-forening', {
             <div style=" text-align: center; margin-top: 2em;">
         			Tryck på en rabatt för att få veta mer!
         		</div>
-
-
-
-
-
-
     </div>
 	`
 });

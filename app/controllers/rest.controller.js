@@ -14,31 +14,6 @@ const transporter = nodemailer.createTransport({
 });
 
 
-// router.get('/roomList', function (req, res) {
-//   const rooms = model.getRooms();
-//   const roomNames = [];
-//   for (let i = 0; i < rooms.length; i++) {
-//     roomNames.push(rooms[i]);
-//   }
-//   res.json({ list: roomNames });
-// });
-
-// router.get('/booking', function (req, res) {
-//   let pArray = []
-//   pArray[0] = model.get_assistants();
-//   pArray[1] = model.get_all_time_slots();
-//   Promise.all(pArray).then(function (values){
-//     let ass_list = values[0];
-//     let time_list = values[1];
-//     // console.log("*******");
-//     // for (let time of time_list){
-//     //   console.log(time.date);
-//     // }
-//     // console.log("*******");
-//     res.json({ assistant_list: ass_list, time_slots: time_list });
-//   });
-// });
-
 router.get('/forening', function (req, res) {
   let id=1;
   //console.log(id);
@@ -51,13 +26,6 @@ router.get('/forening', function (req, res) {
 
 
 
-router.get('/time_slots/:assistant', function (req, res) {
-  const time_slots = model.get_time_slots(req.params.assistant)
-  .then(result =>{
-    res.json({list: result});
-  });
-});
-
 router.get('/rabatter/:rabatt', function (req, res) {
   //hämta alla växter som finns i rabatten
   //console.log(req.params.rabatt);
@@ -69,10 +37,14 @@ router.get('/rabatter/:rabatt', function (req, res) {
   //.then(result =>{
   let rabatt = values[0];
   let vaxter = values[1];
+
+  let text = model.check_ekosystem(vaxter);
     //console.log(result);
-    res.json({rabatt:rabatt, vaxter: vaxter});
+  res.json({rabatt:rabatt, vaxter: vaxter, text: text});
   });
 });
+
+//router.get('/admin_page/:assistant', function (req, res) {
 
 
 router.post('/emailImg', function (req, res) {
@@ -142,67 +114,6 @@ router.post('/email', function (req, res) {
       console.log('Email sent: ' + info.response);
       res.json({url: '/profile' })
     }
-  });
-});
-
-
-router.post('/remove_time_slot', function (req, res) {
-  console.log(req.body);
-  let params = JSON.parse(req.body.id);
-  console.log(params);
-  model.delete_time_slot(req.body.id)
-  .then(() => {
-      let pArray = [];
-      pArray[0] = model.get_time_slots(req.body.name);
-      Promise.all(pArray).then(function (values){
-        let time_slots = values[0];
-        res.json({list: time_slots });
-      });
-  });
-});
-
-
-router.post('/add_time_slot', function (req, res) {
-  console.log(req.body);
-  model.add_time_slot(req.body.name, req.body.date, req.body.time)
-  .then(() => {
-    let pArray = [];
-    pArray[0] = model.get_time_slots(req.body.name);
-    Promise.all(pArray).then(function (values){
-      let time_slots = values[0];
-      res.json({list: time_slots });
-    });
-  });
-});
-
-
-router.get('/admin_page/:assistant', function (req, res) {
-  ///const asse = find.alreq.params.assistant
-  console.log("serverasse " + req.params.assistant);
-  let asse = req.params.assistant;
-  model.get_assistants_name()
-  .then(result => {
-    if (result.includes(asse)){
-      console.log("fanns i listan");
-      res.json({url: "/admin_page/" + asse, name: asse});
-    }
-    else {
-      console.log("fanns ej");
-      res.json({url: "/admin_login", name: '', error: "No assistant named: " + asse +" exists!"});
-    }
-  });
-});
-
-// router.get('/room/:room', function (req, res) {
-//   const messages = model.findRoom(req.params.room).messages;
-//   res.json({
-//     list: messages
-//   });
-// });
-
-router.post('/setUser', function (req, res) {
-  res.json({
-    name: 'Anon'
   });
 });
 

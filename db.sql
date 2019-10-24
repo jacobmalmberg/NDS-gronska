@@ -46,6 +46,7 @@ create table vaxter (
 	blommar varchar(64),
 	naring varchar(64),
 	jordman varchar(64),
+	typ varchar(64),
 	PRIMARY KEY (id),
 	FOREIGN KEY (rabatt_id) REFERENCES rabatter(id) ON DELETE CASCADE
 );
@@ -195,7 +196,7 @@ INSERT INTO vaxter values (null, 1, "Jättedaggkåpa", "jattedaggkapa.jpg" , "
              1337.00,626.00 1345.00,614.00 1345.00,614.00
              1350.98,619.08 1351.79,624.86 1357.04,628.15
 ", "En rikligt blommande perenn. Lättodlad. Bra marktäckare som lever länge. Svagt doftande blomning. Bör klippas ner efter blomning så att den kan blomma igen. Kommer ursprunligen från karpaterna
-", "Medel", "Omväxlande sol/moln", "30-40 cm.", "Juni", "Trädgårdsgödsel", "Näringsrik jord");
+", "Medel", "Omväxlande sol/moln", "30-40 cm.", "Juni", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
 
 INSERT INTO vaxter values (null, 1, "Stäppsalvia" ,"stappsalvia.jpg" , "
 	1713.00,687.00 1719.00,687.00 1719.00,687.00
@@ -215,7 +216,7 @@ INSERT INTO vaxter values (null, 1, "Stäppsalvia" ,"stappsalvia.jpg" , "
 	             1702.00,688.00 1713.00,687.00 1713.00,687.00
 ",
 "En doftrik perenn. Trivs bäst i solen i väldränerad jord. Passar bra i blandade rabatter. Lockar till sig bin och fjärilar. Bör klippas ner efter blomning så att den kan blomma igen.
-", "Medel", "Soligt", "40-60 cm", "Juni-Augusti", "Trädgårdsgödsel", "Väldränerad jord");
+", "Medel", "Soligt", "40-60 cm", "Juni-Augusti", "Trädgårdsgödsel", "Väldränerad jord", "Perenn");
 
 
 
@@ -227,7 +228,7 @@ INSERT INTO vaxter values (null, 1, "Bergskörsbär", "bergskorsbar.jpg" , "
 	             1436.72,714.81 1440.46,714.88 1445.00,716.56
 ",
 "Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras."
-, "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord");
+, "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
 
 
 INSERT INTO vaxter values (null, 2, "Prakthäggmispel", "prakthaggmispel.jpg" , "
@@ -271,8 +272,22 @@ INSERT INTO vaxter values (null, 2, "Prakthäggmispel", "prakthaggmispel.jpg" , 
              921.00,637.58 897.00,650.00 897.00,650.00
              897.00,650.00 888.80,629.00 888.80,629.00
 ",
-"Lämplig som friväxande häck. Fullkomligt översållas med skira vita blommor tidig vår. Nya bladskott är röda och står i stark kontrast till buskens vita blommor. Snabbxät och lättodlad."
-, "Medel", "Sol till halvskugga", "4-5 m", "April-Maj", "Trädgårdsgödsel & naturgödsel", "Näringsrik & mullrik jord");
+"Lämplig som friväxande häck. Fullkomligt översållas med skira vita blommor tidig vår. Nya bladskott är röda och står i stark kontrast till buskens vita blommor. Snabbväxt och lättodlad."
+, "Medel", "Sol till halvskugga", "4-5 m", "April-Maj", "Trädgårdsgödsel & naturgödsel", "Näringsrik & mullrik jord", "Perenn");
+
+INSERT INTO vaxter values (null, 2, "Kirgislök", "kirgislok.jpg" , "
+
+	1025.36,684.16 1031.92,690.97 1031.92,700.00
+	             1031.92,708.60 1025.94,715.23 1019.00,719.53
+	             1006.57,727.25 991.33,729.16 977.00,729.00
+	             964.92,728.85 947.36,724.49 938.00,716.67
+	             926.63,707.16 925.86,694.25 937.02,684.18
+	             940.06,681.44 943.33,679.54 947.00,677.78
+	             954.89,674.02 962.48,672.71 971.00,671.42
+	             985.70,669.63 1005.13,672.38 1018.00,679.88
+",
+"En växt som är lika vacker som den är hög. Blommar med stora boll-liknande blommor. Trivs tillsammans med perenner."
+, "Lite", "Sol till halvskugga", "80-100 cm", "Maj", "Benmjöl", "Näringsrik", "Annuell");
 
 
 INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" , "
@@ -292,4 +307,4 @@ INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" 
              482.92,655.41 483.13,659.03 485.13,667.00
 ",
 "Klätterväxt som är vackert förgrenad. Har grova grenar och frodig grönska. Blommar fint i skuggan och har stora vita blad. Fäster bra direkt på murar, väggar och plank. God boplats för fåglar."
-, "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord");
+, "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord", "Perenn");
