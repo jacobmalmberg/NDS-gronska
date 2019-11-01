@@ -1,83 +1,23 @@
-.html, body {
-  margin: 0;
-  padding: 0;
-  border: 0;
+@media screen and (min-width: 1px) {
+  body {
+    background-color: #ccffcc;
+    color: black;
+  }
 }
 
-span.text-blue {
-  color: #red;
+.infoDiv {
+  background-color: white;
+  color: black;
 }
 
-button:focus {
-  outline: 0;
+@media screen and (min-width: 1281px) {
+  div.mobileRabatt {
+    display: none;
+  }
 }
 
-.navbar .container {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  width: 100%;
-}
-
-.navbar-brand-centered {
-  position: absolute;
-  left: 50%;
-  display: block;
-  width: 160px;
-  text-align: center;
-  background-color: transparent;
-}
-
-.navbar>.container .navbar-brand-centered, .navbar>.container-fluid .navbar-brand-centered {
-  margin-left: -80px;
-}
-
-.navbar {
-  border-bottom: 0;
-}
-
-.navbar-default .navbar-nav>li:not(.active)>a:not(.unresponsive):hover {
-  background-color: #0E0E0E;
-}
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus {
-  background-color: #3873FF;
-  color: #FFFFFF;
-}
-
-.navbar-default .navbar-nav>.active>a:hover {
-  background-color: #1C65EB;
-}
-
-.nav.navbar-nav.navbar-right>li>.unresponsive:hover {
-  color: #777777;
-  cursor: default;
-}
-
-
-
-br {
-  clear:left;
-  margin: 0;
-  padding: 0;
-
-}
-
-}
-input[type=text]{
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-label{
-  float:left;
-  text-align:left;
-  margin:auto;
-  width: 150px;
-  padding: 2px;
+@media screen and (max-width: 1280px) {
+  div.desktopRabatt {
+    display: none;
+  }
 }
