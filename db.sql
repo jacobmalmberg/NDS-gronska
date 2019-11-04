@@ -220,7 +220,7 @@ INSERT INTO vaxter values (null, 1, "Stäppsalvia" ,"stappsalvia.jpg" , "
 
 
 
-INSERT INTO vaxter values (null, 1, "Bergskörsbär", "bergskorsbar.jpg" , "
+INSERT INTO vaxter values (null, 1, "Bergskörsbär", "bergskorsbar2.jpg" , "
 	1457.37,721.13 1462.38,735.57 1453.47,745.82
 	             1449.06,750.88 1441.60,753.31 1435.00,752.91
 	             1416.18,751.75 1409.31,732.38 1420.33,721.33
