@@ -120,9 +120,9 @@ Vue.component('route-rabatt', {
 		// 	this.$router.push({ name: 'forening' });
 		// }
 		let vaxt;
-		if (this.id === undefined) {
-			this.$router.push({ name: 'forening' });
-		}
+		// if (this.id === undefined) {
+		// 	this.$router.push({ name: 'forening' });
+		// }
 		if (this.highlight === undefined) {
 			vaxt = false;
 		} else{
@@ -150,6 +150,8 @@ Vue.component('route-rabatt', {
 			})
 
 	},
+
+
 	//
 	// <h1 style="font-size:4vh;">Meddelande</h1>
 	// 	<input class="form-control" type="text" v-model="text" required  placeholder="Feedback här">
@@ -254,7 +256,7 @@ Vue.component('route-rabatt', {
 			<div :class=mobileRabatt v-if="this.attraherar.length > 0" style = "margin-bottom:1em;" >
 			<h1 style="font-size:3vh;">Attraherar</h1>
 				<div :class=mobileRabatt v-for="a in this.attraherar" v-on:click="insekt(a)" style="flex:1;">
-				
+
 
 					<a style="color: blue; cursor: pointer;">
 					{{a.namn}} </a>
