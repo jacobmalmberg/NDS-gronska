@@ -34,7 +34,6 @@ Vue.component('route-forening', {
     //ImageMap('img[usemap]');
     //imageMapResize();
     //resize();
-    console.log("booking");
 
 
   },
@@ -71,8 +70,9 @@ Vue.component('route-forening', {
 
   template: `
     <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
+
             <div>
-              <h1 style="font-size:3vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Välkommen till Högviltsgatans BRF.</h1>
+              <h1 style="font-size:3vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Välkommen till Garphyttans innergård.</h1>
             </div>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2111 1219">
               <image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>

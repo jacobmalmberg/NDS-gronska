@@ -1,5 +1,8 @@
 use intnetdb; # Byt till din egen
 
+drop table attraherar;
+drop table insekter;
+drop table mulm;
 drop table vaxter;
 drop table rabatter;
 drop table foreningar;
@@ -51,7 +54,45 @@ create table vaxter (
 	FOREIGN KEY (rabatt_id) REFERENCES rabatter(id) ON DELETE CASCADE
 );
 
+
+create table mulm (
+	id int NOT NULL AUTO_INCREMENT,
+	rabatt_id int,
+	bildnamn varchar(64),
+	polygon LONGTEXT,
+	intro LONGTEXT,
+	skotsel varchar(64),
+	typ varchar(64),
+	PRIMARY KEY (id),
+	FOREIGN KEY (rabatt_id) REFERENCES rabatter(id) ON DELETE CASCADE
+);
+
+create table insekter (
+	id int NOT NULL AUTO_INCREMENT,
+	namn varchar(64),
+	bildnamn varchar(64),
+	intro LONGTEXT,
+	status varchar(64),
+	PRIMARY KEY (id)
+
+);
+
+
+create table attraherar (
+	id int NOT NULL AUTO_INCREMENT,
+	insekts_id int,
+	vaxt_id int,
+	PRIMARY KEY (id),
+	FOREIGN KEY (insekts_id) REFERENCES insekter(id),
+	FOREIGN KEY (vaxt_id) REFERENCES vaxter(id)
+
+);
+
+
 INSERT INTO foreningar values (null, "Högviltsgatan", "hogviltsgatan.png");
+
+
+
 
 INSERT INTO rabatter values (null, 1, 1285, 579, 475, 220, "
                 1362.00,602.14 1337.00,591.09 1337.00,591.09
@@ -195,7 +236,7 @@ INSERT INTO vaxter values (null, 1, "Jättedaggkåpa", "jattedaggkapa.jpg" , "
              1329.10,623.50 1333.95,625.31 1337.00,626.00
              1337.00,626.00 1345.00,614.00 1345.00,614.00
              1350.98,619.08 1351.79,624.86 1357.04,628.15
-", "En rikligt blommande perenn. Lättodlad. Bra marktäckare som lever länge. Svagt doftande blomning. Bör klippas ner efter blomning så att den kan blomma igen. Kommer ursprunligen från karpaterna
+", "En rikligt blommande perenn. Lättodlad. Bra marktäckare som lever länge. Svagt doftande blomning. Bör klippas ner efter blomning så att den kan blomma igen. Kommer ursprunligen från karpaterna.
 ", "Medel", "Omväxlande sol/moln", "30-40 cm.", "Juni", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
 
 INSERT INTO vaxter values (null, 1, "Stäppsalvia" ,"stappsalvia.jpg" , "
@@ -308,3 +349,10 @@ INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" 
 ",
 "Klätterväxt som är vackert förgrenad. Har grova grenar och frodig grönska. Blommar fint i skuggan och har stora vita blad. Fäster bra direkt på murar, väggar och plank. God boplats för fåglar."
 , "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord", "Perenn");
+
+INSERT INTO insekter values (null, "Ekbarkbock", "ekbarkbock.png",
+"En rikligt blommande perenn. Lättodlad. ",
+"Utrotningshotad");
+
+
+INSERT INTO attraherar values (null, 1, 2);

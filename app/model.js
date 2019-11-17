@@ -4,6 +4,8 @@ const orm = require('./orm.js');
 const forening_db = orm.forening;
 const rabatt_db = orm.rabatt;
 const vaxt_db = orm.vaxt;
+const insekt_db = orm.insekt;
+const attraherar_db = orm.attraherar;
 
 
 const forening = require('./models/forening.model');
@@ -40,6 +42,36 @@ exports.check_ekosystem = (vaxter) => {
     return ekosystem_obalanserad_perenn;
   }
 };
+
+
+// exports.get_attraktion = (attraktion_list) => attraherar_db.findAll(
+//   {where: {
+//     vaxt_id: {
+//       [Op.or]: attraktion_list
+//     }
+//   })
+// .then(result =>{
+//  let a_list=[];
+//  for (let i of result){
+//    a_list.push(i);
+//  }
+//  return rabattlista;
+// });
+
+exports.get_attraktion = (id_in) => attraherar_db.findAll(
+  {where: {
+    vaxt_id: id_in
+  }
+  })
+.then(result =>{
+ return result;
+});
+
+exports.get_insekt = (insekt_id_in) => insekt_db.findAll({where: {id: insekt_id_in}})
+.then(result =>{
+ //console.log(result);
+ return result;
+});
 
 exports.get_rabatter = (forening_id_in) => rabatt_db.findAll({where: {forening_id: forening_id_in}})
 .then(result =>{

@@ -26,6 +26,72 @@ router.get('/forening', function (req, res) {
 
 
 
+// router.get('/rabatter/:rabatt', function (req, res) {
+//   //hämta alla växter som finns i rabatten
+//   //console.log(req.params.rabatt);
+//   let pArray = [];
+//   pArray[0]= model.get_rabatt(req.params.rabatt)
+//   pArray[1]= model.get_vaxter_in_rabatt(req.params.rabatt)
+//   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
+//   Promise.all(pArray).then(function (values){
+//   //.then(result =>{
+//   let rabatt = values[0];
+//   let vaxter = values[1];
+//   let vaxt_id =[];
+//   for (let i = 0;i < vaxt_id.length; i++){
+//     vaxt_id.push(vaxter[i].id);
+//   }
+//
+//
+//   let pArray2 = [];
+//   pArray[0]= model.get_attraktion(vaxt_id)
+//   pArray[1]= model.check_ekosystem(vaxter);
+//
+//   let text = model.check_ekosystem(vaxter);
+//     //console.log(result);
+//   res.json({rabatt:rabatt, vaxter: vaxter, text: text});
+//   });
+// });
+
+// router.get('/attraherar/:vaxt_id', function (req, res) {
+//   //hämta alla växter som finns i rabatten
+//   //console.log(req.params.rabatt);
+//   // let pArray = [];
+//   // pArray[0]= model.get_attraktion(req.params.vaxt_id)
+//   // /Promise.all(pArray).then(function (values){
+//   // //.then(result =>{
+//   // let attraherar = values[0];
+//   //   //console.log(result);
+//   // res.json(values[0]);
+//   // });
+//   model.get_attraktion(req.params.vaxt_id).then(result =>{
+//    res.json(result);
+//   });
+// });
+
+
+router.get('/attraherar/:vaxt_id', function (req, res) {
+  //hämta alla växter som finns i rabatten
+  //console.log(req.params.rabatt);
+  // let pArray = [];
+  // pArray[0]= model.get_attraktion(req.params.vaxt_id)
+  // /Promise.all(pArray).then(function (values){
+  // //.then(result =>{
+  // let attraherar = values[0];
+  //   //console.log(result);
+  // res.json(values[0]);
+  // });
+  model.get_attraktion(req.params.vaxt_id).then(result1 =>{
+   //res.json(result);
+   if (result1.length>0){
+     model.get_insekt(result1[0].insekts_id).then(result =>{
+       res.json(result);
+     });
+   } else{
+     res.json(result1);
+   }
+  });
+});
 router.get('/rabatter/:rabatt', function (req, res) {
   //hämta alla växter som finns i rabatten
   //console.log(req.params.rabatt);

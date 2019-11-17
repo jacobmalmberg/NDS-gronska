@@ -134,12 +134,50 @@ const Vaxt = sequelize.define("vaxter",{
   freezeTableName: true,
 });
 
+const Insekt = sequelize.define("insekter",{
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
+  namn: {
+    type: Sequelize.STRING
+  },
+  bildnamn: {
+    type: Sequelize.STRING
+  },
+  intro: {
+    type: Sequelize.TEXT
+  },
+  status: {
+    type: Sequelize.STRING
+  }
+}, {
+  timestamps: false,
+  freezeTableName: true,
+});
 
+const Attraherar = sequelize.define("attraherar",{
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
+  insekts_id: {
+    type: Sequelize.INTEGER
+  },
+  vaxt_id: {
+    type: Sequelize.STRING
+  },
+}, {
+  timestamps: false,
+  freezeTableName: true,
+});
 
 
 module.exports.forening = Forening;
 module.exports.rabatt = Rabatt;
 module.exports.vaxt = Vaxt;
+module.exports.insekt = Insekt;
+module.exports.attraherar = Attraherar;
 
 
 
