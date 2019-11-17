@@ -17,7 +17,13 @@ Vue.component('route-forening', {
       console.log("rabattid"+ this.rabatt.id);
       //this.$router.push(`/api/rabatt/${this.rabatt}`);
       //this.$router.push({name: 'rabatt', params: {rabatt: message.id}});
-      this.$router.push(`/rabatt/${this.rabatt.id}`);
+      //this.$router.push(`/rabatt/${this.rabatt.id}`);
+      this.$router.push({
+        name: 'rabatt',
+        params: {
+          id: this.rabatt.id
+        },
+      });
     }
   },
   created() {

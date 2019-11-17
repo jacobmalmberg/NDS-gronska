@@ -92,23 +92,66 @@ router.get('/attraherar/:vaxt_id', function (req, res) {
    }
   });
 });
-router.get('/rabatter/:rabatt', function (req, res) {
+// router.get('/rabatter/:rabatt', function (req, res) {
+//   //hämta alla växter som finns i rabatten
+//   //console.log(req.params.rabatt);
+//   let pArray = [];
+//   pArray[0]= model.get_rabatt(req.params.rabatt)
+//   pArray[1]= model.get_vaxter_in_rabatt(req.params.rabatt)
+//   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
+//   Promise.all(pArray).then(function (values){
+//   //.then(result =>{
+//   let rabatt = values[0];
+//   let vaxter = values[1];
+//
+//   let text = model.check_ekosystem(vaxter);
+//     //console.log(result);
+//   res.json({rabatt:rabatt, vaxter: vaxter, text: text});
+//   });
+// });
+
+router.get('/insekter/:id', function (req, res) {
+  console.log(req.params.id);
+  model.get_insekt(req.params.id).then(result =>{
+    console.log(result);
+    res.json(result);
+  });
+
+});
+
+router.get('/rabatter', function (req, res) {
   //hämta alla växter som finns i rabatten
   //console.log(req.params.rabatt);
   let pArray = [];
-  pArray[0]= model.get_rabatt(req.params.rabatt)
-  pArray[1]= model.get_vaxter_in_rabatt(req.params.rabatt)
+  let highlight = req.query.highlight;
+  pArray[0]= model.get_rabatt(req.query.rabatt)
+  pArray[1]= model.get_vaxter_in_rabatt(req.query.rabatt)
+  if (highlight !== false){
+    pArray[2] = model.get_vaxt(highlight);
+  }
   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
   Promise.all(pArray).then(function (values){
   //.then(result =>{
   let rabatt = values[0];
   let vaxter = values[1];
+  let vaxt;
 
   let text = model.check_ekosystem(vaxter);
+  if (highlight == false){
+    vaxt = values[2];
+    res.json({rabatt:rabatt, vaxter: vaxter, text: text, vaxt: vaxt});
+  } else{
+    res.json({rabatt:rabatt, vaxter: vaxter, text: text});
+  }
     //console.log(result);
-  res.json({rabatt:rabatt, vaxter: vaxter, text: text});
   });
 });
+
+// router.get('/winScreen', authMiddleware, (req, res) => {
+//   model.getNewHighscores(req.query.gameId).then((result) => {
+//     res.json({ result });
+//   });
+// });
 
 //router.get('/admin_page/:assistant', function (req, res) {
 

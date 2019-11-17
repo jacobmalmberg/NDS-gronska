@@ -5,7 +5,7 @@ Vue.component('route-rabatt', {
 			rabatt: null,
 			viewBox:"0 0 2111 1000",
 			viewBoxStor: "0 0 2111 1000",
-			highlight: null,
+			highlight: this.$route.params.vaxt,
 			bild: null,
 			vaxtlista: null,
 			text: null,
@@ -61,6 +61,12 @@ Vue.component('route-rabatt', {
 			this.$router.push();
 		},
 
+
+		insekt: function (insekt_in) {
+			this.$router.push(`/insekt/${insekt_in.id}`);
+
+		},
+
 		say: function (message) {
 			this.highlight=message;
 
@@ -113,8 +119,18 @@ Vue.component('route-rabatt', {
 		// if (this.rabatt_in === undefined) {
 		// 	this.$router.push({ name: 'forening' });
 		// }
+		let vaxt;
+		if (this.id === undefined) {
+			this.$router.push({ name: 'forening' });
+		}
+		if (this.highlight === undefined) {
+			vaxt = false;
+		} else{
+			vaxt = this.highlight;
+		}
 
-		fetch(`/api/rabatter/${this.id}`)
+		const url = `/api/rabatter?rabatt=${this.id}&highlight=vaxt`;
+		fetch(url)
 			.then(res => res.json())
 			.then(data => {
 
@@ -123,8 +139,13 @@ Vue.component('route-rabatt', {
 				this.ekosystem = data.text;
 				this.rabattext = this.ekosystem +this.ndstext;
 				this.viewBox = "" + this.rabatt.x + " " + this.rabatt.y + " " + this.rabatt.width + " " + this.rabatt.height;
-
-
+				if (this.highlight !== undefined) {
+					this.highlight=data.vaxt;
+					this.sent= null;
+					this.from=null;
+					this.text=null;
+					this.bild = "/assets/" + this.highlight.bildnamn;
+				}
 
 			})
 
@@ -138,11 +159,11 @@ Vue.component('route-rabatt', {
 //<input class="btn btn-primary" type="submit" value="Skicka feedback">
 
 
-// <div v-if="this.rabatt !== null && this.highlight === null">
+// <div v-if="this.rabatt !== null && this.highlight === undefined">
 // 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 // 		<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
 // 			<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: pointer;" :points="vaxt.polygon" fill="#00F" opacity="1"></polygon>
-// 			<polygon v-if="this.highlight !== null" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
+// 			<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 // 	</svg>
 //
 // </div>
@@ -151,11 +172,11 @@ Vue.component('route-rabatt', {
 // 	<u><h1 style="font-size:3vh;">Om rabatten</h1></u>
 // </div>
 
-// <div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === null">
+// <div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 // 	<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
 // </div>
 //
-// <div :class=mobileRabatt style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === null">
+// <div :class=mobileRabatt style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
 // 	<li v-for="vaxt in vaxtlista" v-on:click="say(vaxt)">
 // 		<a style=" color: blue; cursor: pointer;"> {{vaxt.namn}} </a>
 // 	</li>
@@ -166,36 +187,36 @@ Vue.component('route-rabatt', {
 
 
 	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
-	
+
 		<div :class=mobileRabatt>
 			<div :class=mobileRabatt>
 				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 					<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
 						<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600" opacity="1"></polygon>
-						<polygon v-if="this.highlight !== null" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
+						<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 				</svg>
 
 			</div>
 
-			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === null" style="margin-top: 1em; margin-bottom: 1em;">
+			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined" style="margin-top: 1em; margin-bottom: 1em;">
 				Tryck på en växt för att få veta mer!
 			</div>
 
-			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === null">
+			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 				<h1 style="font-size:3vh;">Om rabatten.</h1>
 			</div>
 
-			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === null">
+			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 				Jorddjup: {{this.rabatt.jorddjup}} mm.
 			</div>
 
-			<div :class=mobileRabatt style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === null">
+			<div :class=mobileRabatt style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
 				Ytskikt: {{this.rabatt.ytskikt}}.
 			</div>
 
-			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === null">
+			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 				<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
-				<div :class=mobileRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; flex-direction: column; justify-content: space-between; margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === null">
+				<div :class=mobileRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; flex-direction: column; justify-content: space-between; margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
 					<div :class=mobileRabatt v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="flex:1; margin-bottom:1em;">
 						<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 100%; height: auto;">
 						<br>
@@ -207,12 +228,12 @@ Vue.component('route-rabatt', {
 
 
 
-			<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;" v-if="this.highlight !== null">
+			<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;" v-if="this.highlight !== undefined">
 				<u><h1 style="font-size:3vh;">{{this.highlight.namn}}</h1></u>
 			</div>
 
 
-			<div :class=mobileRabatt v-if="this.highlight !== null" style = "display: flex; flex-direction: row; justify-content: space-between; margin-bottom:1em;">
+			<div :class=mobileRabatt v-if="this.highlight !== undefined" style = "display: flex; flex-direction: row; justify-content: space-between; margin-bottom:1em;">
 				<div :class=mobileRabatt style = "width: 48%;">
 					<img :src="this.bild" alt="Nature" class="responsive" style = "width: 100%;height: auto;">
 				</div>
@@ -232,25 +253,27 @@ Vue.component('route-rabatt', {
 
 			<div :class=mobileRabatt v-if="this.attraherar.length > 0" style = "margin-bottom:1em;" >
 			<h1 style="font-size:3vh;">Attraherar</h1>
-				<div :class=mobileRabatt v-for="a in this.attraherar" v-on:click="say(vaxt)" >
+				<div :class=mobileRabatt v-for="a in this.attraherar" v-on:click="insekt(a)" style="flex:1;">
+				
+
 					<a style="color: blue; cursor: pointer;">
 					{{a.namn}} </a>
 				</div>
 
 			</div>
 
-			<div :class=mobileRabatt v-if="this.highlight !== null" style = "margin-bottom:1em; ">
+			<div :class=mobileRabatt v-if="this.highlight !== undefined" style = "margin-bottom:1em; ">
 					<h1 style="font-size:3vh;">Om växten.</h1>
 					{{this.highlight.intro}}
 			</div>
 
-			<div :class=mobileRabatt id="Ekosystem" v-if="this.rabatt !== null && this.highlight === null">
+			<div :class=mobileRabatt id="Ekosystem" v-if="this.rabatt !== null && this.highlight === undefined">
 					<h1 style="font-size:3vh;">Rabattens ekosystem.</h1>
 					{{this.rabattext}} <a v-bind:href=this.ndslink> {{this.ndslink}} </a>
 
 			</div>
 
-			<div :class=mobileRabatt id="feedback" v-if="this.highlight !== null && this.sent === null">
+			<div :class=mobileRabatt id="feedback" v-if="this.highlight !== undefined && this.sent === null">
 
 					<h1 style="font-size:3vh;">Ge feedback!</h1>
 					Fyll i formuläret så skickas det till bostadsrättsföreningens grönansvariga. <p>
@@ -280,7 +303,7 @@ Vue.component('route-rabatt', {
 
 			</div>
 
-			<div :class=mobileRabatt  v-else-if="this.highlight !== null && this.sent !== null">
+			<div :class=mobileRabatt  v-else-if="this.highlight !== undefined && this.sent !== null">
 				<h1 style="font-size:3vh;">Tack för din feedback!</h1>
 			</div>
 
@@ -291,16 +314,16 @@ Vue.component('route-rabatt', {
 				<div :class=desktopRabatt style = "margin-top: 3em; display: flex; flex-direction: row; justify-content: space-between;">
 
 					<div :class=desktopRabatt style = "width: 48%;">
-						<div v-if="this.highlight !== null">
+						<div v-if="this.highlight !== undefined">
 							<img :src="this.bild" alt="Nature" class="responsive" style = "width: 100%;height: auto;">
 						</div>
 						<div :class=desktopRabatt v-else>
-							<div v-if="this.rabatt !== null && this.highlight === null">
+							<div v-if="this.rabatt !== null && this.highlight === undefined">
 							<h1 style="font-size:3vh;">Om rabatten.</h1>
 								Jorddjup: {{this.rabatt.jorddjup}} mm.
 							</div>
 
-							<div style="margin-bottom:0.5em;" v-if="this.rabatt !== null && this.highlight === null">
+							<div style="margin-bottom:0.5em;" v-if="this.rabatt !== null && this.highlight === undefined">
 								Ytskikt: {{this.rabatt.ytskikt}}.
 							</div>
 
@@ -316,10 +339,10 @@ Vue.component('route-rabatt', {
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 							<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
 								<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600" opacity="1"></polygon>
-								<polygon v-if="this.highlight !== null" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
+								<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 						</svg>
 
-						<div :class=desktopRabatt v-if="this.highlight !== null">
+						<div :class=desktopRabatt v-if="this.highlight !== undefined">
 							<br>
 							<u><h1 style="font-size:3vh;">{{this.highlight.namn}}</h1></u>
 							<br>
@@ -333,10 +356,10 @@ Vue.component('route-rabatt', {
 
 				</div>
 
-				<div :class=desktopRabatt v-if="this.rabatt !== null && this.highlight === null">
+				<div :class=desktopRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 						<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
 
-						<div :class=desktopRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; justify-content: space-between;" v-if="this.rabatt !== null && this.highlight === null">
+						<div :class=desktopRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; justify-content: space-between;" v-if="this.rabatt !== null && this.highlight === undefined">
 							<div v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="flex:1;">
 								<a style="color: blue; cursor: pointer;">
 								<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 75%;height: auto;">
@@ -348,7 +371,7 @@ Vue.component('route-rabatt', {
 				</div>
 
 
-				<div :class=desktopRabatt  v-if="this.highlight !== null" style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
+				<div :class=desktopRabatt  v-if="this.highlight !== undefined" style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
 
 					<div :class=desktopRabatt style = "width: 48%;">
 					<h1 style="font-size:3vh;">Skötselråd</h1>
@@ -362,7 +385,7 @@ Vue.component('route-rabatt', {
 
 					<div :class=desktopRabatt v-if="this.attraherar.length > 0" style= "width: 48%; ">
 					<h1 style="font-size:3vh;">Attraherar</h1>
-						<div v-for="a in this.attraherar" v-on:click="say(vaxt)" style="flex:1;">
+						<div v-for="a in this.attraherar" v-on:click="insekt(a)" style="flex:1;">
 							<a style="color: blue; cursor: pointer;">
 							{{a.namn}} </a>
 						</div>
@@ -373,7 +396,7 @@ Vue.component('route-rabatt', {
 
 
 
-				<div :class=desktopRabatt id="feedback" v-if="this.highlight !== null && this.sent === null">
+				<div :class=desktopRabatt id="feedback" v-if="this.highlight !== undefined && this.sent === null">
 
 						<h1 style="font-size:3vh;">Ge feedback!</h1>
 						Fyll i formuläret så skickas det till bostadsrättsföreningens grönansvariga. <p>
@@ -403,7 +426,7 @@ Vue.component('route-rabatt', {
 
 				</div>
 
-				<div :class=desktopRabatt v-else-if="this.highlight !== null && this.sent !== null">
+				<div :class=desktopRabatt v-else-if="this.highlight !== undefined && this.sent !== null">
 					<h1 style="font-size:3vh;">Tack för din feedback!</h1>
 				</div>
 		</div>

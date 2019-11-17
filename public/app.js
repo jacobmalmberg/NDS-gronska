@@ -1,8 +1,9 @@
 const routes = [
 	{ path: '/', redirect: '/forening' },
 	{ path: '/forening',  name:'forening', component: Vue.component('route-forening') },
-	//{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
-	{ path: '/rabatt/:id', component: Vue.component('route-rabatt') },
+	{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
+	//{ path: '/rabatt/:id', component: Vue.component('route-rabatt') },
+	{ path: '/insekt/:id', component: Vue.component('route-insekt') },
 ];
 
 // Create VueRouter

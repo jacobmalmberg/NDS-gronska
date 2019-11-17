@@ -73,6 +73,12 @@ exports.get_insekt = (insekt_id_in) => insekt_db.findAll({where: {id: insekt_id_
  return result;
 });
 
+exports.get_vaxt = (vaxt_id_in) => vaxt_db.findOne({where: {id: vaxt_id_in}})
+.then(result =>{
+ //console.log(result);
+ return result;
+});
+
 exports.get_rabatter = (forening_id_in) => rabatt_db.findAll({where: {forening_id: forening_id_in}})
 .then(result =>{
  let rabattlista=[];

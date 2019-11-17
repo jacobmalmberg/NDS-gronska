@@ -350,7 +350,7 @@ INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" 
 "Klätterväxt som är vackert förgrenad. Har grova grenar och frodig grönska. Blommar fint i skuggan och har stora vita blad. Fäster bra direkt på murar, väggar och plank. God boplats för fåglar."
 , "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord", "Perenn");
 
-INSERT INTO insekter values (null, "Ekbarkbock", "ekbarkbock.png",
+INSERT INTO insekter values (null, "Ekbarkbock", "ekbarkbock.jpg",
 "En rikligt blommande perenn. Lättodlad. ",
 "Utrotningshotad");
 
