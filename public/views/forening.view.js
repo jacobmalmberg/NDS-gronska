@@ -4,7 +4,9 @@ Vue.component('route-forening', {
       rabattlista: null,
       rabatt: null,
       x: 1288,
-      y: 578
+      y: 578,
+      mobileRabatt: 'mobileRabatt',
+      desktopRabatt: 'desktopRabatt'
 
     }
   },
@@ -14,7 +16,6 @@ Vue.component('route-forening', {
 		},
     say: function (message) {
       this.rabatt=message;
-      console.log("rabattid"+ this.rabatt.id);
       //this.$router.push(`/api/rabatt/${this.rabatt}`);
       //this.$router.push({name: 'rabatt', params: {rabatt: message.id}});
       //this.$router.push(`/rabatt/${this.rabatt.id}`);
@@ -33,18 +34,23 @@ Vue.component('route-forening', {
       .then(data => {
         //console.log(data)
         this.rabattlista = data;
-        this.time_slots = data.time_slots;
-        console.log(this.rabattlista)
         console.log("map: ", google.maps)
-    		this.map = new google.maps.Map(document.getElementById('myMap'), {
-    		center: {lat:59.3557179, lng: 18.083744717},
-    		scrollwheel: false,
-    		zoom: 13
-    		})
-    		var uluru = {lat: 59.355909, lng: 18.085933};
-    		var marker = new google.maps.Marker({position: uluru, map: this.map});
+        if (screen.width > 1281) {
+  				this.map = new google.maps.Map(document.getElementById('myMap'), {
+  					center: {lat:59.3557179, lng: 18.083744717},
+  					zoom: 15
+  				});
+  				var uluru = {lat: 59.355909, lng: 18.085933};
+  				var marker = new google.maps.Marker({position: uluru, map: this.map});
 
-
+  			} else{
+  				this.map = new google.maps.Map(document.getElementById('myMapMobile'), {
+  					center: {lat:59.3557179, lng: 18.083744717},
+  					zoom: 15
+  				});
+  				var uluru = {lat: 59.355909, lng: 18.085933};
+  				var marker = new google.maps.Marker({position: uluru, map: this.map});
+  			}
       })
     ;
     //ImageMap('img[usemap]');
@@ -96,12 +102,43 @@ Vue.component('route-forening', {
                 <animate attributeType="CSS" attributeName="opacity"
                 values="0.2;1;0.2" dur="3s" repeatCount="indefinite" /></polygon>
 
-
             </svg>
-            <div style=" text-align: center; margin-top: 2em;">
+            <div style=" text-align: center; margin-top: 1em; ">
         			Tryck på en rabatt för att få veta mer!
         		</div>
-            <div id="myMap" style="height:25vh;"></div>
+
+            <div :class=mobileRabatt style = "margin-top: 1em; ">
+    							<div style="font-size:4vh;">Information</div>
+                      asdf
+
+    					<div :class=mobileRabatt style="height: 20vh;">
+                <div style="font-size:4vh;">
+                  Var ligger gården?
+                </div>
+                <div :class=mobileRabatt id="myMapMobile" style="height:200%; ">
+                </div>
+      				</div>
+            </div>
+
+
+              <div :class=desktopRabatt style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
+
+      					<div :class=desktopRabatt style = "width: 48%; text-align:justify;">
+      							<h1 style="font-size:3vh;">Information</h1>
+                        asdf
+      					</div>
+      					<div :class=desktopRabatt style= " display: flex; flex-direction: column; width: 48%;height:25vh; ">
+                  <div :class=desktopRabatt style="font-size:3vh;">
+                    Var ligger gården?
+                  </div>
+                  <div :class=desktopRabatt id="myMap" style="flex: 1;" >
+                  </div>
+        				</div>
+
+
+      				</div>
+
+
     </div>
 	`
 });

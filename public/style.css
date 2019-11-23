@@ -20,6 +20,9 @@
   div.desktopRabatt {
     display: none;
   }
+  p.header{
+    font-weight: bold;
+  }
 }
 
 @keyframes mymove {
