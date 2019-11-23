@@ -123,29 +123,87 @@ router.get('/rabatter', function (req, res) {
   //hämta alla växter som finns i rabatten
   //console.log(req.params.rabatt);
   let pArray = [];
+  let vaxter;
+  let vaxt;
+  let attraktion;
+  let rabatt;
+  let text;
+  let insekt;
+  let mulm;
   let highlight = req.query.highlight;
-  pArray[0]= model.get_rabatt(req.query.rabatt)
-  pArray[1]= model.get_vaxter_in_rabatt(req.query.rabatt)
+  let qRabatt = req.query.rabatt;
+
+  pArray[0]= model.get_rabatt(qRabatt);
+  pArray[1]= model.get_vaxter_in_rabatt(qRabatt);
+  pArray[2]= model.get_mulm_in_rabatt(qRabatt);
   if (highlight !== false){
-    pArray[2] = model.get_vaxt(highlight);
+    pArray[3] = model.get_vaxt(highlight);
+    pArray[4] = model.get_attraktion(highlight);
   }
   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
   Promise.all(pArray).then(function (values){
   //.then(result =>{
-  let rabatt = values[0];
-  let vaxter = values[1];
-  let vaxt;
+    rabatt = values[0];
+    vaxter = values[1];
+    mulm = values[2];
+    vaxt = values[3];
+    attraktion = values[4];
 
-  let text = model.check_ekosystem(vaxter);
-  if (highlight == false){
-    vaxt = values[2];
-    res.json({rabatt:rabatt, vaxter: vaxter, text: text, vaxt: vaxt});
-  } else{
-    res.json({rabatt:rabatt, vaxter: vaxter, text: text});
-  }
-    //console.log(result);
+    // if (attraktion.length>0){
+    //   model.get_insekt(result1[0].insekts_id).then(result =>{
+    //     res.json(result);
+    //   });
+    // } else{
+    //   res.json(result1);
+    // }
+    let pArray = [];
+    pArray[0]= model.check_ekosystem(vaxter);
+    if (attraktion.length>0){
+      pArray[1] = model.get_insekt(attraktion[0].insekts_id);
+    }
+    Promise.all(pArray).then(function (values){
+      text = values[0];
+      insekt = values[1];
+      //let text = model.check_ekosystem(vaxter);
+      if (highlight !== false){
+        res.json({rabatt:rabatt, mulm:mulm, vaxter: vaxter, text: text, vaxt: vaxt, attraherar: insekt});
+      } else{
+        res.json({rabatt:rabatt, mulm:mulm, vaxter: vaxter, text: text});
+      }
+    });
+      //console.log(result);
   });
 });
+
+// router.get('/rabatter', function (req, res) {
+//   //hämta alla växter som finns i rabatten
+//   //console.log(req.params.rabatt);
+//   let pArray = [];
+//   let highlight = req.query.highlight;
+//   console.log(highlight)
+//   pArray[0]= model.get_rabatt(req.query.rabatt)
+//   pArray[1]= model.get_vaxter_in_rabatt(req.query.rabatt)
+//   if (highlight !== false){
+//     pArray[2] = model.get_vaxt(highlight);
+//   }
+//   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
+//   Promise.all(pArray).then(function (values){
+//   //.then(result =>{
+//   let rabatt = values[0];
+//   let vaxter = values[1];
+//   let vaxt;
+//
+//   let text = model.check_ekosystem(vaxter);
+//   if (highlight !== false){
+//     vaxt = values[2];
+//     console.log(vaxt);
+//     res.json({rabatt:rabatt, vaxter: vaxter, text: text, vaxt: vaxt});
+//   } else{
+//     res.json({rabatt:rabatt, vaxter: vaxter, text: text});
+//   }
+//     //console.log(result);
+//   });
+// });
 
 // router.get('/winScreen', authMiddleware, (req, res) => {
 //   model.getNewHighscores(req.query.gameId).then((result) => {

@@ -6,6 +6,7 @@ const rabatt_db = orm.rabatt;
 const vaxt_db = orm.vaxt;
 const insekt_db = orm.insekt;
 const attraherar_db = orm.attraherar;
+const mulm_db = orm.mulm;
 
 
 const forening = require('./models/forening.model');
@@ -73,7 +74,7 @@ exports.get_insekt = (insekt_id_in) => insekt_db.findAll({where: {id: insekt_id_
  return result;
 });
 
-exports.get_vaxt = (vaxt_id_in) => vaxt_db.findOne({where: {id: vaxt_id_in}})
+exports.get_vaxt = (vaxt_id_in) => vaxt_db.findAll({where: {id: vaxt_id_in}})
 .then(result =>{
  //console.log(result);
  return result;
@@ -95,6 +96,15 @@ exports.get_rabatt = (rabatt_id_in) => rabatt_db.findAll({where: {id: rabatt_id_
 });
 
 exports.get_vaxter_in_rabatt = (rabatt_id_in) => vaxt_db.findAll({where: {rabatt_id: rabatt_id_in}})
+.then(result =>{
+ let vaxtlista=[];
+ for (let i of result){
+   vaxtlista.push(i);
+ }
+ return vaxtlista;
+});
+
+exports.get_mulm_in_rabatt = (rabatt_id_in) => mulm_db.findAll({where: {rabatt_id: rabatt_id_in}})
 .then(result =>{
  let vaxtlista=[];
  for (let i of result){

@@ -8,12 +8,14 @@ Vue.component('route-rabatt', {
 			highlight: this.$route.params.vaxt,
 			bild: null,
 			vaxtlista: null,
+			mulmlista: null,
 			text: null,
 			meddelande: null,
 			subjectMall: "Feedback för er ",
 			subject:null,
 			from: null,
 			sent: null,
+			typ: this.$route.params.typ,
 			userimage: null,
 			ekosystem: null,
 			ndstext: "Att naturen sköter sig själv är en del av stadsdelens strategi för hållbarhet. Läs mer på ",
@@ -67,17 +69,25 @@ Vue.component('route-rabatt', {
 
 		},
 
-		say: function (message) {
+		say: function (message, vaxt) {
+
 			this.highlight=message;
 
-			fetch(`/api/attraherar/${this.highlight.id}`)
-				.then(res => res.json())
-				.then(data => {
-					console.log(data);
-					this.attraherar = data;
+			if (vaxt == 1){
+				this.typ = "vaxt";
+
+				fetch(`/api/attraherar/${this.highlight.id}`)
+					.then(res => res.json())
+					.then(data => {
+						console.log(data);
+						this.attraherar = data;
 
 
-				});
+					});
+			} else{
+				this.typ="mulm"
+				this.attraherar=[];
+			}
 			this.sent= null;
 			this.from=null;
 			this.text=null;
@@ -85,6 +95,7 @@ Vue.component('route-rabatt', {
 			this.bild = "/assets/" + this.highlight.bildnamn;
 			//this.$router.push(`/api/rabatt/${this.rabatt}`);
 			window.scrollTo(0, 0);
+
 		},
 
 		doneImg() {
@@ -114,7 +125,7 @@ Vue.component('route-rabatt', {
 		},
 
 	},
-	beforeMount() {
+	created() {
 		//this.viewBox = "" + this.rabatt.x +" "+this.rabatt.y + " " +this.rabatt.width +
 		// if (this.rabatt_in === undefined) {
 		// 	this.$router.push({ name: 'forening' });
@@ -125,29 +136,51 @@ Vue.component('route-rabatt', {
 		// }
 		if (this.highlight === undefined) {
 			vaxt = false;
+			console.log("undef hi")
 		} else{
 			vaxt = this.highlight;
+			console.log("vaxt")
+		}
+		console.log(vaxt)
+
+		if (this.id === undefined){
+			console.log("här");
+			this.id = 1;
+			this.highlight = 2;
+			this.typ='vaxt';
 		}
 
-		const url = `/api/rabatter?rabatt=${this.id}&highlight=vaxt`;
+
+
+		const url = `/api/rabatter?rabatt=${this.id}&highlight=${this.highlight}`;
 		fetch(url)
 			.then(res => res.json())
 			.then(data => {
-
 				this.rabatt= data.rabatt[0];
 				this.vaxtlista = data.vaxter;
+				this.mulmlista = data.mulm;
+				console.log(data.mulm);
 				this.ekosystem = data.text;
 				this.rabattext = this.ekosystem +this.ndstext;
 				this.viewBox = "" + this.rabatt.x + " " + this.rabatt.y + " " + this.rabatt.width + " " + this.rabatt.height;
 				if (this.highlight !== undefined) {
-					this.highlight=data.vaxt;
+					console.log(data.vaxt)
+					this.highlight=data.vaxt[0];
+					this.attraherar=data.attraherar;
 					this.sent= null;
 					this.from=null;
 					this.text=null;
 					this.bild = "/assets/" + this.highlight.bildnamn;
 				}
 
-			})
+			});
+
+
+	},
+
+
+	activated() {
+		console.log("activated");
 
 	},
 
@@ -164,7 +197,7 @@ Vue.component('route-rabatt', {
 // <div v-if="this.rabatt !== null && this.highlight === undefined">
 // 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 // 		<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-// 			<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: pointer;" :points="vaxt.polygon" fill="#00F" opacity="1"></polygon>
+// 			<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#00F" opacity="1"></polygon>
 // 			<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 // 	</svg>
 //
@@ -179,7 +212,7 @@ Vue.component('route-rabatt', {
 // </div>
 //
 // <div :class=mobileRabatt style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
-// 	<li v-for="vaxt in vaxtlista" v-on:click="say(vaxt)">
+// 	<li v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)">
 // 		<a style=" color: blue; cursor: pointer;"> {{vaxt.namn}} </a>
 // 	</li>
 // </div>
@@ -190,12 +223,20 @@ Vue.component('route-rabatt', {
 
 	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
 
+
 		<div :class=mobileRabatt>
 			<div :class=mobileRabatt>
 				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 					<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-						<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600" opacity="1"></polygon>
+
+					<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
+						<animate attributeType="CSS" attributeName="opacity"
+						values="0.2;1;0.2" dur="3s" repeatCount="indefinite" /></polygon>
 						<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
+						<polygon v-for="mulm in mulmlista" v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+							<animate attributeType="CSS" attributeName="opacity"
+							values="0.2;1;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+							<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 				</svg>
 
 			</div>
@@ -219,7 +260,7 @@ Vue.component('route-rabatt', {
 			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 				<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
 				<div :class=mobileRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; flex-direction: column; justify-content: space-between; margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
-					<div :class=mobileRabatt v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="flex:1; margin-bottom:1em;">
+					<div :class=mobileRabatt v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="flex:1; margin-bottom:1em;">
 						<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 100%; height: auto;">
 						<br>
 						<a style="color: blue; cursor: pointer;"> {{vaxt.namn}} </a>
@@ -229,9 +270,13 @@ Vue.component('route-rabatt', {
 
 
 
-
 			<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;" v-if="this.highlight !== undefined">
-				<u><h1 style="font-size:3vh;">{{this.highlight.namn}}</h1></u>
+				<div v-if="this.typ == 'vaxt'">
+					<u><h1 style="font-size:3vh;">{{this.highlight.namn}}</h1></u>
+				</div>
+				<div v-else>
+					<u><h1 style="font-size:3vh;">Mulm</h1></u>
+				</div>
 			</div>
 
 
@@ -242,11 +287,16 @@ Vue.component('route-rabatt', {
 				<div :class=mobileRabatt style= "width: 48%; ">
 
 				<div :class=mobileRabatt>
+				<div v-if="this.typ == 'vaxt'">
 					<h1 style="font-size:3vh;">Skötselråd</h1>
 					Vatten: {{this.highlight.vatten}}<br>
 					Läge: {{this.highlight.lage}}<br>
 					Höjd: {{this.highlight.hojd}}<br>
 					Blommar: {{this.highlight.blommar}}<br>
+					</div>
+					<div v-else>
+						{{this.highlight.skotsel}}
+					</div>
 				</div>
 
 
@@ -255,7 +305,7 @@ Vue.component('route-rabatt', {
 
 			<div :class=mobileRabatt v-if="this.attraherar.length > 0" style = "margin-bottom:1em;" >
 			<h1 style="font-size:3vh;">Attraherar</h1>
-				<div :class=mobileRabatt v-for="a in this.attraherar" v-on:click="insekt(a)" style="flex:1;">
+				<div  v-for="a in this.attraherar" v-on:click="insekt(a)" style="flex:1;">
 
 
 					<a style="color: blue; cursor: pointer;">
@@ -340,13 +390,21 @@ Vue.component('route-rabatt', {
 					<div :class=desktopRabatt style= "width: 48%; ">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 							<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-								<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600" opacity="1"></polygon>
+							<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
+								<animate attributeType="CSS" attributeName="opacity"
+								values="0.2;0.7;0.2" dur="3s" repeatCount="indefinite" /></polygon>
 								<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
+								<polygon v-for="mulm in mulmlista" v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+									<animate attributeType="CSS" attributeName="opacity"
+									values="0.2;0.7;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+									<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 						</svg>
 
 						<div :class=desktopRabatt v-if="this.highlight !== undefined">
 							<br>
-							<u><h1 style="font-size:3vh;">{{this.highlight.namn}}</h1></u>
+							<u><h1 v-if="this.typ == 'vaxt'" style="font-size:3vh;">{{this.highlight.namn}}</h1>
+							<h1 v-else style="font-size:3vh;">Mulm</h1>
+							</u>
 							<br>
 							{{this.highlight.intro}}
 						</div>
@@ -362,7 +420,7 @@ Vue.component('route-rabatt', {
 						<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
 
 						<div :class=desktopRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; justify-content: space-between;" v-if="this.rabatt !== null && this.highlight === undefined">
-							<div v-for="vaxt in vaxtlista" v-on:click="say(vaxt)" style="flex:1;">
+							<div v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="flex:1;">
 								<a style="color: blue; cursor: pointer;">
 								<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 75%;height: auto;">
 								<br>
@@ -373,16 +431,22 @@ Vue.component('route-rabatt', {
 				</div>
 
 
-				<div :class=desktopRabatt  v-if="this.highlight !== undefined" style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
+				<div :class=desktopRabatt  v-if="this.highlight !== undefined" style = "margin-top: 1em; margin-bottom: 1em; display: flex; flex-direction: row; justify-content: space-between;">
 
 					<div :class=desktopRabatt style = "width: 48%;">
-					<h1 style="font-size:3vh;">Skötselråd</h1>
-					Vatten: {{this.highlight.vatten}}<br>
-					Läge: {{this.highlight.lage}}<br>
-					Höjd: {{this.highlight.hojd}}<br>
-					Blommar: {{this.highlight.blommar}}<br>
-					Näring: {{this.highlight.naring}}<br>
-					Jordmån: {{this.highlight.jordman}}
+						<div v-if="this.typ == 'vaxt'">
+						<h1 style="font-size:3vh;">Skötselråd</h1>
+							Vatten: {{this.highlight.vatten}}<br>
+							Läge: {{this.highlight.lage}}<br>
+							Höjd: {{this.highlight.hojd}}<br>
+							Blommar: {{this.highlight.blommar}}<br>
+							Näring: {{this.highlight.naring}}<br>
+							Jordmån: {{this.highlight.jordman}}
+						</div>
+						<div v-else>
+						<h1 style="font-size:3vh;">Skötselråd</h1>
+						{{this.highlight.skotsel}}
+						</div>
 					</div>
 
 					<div :class=desktopRabatt v-if="this.attraherar.length > 0" style= "width: 48%; ">
@@ -438,5 +502,62 @@ Vue.component('route-rabatt', {
 
 
 
-	`
+	`,
+	beforeRouteLeave(to, from, next) {
+		if(to.path != "/insekt/1"){
+			console.log("destror");
+			// destroy the vue listeners, etc
+			this.$destroy();
+
+			// remove the element from the DOM
+
+
+		}
+		next();
+
+},
+// beforeRouteEnter(to, from, next) {
+// 	console.log("entered");
+// 	console.log(to);
+// 	console.log(from);
+// 	//console.log(to.params);
+// 	let a = {};
+//
+// 	if(from.path == "/insekter/1"){
+// 		from.path = "/abra";
+// 		// this.$router.push({
+// 			// name: 'rabatt',
+// 			// params: {
+// 			// 	id: 1,
+// 			// 	highlight: 1
+// 		// 	},
+// 		// });
+//
+// 		next({
+// 			name: 'rabatt',
+// 			params: {
+// 				id: 1,
+// 				vaxt: 2
+// 			},
+// 		});
+// 		//next()
+// 	//}
+// } else if (Object.keys(to.params).length == 0 && from.path != "/rabatt") {
+// 		console.log("hej");
+// 		to.params = {
+// 			id: 1,
+// 			vaxt: 2
+// 		};
+// 		next({
+// 			name: 'rabatt',
+// 			params: {
+// 				id: 1,
+// 				vaxt: 2
+// 			},
+// 		});
+//
+// 	}
+// 	next();
+//
+// },
 });

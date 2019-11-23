@@ -148,6 +148,9 @@ const Insekt = sequelize.define("insekter",{
   intro: {
     type: Sequelize.TEXT
   },
+  text: {
+    type: Sequelize.TEXT
+  },
   status: {
     type: Sequelize.STRING
   }
@@ -173,12 +176,39 @@ const Attraherar = sequelize.define("attraherar",{
 });
 
 
+const mulm = sequelize.define("mulm",{
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
+  rabatt_id: {
+    type: Sequelize.INTEGER
+  },
+  bildnamn: {
+    type: Sequelize.STRING
+  },
+  polygon: {
+    type: Sequelize.TEXT
+  },
+  intro: {
+    type: Sequelize.TEXT
+  },
+  skotsel: {
+    type: Sequelize.STRING
+  },
+}, {
+  timestamps: false,
+  freezeTableName: true,
+});
+
+
+
 module.exports.forening = Forening;
 module.exports.rabatt = Rabatt;
 module.exports.vaxt = Vaxt;
 module.exports.insekt = Insekt;
 module.exports.attraherar = Attraherar;
-
+module.exports.mulm = mulm;
 
 
 

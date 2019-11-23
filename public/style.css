@@ -21,3 +21,18 @@
     display: none;
   }
 }
+
+@keyframes mymove {
+  div.anim{
+    from {background-color: red;}
+    to {background-color: blue;}
+  }
+}
+
+[v-cloak] {
+  display: none !important;
+}
+
+body {
+    overflow-y: scroll;
+}

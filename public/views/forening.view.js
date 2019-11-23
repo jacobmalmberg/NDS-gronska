@@ -21,7 +21,7 @@ Vue.component('route-forening', {
       this.$router.push({
         name: 'rabatt',
         params: {
-          id: this.rabatt.id
+          id: this.rabatt.id,
         },
       });
     }
@@ -35,6 +35,16 @@ Vue.component('route-forening', {
         this.rabattlista = data;
         this.time_slots = data.time_slots;
         console.log(this.rabattlista)
+        console.log("map: ", google.maps)
+    		this.map = new google.maps.Map(document.getElementById('myMap'), {
+    		center: {lat:59.3557179, lng: 18.083744717},
+    		scrollwheel: false,
+    		zoom: 13
+    		})
+    		var uluru = {lat: 59.355909, lng: 18.085933};
+    		var marker = new google.maps.Marker({position: uluru, map: this.map});
+
+
       })
     ;
     //ImageMap('img[usemap]');
@@ -82,12 +92,16 @@ Vue.component('route-forening', {
             </div>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2111 1219">
               <image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-                <polygon v-for="rabatt in rabattlista" v-on:click="say(rabatt)" style="cursor: pointer;" :points="rabatt.polygon" fill="#fff" opacity="0.5"></polygon>
+                <polygon v-for="rabatt in rabattlista" v-on:click="say(rabatt)" style="cursor: pointer;" :points="rabatt.polygon" fill="#006600">
+                <animate attributeType="CSS" attributeName="opacity"
+                values="0.2;1;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+
 
             </svg>
             <div style=" text-align: center; margin-top: 2em;">
         			Tryck på en rabatt för att få veta mer!
         		</div>
+            <div id="myMap" style="height:25vh;"></div>
     </div>
 	`
 });

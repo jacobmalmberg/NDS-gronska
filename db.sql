@@ -62,7 +62,6 @@ create table mulm (
 	polygon LONGTEXT,
 	intro LONGTEXT,
 	skotsel varchar(64),
-	typ varchar(64),
 	PRIMARY KEY (id),
 	FOREIGN KEY (rabatt_id) REFERENCES rabatter(id) ON DELETE CASCADE
 );
@@ -72,6 +71,7 @@ create table insekter (
 	namn varchar(64),
 	bildnamn varchar(64),
 	intro LONGTEXT,
+	text LONGTEXT,
 	status varchar(64),
 	PRIMARY KEY (id)
 
@@ -90,8 +90,6 @@ create table attraherar (
 
 
 INSERT INTO foreningar values (null, "Högviltsgatan", "hogviltsgatan.png");
-
-
 
 
 INSERT INTO rabatter values (null, 1, 1285, 579, 475, 220, "
@@ -350,9 +348,21 @@ INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" 
 "Klätterväxt som är vackert förgrenad. Har grova grenar och frodig grönska. Blommar fint i skuggan och har stora vita blad. Fäster bra direkt på murar, väggar och plank. God boplats för fåglar."
 , "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord", "Perenn");
 
-INSERT INTO insekter values (null, "Ekbarkbock", "ekbarkbock.jpg",
-"En rikligt blommande perenn. Lättodlad. ",
-"Utrotningshotad");
+INSERT INTO insekter values (null, "Stortapetserarbi", "bi.jpg",
+"Vårt största tapetserarbi (14–17 mm) som relativt lätt identifieras i fält. Kroppen är svart och försedd med brungul–brunsvart behåring. Tergiternas bakkanter är försedda med tätare, blekgula fransar som i kontrast med de mörkare mellanliggande fälten ger bakkroppen ett randigt intryck. Källa: Artdatabanken.",
+"Hos hanen är framlår och framtarser spatellikt utvidgade. Framtarserna är dessutom försedda med en plym av lång behåring som bidragit till att ge arten dess latinska namn (lagopoda = harfot). Honans bukborste är rödorange mot bakkropsspetsen övergående i svart. Arten har genomgått en mycket dramatisk tillbakagång sedan 50-talet och dagens utbredningsområde motsvarar endast 13 % av den då aktuella. Arten är värmeälskande och bocellerna anläggs under stenar och i grävda eller existerande håligheter i marken, företrädesvis i sydlänta sluttningar som vägslänter, erosionshak och täktsluttningar. Storblommiga tistlar och väddklint är huvudsakliga pollenkällor.",
+"Nära hotad");
 
+
+
+INSERT INTO mulm values (null, 1, "mulm.png","
+	1578.00,710.00 1578.00,764.00 1578.00,764.00
+             1578.00,764.00 1542.00,764.00 1542.00,764.00
+             1542.00,764.00 1542.00,710.00 1542.00,710.00
+             1542.00,710.00 1578.00,710.00 1578.00,710.00
+",
+"Erik älskar mulm",
+"såhär sköter man den"
+);
 
 INSERT INTO attraherar values (null, 1, 2);

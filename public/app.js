@@ -1,3 +1,5 @@
+
+
 const routes = [
 	{ path: '/', redirect: '/forening' },
 	{ path: '/forening',  name:'forening', component: Vue.component('route-forening') },
@@ -11,6 +13,11 @@ const routes = [
 const router = new VueRouter({
 	routes
 });
+
+Vue.component('todo-item', {
+  template: '<li>This is a todo</li>'
+})
+
 
 // Create VueApp
 // Docs: https://vuejs.org/v2/guide
