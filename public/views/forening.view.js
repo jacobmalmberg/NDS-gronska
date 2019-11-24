@@ -19,6 +19,13 @@ Vue.component('route-forening', {
       //this.$router.push(`/api/rabatt/${this.rabatt}`);
       //this.$router.push({name: 'rabatt', params: {rabatt: message.id}});
       //this.$router.push(`/rabatt/${this.rabatt.id}`);
+      if (this.$root.rabatt != this.rabatt.id){
+        this.$root.rabatt = this.rabatt.id;
+        this.$root.vaxt_id = undefined;
+        this.$root.typ = undefined;
+      }
+
+
       this.$router.push({
         name: 'rabatt',
         params: {
@@ -28,6 +35,7 @@ Vue.component('route-forening', {
     }
   },
   created() {
+
 
     fetch(`/api/forening`)
       .then(res => res.json())

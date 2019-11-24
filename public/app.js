@@ -24,6 +24,11 @@ Vue.component('todo-item', {
 const app = new Vue({
 	// el: '#app' // can't use element property with VueRouter
 	router,
+	data: {
+		rabatt: undefined,
+		vaxt_id: undefined,
+		typ: undefined
+	},
 	methods: {
 		redirect(target) {
 			// Used in the navigation

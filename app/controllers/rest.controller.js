@@ -131,14 +131,24 @@ router.get('/rabatter', function (req, res) {
   let insekt;
   let mulm;
   let highlight = req.query.highlight;
+  let qMulm=req.query.mulm;
+  console.log(qMulm);
   let qRabatt = req.query.rabatt;
+  // if(req.query.highlight !== undefined){
+  //   highlight = req.query.highlight;
+  // } else{
+  //   qMulm = req.query.mulm;
+  // }
 
   pArray[0]= model.get_rabatt(qRabatt);
   pArray[1]= model.get_vaxter_in_rabatt(qRabatt);
   pArray[2]= model.get_mulm_in_rabatt(qRabatt);
-  if (highlight !== false){
+  if (highlight !== false && qMulm == undefined || highlight !== undefined && qMulm == undefined){
     pArray[3] = model.get_vaxt(highlight);
     pArray[4] = model.get_attraktion(highlight);
+  } else{
+    pArray[3] = model.get_mulm(qMulm);
+
   }
   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
   Promise.all(pArray).then(function (values){
@@ -158,8 +168,10 @@ router.get('/rabatter', function (req, res) {
     // }
     let pArray = [];
     pArray[0]= model.check_ekosystem(vaxter);
-    if (attraktion.length>0){
-      pArray[1] = model.get_insekt(attraktion[0].insekts_id);
+    if (qMulm == undefined){
+      if (attraktion.length>0){
+        pArray[1] = model.get_insekt(attraktion[0].insekts_id);
+      }
     }
     Promise.all(pArray).then(function (values){
       text = values[0];

@@ -72,9 +72,12 @@ Vue.component('route-rabatt', {
 		say: function (message, vaxt) {
 
 			this.highlight=message;
+			this.$root.vaxt_id = message.id;
+
 
 			if (vaxt == 1){
 				this.typ = "vaxt";
+				this.$root.typ = "vaxt";
 
 				fetch(`/api/attraherar/${this.highlight.id}`)
 					.then(res => res.json())
@@ -86,6 +89,7 @@ Vue.component('route-rabatt', {
 					});
 			} else{
 				this.typ="mulm"
+				this.$root.typ = "mulm";
 				this.attraherar=[];
 			}
 			this.sent= null;
@@ -101,7 +105,11 @@ Vue.component('route-rabatt', {
 		doneImg() {
 			const self = this;
 			this.meddelande = this.text +"\nAvsändare: " +this.from;
-			this.subject = this.subjectMall + this.highlight.namn.toLowerCase();
+			if(this.typ == 'vaxt'){
+				this.subject = this.subjectMall + this.highlight.namn.toLowerCase();
+			} else {
+				this.subject = this.subjectMall + 'mulm';
+			}
 			let fd = new FormData();
 			fd.append('text', this.meddelande)
 			fd.append('subject', this.subject)
@@ -131,42 +139,56 @@ Vue.component('route-rabatt', {
 		// 	this.$router.push({ name: 'forening' });
 		// }
 		let vaxt;
-		// if (this.id === undefined) {
-		// 	this.$router.push({ name: 'forening' });
+
+		// if (this.highlight === undefined) {
+		// 	vaxt = false;
+		// 	console.log("undef hi")
+		// } else{
+		// 	vaxt = this.highlight;
+		// 	console.log("vaxt")
 		// }
-		if (this.highlight === undefined) {
-			vaxt = false;
-			console.log("undef hi")
+		// console.log(vaxt)
+		//
+		// if (this.id === undefined){
+		// 	console.log("här");
+		// 	this.id = 1;
+		// 	this.highlight = 2;
+		// 	this.typ='vaxt';
+		// }
+		this.id = this.$root.rabatt;
+		this.highlight = this.$root.vaxt_id;
+		this.typ = this.$root.typ;
+		if (this.id === undefined) {
+			this.$router.push({ name: 'forening' });
+		}
+
+		let url;
+		if (this.typ != "mulm"){
+			url = `/api/rabatter?rabatt=${this.id}&highlight=${this.highlight}`;
 		} else{
-			vaxt = this.highlight;
-			console.log("vaxt")
-		}
-		console.log(vaxt)
-
-		if (this.id === undefined){
-			console.log("här");
-			this.id = 1;
-			this.highlight = 2;
-			this.typ='vaxt';
+			url = `/api/rabatter?rabatt=${this.id}&mulm=${this.highlight}`;
 		}
 
 
 
-		const url = `/api/rabatter?rabatt=${this.id}&highlight=${this.highlight}`;
+		//const url = `/api/rabatter?rabatt=${this.id}&highlight=${this.highlight}`;
 		fetch(url)
 			.then(res => res.json())
 			.then(data => {
 				this.rabatt= data.rabatt[0];
 				this.vaxtlista = data.vaxter;
 				this.mulmlista = data.mulm;
-				console.log(data.mulm);
 				this.ekosystem = data.text;
 				this.rabattext = this.ekosystem +this.ndstext;
 				this.viewBox = "" + this.rabatt.x + " " + this.rabatt.y + " " + this.rabatt.width + " " + this.rabatt.height;
 				if (this.highlight !== undefined) {
-					console.log(data.vaxt)
+					console.log(data.vaxt[0]);
 					this.highlight=data.vaxt[0];
-					this.attraherar=data.attraherar;
+
+					if(data.attraherar !== undefined){
+						this.attraherar=data.attraherar;
+					}
+
 					this.sent= null;
 					this.from=null;
 					this.text=null;

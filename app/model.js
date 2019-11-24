@@ -80,6 +80,12 @@ exports.get_vaxt = (vaxt_id_in) => vaxt_db.findAll({where: {id: vaxt_id_in}})
  return result;
 });
 
+exports.get_mulm = (mulm_id_in) => mulm_db.findAll({where: {id: mulm_id_in}})
+.then(result =>{
+ //console.log(result);
+ return result;
+});
+
 exports.get_rabatter = (forening_id_in) => rabatt_db.findAll({where: {forening_id: forening_id_in}})
 .then(result =>{
  let rabattlista=[];
