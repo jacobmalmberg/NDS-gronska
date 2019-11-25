@@ -74,6 +74,7 @@ create table insekter (
 	utbredning LONGTEXT,
 	status LONGTEXT,
 	levnadssatt  LONGTEXT,
+	text LONGTEXT,
 	hotad varchar(64),
 	PRIMARY KEY (id)
 
@@ -84,10 +85,9 @@ create table attraherar (
 	id int NOT NULL AUTO_INCREMENT,
 	insekts_id int,
 	vaxt_id int,
-	mulm_id int,
 	PRIMARY KEY (id),
-	FOREIGN KEY (insekts_id) REFERENCES insekter(id)
-
+	FOREIGN KEY (insekts_id) REFERENCES insekter(id),
+	FOREIGN KEY (vaxt_id) REFERENCES vaxter(id)
 
 );
 
@@ -352,36 +352,9 @@ INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" 
 , "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord", "Perenn");
 
 INSERT INTO insekter values (null, "Stortapetserarbi", "bi.jpg",
-"Stortapetserarbiet är ett stort bi med en kroppslängd på 14 till 17 millimeter. Honan har en kraftig, svart kropp med brungul till mörkbrun behåring, samt på tergiternas (ovansidans bakkroppssegment) bakkanter täta, blekgula hårremmar, som ger bakkroppen ett randigt utseende. Som alla buksamlarbin har hon en tät pollenborste på buken, framtill orangeröd och mot bakkroppsspetsen svart. Hanens kropp ger ett kortare och kompaktare intryck än honans, men det finns också andra utseendemässiga skillnader mellan hanen och honan, varav de mest märkbara är att hanen har en längre, gul- till gråbrun päls än honan, och gulvita, påtagligt breda framfötter (artnamnet lagopoda betyder harfot – auktorn Linné tyckte fötterna såg ut som harfötter). De stora fötterna används för att hålla honan stilla under parningen.
-",
-"Detta bi finns i Europa (med undantag av Brittiska öarna) österut till Kaukasus och genom delar av Centralasien bort till Japan, samt i Nordafrika. I Sverige förekom arten tidigare från Skåne över Bohuslän till Gästrikland samt på Öland och Gotland. Den har emellertid gått tillbaka sedan 1950-talet och finns numera endast i Stockholm, östra Skåne (där den beräknas snart dö ut) samt på Öland och Gotland och betraktas därför som sårbar. Nedgången har varit mycket kraftig.",
-"Den svenska population beräknas vara endast 5% av populationen på 1950-talet. Främsta hotet är det moderna, storskaliga jordbruket.
-",
-"Stortapetserarbiet är ett värmeälskande bi som gärna vill ha habitat med någon form av markstörning, som militära övningsfält, vägkanter och ruderatområden (skräpmark). Det samlar pollen främst från tistlar med stora blommor och växter i klintsläktet, i synnerhet väddklint. Trivs även bra i trafikerad miljö.
-",
-
-"Nära hotad."
-);
-
-INSERT INTO insekter values (null, "Bredbandad ekbarkbock", "ekbarkbock.jpg",
-"Den bredbandade ekbarkbocken har en kroppslängd på
-cirka 18 millimeter. Benen och antennerna är långa och
-kraftiga och rödbruna till färgen. Grundfärgen på kroppen
-är svart, med gula band på huvud, halssköld och täckvingar.
-",
-"Detta bi finns i Europa (med undantag av Brittiska öarna) österut till Kaukasus och genom delar av Centralasien bort till Japan, samt i Nordafrika. I Sverige förekom arten tidigare från Skåne över Bohuslän till Gästrikland samt på Öland och Gotland. Den har emellertid gått tillbaka sedan 1950-talet och finns numera endast i Stockholm, östra Skåne (där den beräknas snart dö ut) samt på Öland och Gotland och betraktas därför som sårbar. Nedgången har varit mycket kraftig.
-",
-"Den bredbandade ekbarkbocken är i Sverige klassad som akut hotad. Under 1900-talet har dess utbredning i landet gått starkt tillbaka, även om den troligen aldrig hört till de allmännare skalbaggarna i Sverige. Äldre fynd finns rapporterade från Skåne, Blekinge, Småland, Halland, Västergötland, Östergötland, Uppland, Öland och Gotland. De största hoten mot arten är exploatering av dess livsmiljö, eftersom dess utbredningsområde är så begränsat, och därpå följande effekter som habitatförlust, genom att de gamla ekar som den behöver för sin larvutveckling tas bort. Även inom sitt övriga utbredningsområde har denna art på många håll minskat kraftig under senare tid.
-",
-"I Sverige uppträder de fullbildade skalbaggarna från slutet av juni till mitten av juli. Efter parningen lägger honan äggen ett och ett i springor på barken på stammar och grova grenar i döda ekar. Efter cirka två veckor kläcks äggen och larven lever sedan under barken och gnager gångar i veden. Utvecklingstiden från ägg till imago är troligen värmeberoende. I Sverige tar den vanligen två år, medan den i sydligare delar av utbredningsområdet kan gå på ett år. Förpuppningen sker under barken, i Sverige vanligen i början av juni, och puppstadiet varar i omkring två veckor.
-",
-
-"Akut hotad"
-);
-
-
-
-
+"Vårt största tapetserarbi (14–17 mm) som relativt lätt identifieras i fält. Kroppen är svart och försedd med brungul–brunsvart behåring. Tergiternas bakkanter är försedda med tätare, blekgula fransar som i kontrast med de mörkare mellanliggande fälten ger bakkroppen ett randigt intryck. Källa: Artdatabanken.",
+"Hos hanen är framlår och framtarser spatellikt utvidgade. Framtarserna är dessutom försedda med en plym av lång behåring som bidragit till att ge arten dess latinska namn (lagopoda = harfot). Honans bukborste är rödorange mot bakkropsspetsen övergående i svart. Arten har genomgått en mycket dramatisk tillbakagång sedan 50-talet och dagens utbredningsområde motsvarar endast 13 % av den då aktuella. Arten är värmeälskande och bocellerna anläggs under stenar och i grävda eller existerande håligheter i marken, företrädesvis i sydlänta sluttningar som vägslänter, erosionshak och täktsluttningar. Storblommiga tistlar och väddklint är huvudsakliga pollenkällor.",
+"Nära hotad");
 
 
 
@@ -398,5 +371,4 @@ Mulm är det lösa material som ansamlas inuti ihåliga träd. Den består framf
 "Fyll på periodvis med kvistar, löv och döda fåglar."
 );
 
-INSERT INTO attraherar values (null, 1, 2, null);
-INSERT INTO attraherar values (null, 2, null, 1);
+INSERT INTO attraherar values (null, 1, 2);

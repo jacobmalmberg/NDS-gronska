@@ -17,10 +17,22 @@ const transporter = nodemailer.createTransport({
 router.get('/forening', function (req, res) {
   let id=1;
   //console.log(id);
+  let vaxter;
+  let mulmar;
+  let rabatt;
+
   const rabatter = model.get_rabatter(id)
   .then(result =>{
-    //console.log(result);
-    res.json( result);
+    rabatt = result;
+    let pArray=[];
+    pArray[0]= model.get_alla_vaxter_i_rabatter(rabatt);
+    pArray[1]= model.get_alla_mulmar_i_rabatter(rabatt);
+    Promise.all(pArray).then(function (values){
+      vaxter=values[0].length;
+      mulmar=values[1].length;
+      
+      res.json({ rabattlista: result, vaxter: vaxter, mulmar:mulmar });
+    });
   });
 });
 
@@ -70,18 +82,20 @@ router.get('/forening', function (req, res) {
 // });
 
 
-router.get('/attraherar/:vaxt_id', function (req, res) {
-  //hämta alla växter som finns i rabatten
-  //console.log(req.params.rabatt);
-  // let pArray = [];
-  // pArray[0]= model.get_attraktion(req.params.vaxt_id)
-  // /Promise.all(pArray).then(function (values){
-  // //.then(result =>{
-  // let attraherar = values[0];
-  //   //console.log(result);
-  // res.json(values[0]);
-  // });
-  model.get_attraktion(req.params.vaxt_id).then(result1 =>{
+router.get('/attraherar/vaxt/:vaxt_id', function (req, res) {
+  model.get_attraktion_vaxt(req.params.vaxt_id).then(result1 =>{
+   //res.json(result);
+   if (result1.length>0){
+     model.get_insekt(result1[0].insekts_id).then(result =>{
+       res.json(result);
+     });
+   } else{
+     res.json(result1);
+   }
+  });
+});
+router.get('/attraherar/mulm/:mulm_id', function (req, res) {
+  model.get_attraktion_mulm(req.params.mulm_id).then(result1 =>{
    //res.json(result);
    if (result1.length>0){
      model.get_insekt(result1[0].insekts_id).then(result =>{
@@ -145,9 +159,10 @@ router.get('/rabatter', function (req, res) {
   pArray[2]= model.get_mulm_in_rabatt(qRabatt);
   if (highlight !== false && qMulm == undefined || highlight !== undefined && qMulm == undefined){
     pArray[3] = model.get_vaxt(highlight);
-    pArray[4] = model.get_attraktion(highlight);
+    pArray[4] = model.get_attraktion_vaxt(highlight);
   } else{
     pArray[3] = model.get_mulm(qMulm);
+    pArray[4] = model.get_attraktion_mulm(qMulm);
 
   }
   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
@@ -168,11 +183,11 @@ router.get('/rabatter', function (req, res) {
     // }
     let pArray = [];
     pArray[0]= model.check_ekosystem(vaxter);
-    if (qMulm == undefined){
-      if (attraktion.length>0){
-        pArray[1] = model.get_insekt(attraktion[0].insekts_id);
-      }
+
+    if (attraktion.length>0){
+      pArray[1] = model.get_insekt(attraktion[0].insekts_id);
     }
+
     Promise.all(pArray).then(function (values){
       text = values[0];
       insekt = values[1];

@@ -1,5 +1,8 @@
 /* jslint node: true */
 "use strict";
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const orm = require('./orm.js');
 const forening_db = orm.forening;
 const rabatt_db = orm.rabatt;
@@ -45,23 +48,43 @@ exports.check_ekosystem = (vaxter) => {
 };
 
 
-// exports.get_attraktion = (attraktion_list) => attraherar_db.findAll(
-//   {where: {
-//     vaxt_id: {
-//       [Op.or]: attraktion_list
-//     }
-//   })
-// .then(result =>{
-//  let a_list=[];
-//  for (let i of result){
-//    a_list.push(i);
-//  }
-//  return rabattlista;
-// });
+exports.get_alla_vaxter_i_rabatter = (rabatt_list) => vaxt_db.findAll(
+  {where: {
+    rabatt_id: {
+      [Op.or]: rabatt_list.id
+    }
+  }
+  })
+.then(result =>{
+  return result;
+});
 
-exports.get_attraktion = (id_in) => attraherar_db.findAll(
+exports.get_alla_mulmar_i_rabatter = (rabatt_list) => mulm_db.findAll(
+  {where: {
+    rabatt_id: {
+      [Op.or]: rabatt_list.id
+    }
+  }
+  })
+.then(result =>{
+  return result;
+});
+
+
+
+
+exports.get_attraktion_vaxt = (id_in) => attraherar_db.findAll(
   {where: {
     vaxt_id: id_in
+  }
+  })
+.then(result =>{
+ return result;
+});
+
+exports.get_attraktion_mulm = (id_in) => attraherar_db.findAll(
+  {where: {
+    mulm_id: id_in
   }
   })
 .then(result =>{

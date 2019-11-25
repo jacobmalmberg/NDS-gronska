@@ -145,15 +145,21 @@ const Insekt = sequelize.define("insekter",{
   bildnamn: {
     type: Sequelize.STRING
   },
-  intro: {
+  kennetecken: {
     type: Sequelize.TEXT
   },
-  text: {
+  utbredning: {
     type: Sequelize.TEXT
   },
   status: {
+    type: Sequelize.TEXT
+  },
+  levnadssatt: {
+    type: Sequelize.TEXT
+  },
+  hotad: {
     type: Sequelize.STRING
-  }
+  },
 }, {
   timestamps: false,
   freezeTableName: true,
@@ -168,7 +174,10 @@ const Attraherar = sequelize.define("attraherar",{
     type: Sequelize.INTEGER
   },
   vaxt_id: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
+  },
+  mulm_id: {
+    type: Sequelize.INTEGER
   },
 }, {
   timestamps: false,

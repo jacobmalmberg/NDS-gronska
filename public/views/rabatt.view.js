@@ -79,18 +79,25 @@ Vue.component('route-rabatt', {
 				this.typ = "vaxt";
 				this.$root.typ = "vaxt";
 
-				fetch(`/api/attraherar/${this.highlight.id}`)
+				fetch(`/api/attraherar/vaxt/${this.highlight.id}`)
 					.then(res => res.json())
 					.then(data => {
 						console.log(data);
 						this.attraherar = data;
 
 
-					});
+				});
 			} else{
 				this.typ="mulm"
 				this.$root.typ = "mulm";
-				this.attraherar=[];
+				fetch(`/api/attraherar/mulm/${this.highlight.id}`)
+					.then(res => res.json())
+					.then(data => {
+						console.log(data);
+						this.attraherar = data;
+
+
+				});
 			}
 			this.sent= null;
 			this.from=null;
@@ -253,11 +260,11 @@ Vue.component('route-rabatt', {
 
 					<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
 						<animate attributeType="CSS" attributeName="opacity"
-						values="0.2;1;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+						values="0.2;1;0.2" dur="2s" repeatCount="indefinite" /></polygon>
 						<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 						<polygon v-for="mulm in mulmlista" v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
 							<animate attributeType="CSS" attributeName="opacity"
-							values="0.2;1;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+							values="0.2;1;0.2" dur="2s" repeatCount="indefinite" /></polygon>
 							<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 				</svg>
 
@@ -286,6 +293,11 @@ Vue.component('route-rabatt', {
 						<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 100%; height: auto;">
 						<br>
 						<a style="color: blue; cursor: pointer;"> {{vaxt.namn}} </a>
+					</div>
+					<div :class=mobileRabatt v-for="mulm in mulmlista" v-on:click="say(mulm,2)" style="flex:1; margin-bottom:1em;">
+						<img v-bind:src="'/assets/' + mulm.bildnamn" alt="Nature" class="responsive" style = "max-width: 100%; height: auto;">
+						<br>
+						<a style="color: blue; cursor: pointer;"> Mulm </a>
 					</div>
 				</div>
 			</div>
@@ -317,6 +329,7 @@ Vue.component('route-rabatt', {
 					Blommar: {{this.highlight.blommar}}<br>
 					</div>
 					<div v-else>
+					<h1 style="font-size:3vh;">Skötselråd</h1>
 						{{this.highlight.skotsel}}
 					</div>
 				</div>
@@ -337,9 +350,12 @@ Vue.component('route-rabatt', {
 			</div>
 
 			<div :class=mobileRabatt v-if="this.highlight !== undefined" style = "margin-bottom:1em; ">
-					<h1 style="font-size:3vh;">Om växten.</h1>
+					<h1 v-if="this.typ == 'vaxt'" style="font-size:3vh;">Om växten.</h1>
+					<h1 v-else style="font-size:3vh;">Om mulm</h1>
 					{{this.highlight.intro}}
 			</div>
+
+
 
 			<div :class=mobileRabatt id="Ekosystem" v-if="this.rabatt !== null && this.highlight === undefined">
 					<h1 style="font-size:3vh;">Rabattens ekosystem.</h1>
@@ -414,11 +430,11 @@ Vue.component('route-rabatt', {
 							<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
 							<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
 								<animate attributeType="CSS" attributeName="opacity"
-								values="0.2;0.7;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+								values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" /></polygon>
 								<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 								<polygon v-for="mulm in mulmlista" v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
 									<animate attributeType="CSS" attributeName="opacity"
-									values="0.2;0.7;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+									values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" /></polygon>
 									<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 						</svg>
 
@@ -447,6 +463,12 @@ Vue.component('route-rabatt', {
 								<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 75%;height: auto;">
 								<br>
 								{{vaxt.namn}} </a>
+							</div>
+							<div v-for="mulm in mulmlista" v-on:click="say(mulm,2)" style="flex:1;">
+								<a style="color: blue; cursor: pointer;">
+								<img v-bind:src="'/assets/' + mulm.bildnamn" alt="Nature" class="responsive" style = "max-width: 75%;height: auto;">
+								<br>
+								Mulm </a>
 							</div>
 						</div>
 

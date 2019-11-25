@@ -14,7 +14,8 @@ Vue.component('route-insekt', {
 	},
 
 	methods: {
-    go() {
+    go(typ) {
+			if (typ==1){
 				this.$router.push({
 					name: 'rabatt',
 					params: {
@@ -23,6 +24,15 @@ Vue.component('route-insekt', {
 						typ:'vaxt'
 					},
 				});
+			} else{
+				this.$router.push({
+					name: 'rabatt',
+					params: {
+						id: 1,
+
+					},
+				});
+			}
 
     },
 		rabatt() {
@@ -46,9 +56,11 @@ Vue.component('route-insekt', {
 
 				this.bild = data[0].bildnamn;
 				this.namn = data[0].namn;
-				this.intro = data[0].intro;
+				this.kennetecken = data[0].kennetecken;
+				this.utbredning = data[0].utbredning;
+				this.levnadssatt = data[0].levnadssatt;
 				this.status = data[0].status;
-				this.text = data[0].text;
+				this.hotad = data[0].hotad;
 				console.log(this.text);
 
 			})
@@ -96,24 +108,41 @@ Vue.component('route-insekt', {
 		</div>
 
 		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
-				{{this.intro}}
+			<h1 style="font-size:3vh;">Klass</h1>
+			<p style="color: red">{{this.hotad}}</p>
+
+		</div>
+		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
+			<h1 style="font-size:3vh;">Kännetecken</h1>
+			{{this.kennetecken}}
+
+		</div>
+		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
+			<h1 style="font-size:3vh;">Utbredning</h1>
+			{{this.utbredning}}
+		</div>
+
+		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
+			<h1 style="font-size:3vh;">Levnadssätt</h1>
+			{{this.levnadssatt}}
 		</div>
 		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
 			<h1 style="font-size:3vh;">Status</h1>
-			<p style="color: red">{{this.status}}</p>
-
-		</div>
-		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
-			<h1 style="font-size:3vh;">Om insekten</h1>
-			{{this.text}}
+			{{this.status}}
 		</div>
 
-		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 0em;">
 
+		<div v-if="this.namn != 'Bredbandad ekbarkbock'" :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
 			<h1 style="font-size:3vh;">Var trivs insekten?</h1>
 			Stortapetserarbi attraheras av stäppsalvia samt honungsblomma. I Norra Djurgårdsstaden finns stäppsalvia på Garphyttans innergård.
-			<a style="color: blue; cursor: pointer;" v-on:click="go">Klicka här för att komma till rabatten som innehåller stäppsalvia.</a>
+			<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till rabatten som innehåller stäppsalvia.</a>
 		</div>
+		<div v-else :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
+			<h1 style="font-size:3vh;">Var trivs insekten?</h1>
+			Bredbandad ekbarkbock tycker om döda ekar och mulm. I Norra Djurgårdsstaden finns ekar på allmänna platser. På Garphyttans innergård finns det en mulm.
+			<a style="color: blue; cursor: pointer;" v-on:click="go(0)">Klicka här för att komma till rabatten som innehåller mulm.</a>
+		</div>
+		<h1 style="font-size:3vh;">Karta</h1>
 		<div :class=mobileRabatt id="myMapMobile" style="margin-top: 1em; margin-bottom: 1em; height:50vh; ">
 		</div>
 
@@ -131,7 +160,7 @@ Vue.component('route-insekt', {
 					<div :class=desktopRabatt style= "width: 48%; text-align:justify; ">
 							<u><h1 style="font-size:3vh;">{{this.namn}}</h1></u>
 							<br>
-							{{this.intro}}
+							{{this.kennetecken}}
 						</div>
 
 					</div>
@@ -143,13 +172,13 @@ Vue.component('route-insekt', {
 				<div :class=desktopRabatt style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
 
 					<div :class=desktopRabatt style = "width: 48%; text-align:justify;">
-							<h1 style="font-size:3vh;">Om insekten</h1>
-							{{this.text}}
+							<h1 style="font-size:3vh;">Utbredning</h1>
+							{{this.utbredning}}
 					</div>
 
 					<div :class=desktopRabatt style= "width: 48%; ">
-						<h1 style="font-size:3vh;">Status</h1>
-						<p style="color: red">{{this.status}}</p>
+						<h1 style="font-size:3vh;">Klass</h1>
+						<p style="color: red">{{this.hotad}}</p>
 
 					</div>
 
@@ -158,9 +187,31 @@ Vue.component('route-insekt', {
 				<div :class=desktopRabatt style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
 
 					<div :class=desktopRabatt style = "width: 48%; text-align:justify;">
+							<h1 style="font-size:3vh;">Levnadssätt</h1>
+							{{this.levnadssatt}}
+					</div>
+
+					<div :class=desktopRabatt style= "width: 48%; ">
+						<h1 style="font-size:3vh;">Status</h1>
+						{{this.status}}
+
+					</div>
+
+				</div>
+
+
+
+				<div :class=desktopRabatt style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
+
+					<div v-if="this.namn!= 'Bredbandad ekbarkbock'" :class=desktopRabatt style = "width: 48%; text-align:justify;">
 							<h1 style="font-size:3vh;">Var trivs insekten?</h1>
 							Stortapetserarbi attraheras av stäppalvia samt honungsblomma. I Norra Djurgårdsstaden finns stäppsalvia på Garphyttans innergård.
-							<a style="color: blue; cursor: pointer;" v-on:click="go">Klicka här för att komma till rabatten som innehåller stäppsalvia.</a>
+							<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till rabatten som innehåller stäppsalvia.</a>
+					</div>
+					<div v-else :class=desktopRabatt style = "width: 48%; text-align:justify;">
+							<h1 style="font-size:3vh;">Var trivs insekten?</h1>
+							Bredbandad ekbarkbock tycker om döda ekar och mulm. I Norra Djurgårdsstaden finns ekar på allmänna platser. På Garphyttans innergård finns det en mulm.
+							<a style="color: blue; cursor: pointer;" v-on:click="go(0)">Klicka här för att komma till rabatten som innehåller mulm.</a>
 					</div>
 					<div :class=desktopRabatt id="myMap" style= " width: 48%;height:25vh; ">
 

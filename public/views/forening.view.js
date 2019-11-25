@@ -41,7 +41,10 @@ Vue.component('route-forening', {
       .then(res => res.json())
       .then(data => {
         //console.log(data)
-        this.rabattlista = data;
+        this.rabattlista = data.rabattlista;
+        this.vaxter=data.vaxter;
+        this.mulmar=data.mulmar;
+
         console.log("map: ", google.maps)
         if (screen.width > 1281) {
   				this.map = new google.maps.Map(document.getElementById('myMap'), {
@@ -108,7 +111,7 @@ Vue.component('route-forening', {
               <image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
                 <polygon v-for="rabatt in rabattlista" v-on:click="say(rabatt)" style="cursor: pointer;" :points="rabatt.polygon" fill="#006600">
                 <animate attributeType="CSS" attributeName="opacity"
-                values="0.2;1;0.2" dur="3s" repeatCount="indefinite" /></polygon>
+                values="0.2;1;0.2" dur="2s" repeatCount="indefinite" /></polygon>
 
             </svg>
             <div style=" text-align: center; margin-top: 1em; ">
@@ -117,7 +120,7 @@ Vue.component('route-forening', {
 
             <div :class=mobileRabatt style = "margin-top: 1em; ">
     							<div style="font-size:4vh;">Information</div>
-                      asdf
+                  På gården finns det {{this.vaxter}} växter och {{this.mulmar}} mulm.
 
     					<div :class=mobileRabatt style="height: 20vh;">
                 <div style="font-size:4vh;">
@@ -133,11 +136,11 @@ Vue.component('route-forening', {
 
       					<div :class=desktopRabatt style = "width: 48%; text-align:justify;">
       							<h1 style="font-size:3vh;">Information</h1>
-                        asdf
+                    På gården finns det {{this.vaxter}} växter och {{this.mulmar}} mulm.
       					</div>
       					<div :class=desktopRabatt style= " display: flex; flex-direction: column; width: 48%;height:25vh; ">
                   <div :class=desktopRabatt style="font-size:3vh;">
-                    Var ligger gården?
+                    <h1 style="font-size:3vh;">Var ligger gården</h1>
                   </div>
                   <div :class=desktopRabatt id="myMap" style="flex: 1;" >
                   </div>
