@@ -42,8 +42,8 @@ Vue.component('route-forening', {
       .then(data => {
         //console.log(data)
         this.rabattlista = data.rabattlista;
-        this.vaxter=data.vaxter;
-        this.mulmar=data.mulmar;
+        this.vaxter=data.vaxter.length;
+        this.mulmar=data.mulmar.length;
 
         console.log("map: ", google.maps)
         if (screen.width > 1281) {

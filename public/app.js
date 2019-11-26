@@ -3,6 +3,7 @@
 const routes = [
 	{ path: '/', redirect: '/forening' },
 	{ path: '/forening',  name:'forening', component: Vue.component('route-forening') },
+	{ path: '/admin',  name:'admin', component: Vue.component('route-admin') },
 	{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
 	//{ path: '/rabatt/:id', component: Vue.component('route-rabatt') },
 	{ path: '/insekt/:id', component: Vue.component('route-insekt') },
@@ -14,10 +15,8 @@ const router = new VueRouter({
 	routes
 });
 
-Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
-})
 
+Vue.component('vue-multiselect', window.VueMultiselect.default);
 
 // Create VueApp
 // Docs: https://vuejs.org/v2/guide

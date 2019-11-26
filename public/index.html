@@ -15,6 +15,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
 
 
     <!--
@@ -60,6 +62,9 @@
             <li class="nav-item">
               <a class="nav-link" style="cursor: pointer;">Om oss</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" v-on:click="redirect('/admin')" style="cursor: pointer;">Admin</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -74,10 +79,12 @@
 
 
     <!-- #region Import app -->
+    <script src="./apiKeys.js"></script>
     <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpciNX7PMxRZuOCy4Me14H2qX_B2EFqrk" async defer></script>
     <script src="./views/insekt.view.js"></script>
     <script src="./views/forening.view.js"></script>
     <script src="./views/rabatt.view.js"></script>
+    <script src="./views/admin.view.js"></script>
 
     <script src="./app.js"></script>
 

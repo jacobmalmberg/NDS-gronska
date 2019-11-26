@@ -28,9 +28,9 @@ router.get('/forening', function (req, res) {
     pArray[0]= model.get_alla_vaxter_i_rabatter(rabatt);
     pArray[1]= model.get_alla_mulmar_i_rabatter(rabatt);
     Promise.all(pArray).then(function (values){
-      vaxter=values[0].length;
-      mulmar=values[1].length;
-      
+      vaxter=values[0];
+      mulmar=values[1];
+
       res.json({ rabattlista: result, vaxter: vaxter, mulmar:mulmar });
     });
   });
