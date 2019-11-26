@@ -1,4 +1,7 @@
 Vue.component('route-admin', {
+  components: {
+    Multiselect: window.VueMultiselect.default
+  },
   data() {
     return {
       rabattlista: null,
@@ -13,15 +16,22 @@ Vue.component('route-admin', {
       ],
       i:3,
       viewBox: "0 0 2111 1219",
+      viewBoxStart: "0 0 2111 1219",
+      viewBoxTest:"325 629 185 155",
       rabattView: true,
       selected: 'A',
       options: [
-        { text: 'One', value: 'A' },
-        { text: 'Two', value: 'B' },
-        { text: 'Three', value: 'C' }
-      ]
-
-
+        { namn: 'One', value: 'A' },
+        { namn: 'Two', value: 'B' },
+        { namn: 'Three', value: 'C' }
+      ],
+      alla_vaxter: null,
+      value: null,
+      polyList: [],
+      svgX: null,
+      svgY: null,
+      poly: "154.36,107.16 160.92,113.97 160.92,123.0 160.92,131.6 154.94,138.23 148.0,142.53 135.57,150.25 120.33,152.16 106.0,152.0 93.92,151.85 76.36,147.49 67.0,139.67 55.63,130.16 54.86,117.25 66.02,107.18 69.06,104.44 72.33,102.54 76.0,100.78 83.89,97.02 91.48,95.71 100.0,94.42 114.7,92.63 134.13,95.38 147.0,102.88",
+      polygonOrg:" 1025.36,684.16 1031.92,690.97 1031.92,700.0 1031.92,708.6 1025.94,715.23 1019.0,719.53 1006.57,727.25 991.33,729.16 977.0,729.0 964.92,728.85 947.36,724.49 938.0,716.67 926.63,707.16 925.86,694.25 937.02,684.18 940.06,681.44 943.33,679.54 947.0,677.78 954.89,674.02 962.48,672.71 971.0,671.42 985.7,669.63 1005.13,672.38 1018.0,679.88"
     }
   },
   methods: {
@@ -29,13 +39,36 @@ Vue.component('route-admin', {
 			this.$router.push();
 		},
 
-    hej(){
-      console.log("hej");
+    returnImg(){
+      this.bild = "/assets/" + this.value.bildnamn;
+      return this.bild;
+
+    },
+
+    adjustPolygon() {
+
+      var str = this.value.polygon;
+      var koordLista = str.split(" ");
+      var polygon="";
+      var x = this.rabatt.x;
+      var y = this.rabatt.y;
+      //for index, s in enumerate(koordLista):
+      for (i = 0; i < koordLista.length; i++) {
+          a = koordLista[i].split(",");
+          console.log(a[0]);
+          console.log(a[1]);
+          aFix = parseFloat(a[0]) + parseFloat(x) +  (parseFloat(this.svgX) - parseFloat(x)) ;
+          bFix = parseFloat(a[1]) + parseFloat(y) +  (parseFloat(this.svgY) - parseFloat(y)) ;
+          polygon+=" "+aFix.toString()+","+bFix.toString();
+        }
+
+      return polygon;
     },
     say: function (rabatt) {
       this.rabattView = false;
       this.rabatt=rabatt;
       this.viewBox = "" + this.rabatt.x + " " + this.rabatt.y + " " + this.rabatt.width + " " + this.rabatt.height;
+
 
       //this.$router.push(`/api/rabatt/${this.rabatt}`);
       //this.$router.push({name: 'rabatt', params: {rabatt: message.id}});
@@ -63,6 +96,17 @@ Vue.component('route-admin', {
         return rect;
     },
 
+    createPoly (svg){
+      let poly = document.createElementNS(this.NS, 'polygon');
+
+        adjustedPoints=this.adjustPolygon();
+        //poly.setAttribute("points", this.polygonOrg);
+        poly.setAttribute("points", adjustedPoints);
+        // rect.setAttributeNS(null, 'fill', '#'+Math.round(0xffffff * Math.random()).toString(16));
+        return poly;
+    },
+
+
     handleMouseMove(e) {
 
       if (this.rabattView == false){
@@ -72,6 +116,8 @@ Vue.component('route-admin', {
 
         svgP = this.svgPoint(this.svg, x, y),
         svgL = this.svgPoint(this.local, x, y);
+
+
 
         this.coords.textContent =
         '[page: ' + x + ',' + y +
@@ -96,11 +142,21 @@ Vue.component('route-admin', {
 
         svgP = this.svgPoint(target, x, y),
         rect = this.createRect(this.NS, svgP.x ,svgP.y, 50, 50);
+
+        this.svgX = svgP.x;
+        this.svgY = svgP.y;
+        console.log(x);
+        console.log(y);
+
+        var poly= this.createPoly(this.NS);
+
+
+
         console.log(rect);
         // this.rectlista.push(rect);
-        target.appendChild(rect);
+        target.appendChild(poly);
         console.log(target);
-        console.log(this.rectlista)
+        //console.log(this.rectlista)
         this.rects.push({ id:'id'+this.i, x:svgP.x, y:svgP.y, w:10, h:10 });
         this.i++;
       }
@@ -120,13 +176,16 @@ Vue.component('route-admin', {
 
 
 
-    fetch(`/api/forening`)
+    fetch(`/api/admin`)
       .then(res => res.json())
       .then(data => {
         //console.log(data)
         this.rabattlista = data.rabattlista;
         this.vaxter=data.vaxter;
-        this.mulmar=this.mulmar;
+        this.mulmar=data.mulmar;
+        this.alla_vaxter = data.alla_vaxter;
+        this.options = this.alla_vaxter;
+        console.log(this.alla_vaxter)
 
         this.svg = document.getElementById('mysvg'),
         this.NS = this.svg.getAttribute('xmlns'),
@@ -221,7 +280,7 @@ Vue.component('route-admin', {
 
 
 
-            <div style = "display: flex; flex-direction: row; justify-content: space-between;">
+            <div style = "margin-bottom: 2em; display: flex; flex-direction: row; justify-content: space-between;">
               <div :class=desktopRabatt style = "width: 75%;">
                 <div class="url">
                   <svg id="mysvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -232,6 +291,8 @@ Vue.component('route-admin', {
                     <animate attributeType="CSS" attributeName="opacity"
                     values="0.2;1;0.2" dur="2s" repeatCount="indefinite" /></polygon>
                   </g>
+
+
                   <g id="local" transform="scale(4)">
 
                   </g>
@@ -243,27 +304,43 @@ Vue.component('route-admin', {
               </div>
 
               <div :class=desktopRabatt style= "width: 23%; ">
-                <div class="form-group">
-                  <label for="sel1">Select list:</label>
-                  <select v-model="selected" class="form-control" id="sel1">
-                    <option v-for="option in options" v-bind:value="option.value">
-                      {{ option.text }}
-                    </option>
-                  </select>
-                </div>
-                <span>Selected: {{ selected }}</span>
+
                 <div>
-                <label class="typo__label">Single select</label>
-                <multiselect v-model="selected" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect>
-                <pre class="language-json"><code>{{ selected  }}</code></pre>
+                  <label class="typo__label">Välj växt</label>
+                  <multiselect v-model="value" track-by="namn" label="namn" selectLabel="" placeholder="Växt" :options="options" :searchable="false" :allow-empty="false">
+                    <template slot="singleLabel" slot-scope="{ option }">{{ option.namn}}</template>
+                  </multiselect>
+
                 </div>
               </div>
 
             </div>
+            <p id="coords">co-ordinates</p>
+            <div v-if="this.value != null" style = "display: flex; flex-direction: row; justify-content: space-between;">
+              <div :class=desktopRabatt style = "width: 48%;">
+
+
+              <svg height="250" width="500">
+
+                  <polygon :points="this.value.polygon" fill="#F00"></polygon>
+
+              </svg>
+
+
+              </div>
+
+              <div :class=desktopRabatt style= "width: 48%; ">
+
+
+                <img v-if="this.value != null" :src=this.returnImg() alt="Nature" class="responsive" style = "width: 100%;height: auto;">
+              </div>
+
+            </div>
+
             <div v-if="this.rabattView == true" style=" text-align: center; margin-top: 1em; ">
               Tryck på en rabatt för att ändra den!
             </div>
-            <p id="coords">co-ordinates</p>
+
 
 
 

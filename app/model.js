@@ -10,16 +10,13 @@ const vaxt_db = orm.vaxt;
 const insekt_db = orm.insekt;
 const attraherar_db = orm.attraherar;
 const mulm_db = orm.mulm;
+const alla_vaxter_db = orm.vaxt_db;
 
 
 const forening = require('./models/forening.model');
 const rabatt = require('./models/rabatt.model');
 const vaxt = require('./models/vaxt.model');
 
-const assistant_list = [];
-const time_slot_dict = {};
-time_slot_dict[0] = [];
-time_slot_dict[1] = []; //arrays for the time slots
 
 const ekosystem_balanserad = "I den här rabatten finns det både perenner och ettårsväxter. Tillsammans bildar dessa ett litet ekosystem, där ettårsväxterna bryts ner i slutet av livscykeln och göder jorden för perennerna. Konstgödsel behöver därmed inte tillsättas. "
 const ekosystem_obalanserad_perenn = "I den här rabatten finns det endast perenner. Ifall ettårsväxter hade planterats tillsammans här, hade dessa kunna fungera som gödsel åt perennerna. Konstgödsel hade då inte behövts tillsättas. "
@@ -66,6 +63,12 @@ exports.get_alla_mulmar_i_rabatter = (rabatt_list) => mulm_db.findAll(
     }
   }
   })
+.then(result =>{
+  return result;
+});
+
+
+exports.get_alla_vaxter = () => alla_vaxter_db.findAll()
 .then(result =>{
   return result;
 });

@@ -133,6 +133,31 @@ router.get('/insekter/:id', function (req, res) {
 
 });
 
+router.get('/admin', function (req, res) {
+  let id=1;
+  //console.log(id);
+  let vaxter;
+  let mulmar;
+  let rabatt;
+
+  const rabatter = model.get_rabatter(id)
+  .then(result =>{
+    rabatt = result;
+    let pArray=[];
+    pArray[0]= model.get_alla_vaxter_i_rabatter(rabatt);
+    pArray[1]= model.get_alla_mulmar_i_rabatter(rabatt);
+    pArray[2]= model.get_alla_vaxter();
+    Promise.all(pArray).then(function (values){
+      vaxter=values[0];
+      mulmar=values[1];
+      alla_vaxter=values[2];
+
+      res.json({ rabattlista: result, vaxter: vaxter, mulmar:mulmar, alla_vaxter: alla_vaxter });
+    });
+  });
+});
+
+
 router.get('/rabatter', function (req, res) {
   //hämta alla växter som finns i rabatten
   //console.log(req.params.rabatt);
@@ -166,6 +191,10 @@ router.get('/rabatter', function (req, res) {
 
   }
   //const vaxter = model.get_vaxter_in_rabatt(req.params.rabatt)
+//
+// const result = await Promise.all(pArray)
+// Promise2
+
   Promise.all(pArray).then(function (values){
   //.then(result =>{
     rabatt = values[0];

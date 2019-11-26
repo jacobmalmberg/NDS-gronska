@@ -134,6 +134,51 @@ const Vaxt = sequelize.define("vaxter",{
   freezeTableName: true,
 });
 
+
+
+const vaxt_db = sequelize.define("vaxt_db",{
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
+  namn: {
+    type: Sequelize.STRING
+  },
+  bildnamn: {
+    type: Sequelize.STRING
+  },
+  polygon: {
+    type: Sequelize.TEXT
+  },
+  intro: {
+    type: Sequelize.TEXT
+  },
+  vatten: {
+    type: Sequelize.STRING
+  },
+  lage: {
+    type: Sequelize.STRING
+  },
+  hojd: {
+    type: Sequelize.STRING
+  },
+  blommar: {
+    type: Sequelize.STRING
+  },
+  naring: {
+    type: Sequelize.STRING
+  },
+  jordman: {
+    type: Sequelize.STRING
+  },
+  typ: {
+    type: Sequelize.STRING
+  }
+}, {
+  timestamps: false,
+  freezeTableName: true,
+});
+
 const Insekt = sequelize.define("insekter",{
   id: {
     type: Sequelize.INTEGER,
@@ -218,6 +263,7 @@ module.exports.vaxt = Vaxt;
 module.exports.insekt = Insekt;
 module.exports.attraherar = Attraherar;
 module.exports.mulm = mulm;
+module.exports.vaxt_db = vaxt_db;
 
 
 
