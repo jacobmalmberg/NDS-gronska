@@ -44,8 +44,11 @@
       </nav>
       -->
 
-      <nav class="navbar navbar-expand-lg navbar-light" style="margin-bottom: 0px; height: 4em;background-image: url('./assets/header2.png');">
+      <nav class="navbar navbarmob" style="margin-bottom: 0px; height: 4em;background-image: url('./assets/header2.png');">
         <p class="header" style="font-size:3vh; color:white; margin-bottom: 0px;">Norra Djurgårdsstadens Innergårdar</p>
+        <div class ="nav navbar-nav navbarOut">
+          <button type="button" v-on:click="redirect('/login')" style="cursor: pointer;" class="btn btn-primary">Logga in</button>
+        </div>
       </nav>
 
       <nav class="navbar navbar-expand-lg navbar-light" style="border-bottom: 1px solid gray; margin-bottom: 1em;">
@@ -62,9 +65,16 @@
             <li class="nav-item">
               <a class="nav-link" style="cursor: pointer;">Om oss</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" v-on:click="redirect('/admin')" style="cursor: pointer;">Admin</a>
-            </li>
+            <div class ="nav navbar-nav navbarOut">
+              <li class="nav-item">
+                <a class="nav-link" v-on:click="redirect('/login')" style="cursor: pointer;">Logga in</a>
+              </li>
+            </div>
+            <div id ="navbarIn" class ="nav navbar-nav" style= "display: none">
+              <li class="nav-item">
+                <a class="nav-link" v-on:click="redirect('/admin')" style="cursor: pointer;">Admin</a>
+              </li>
+            </div>
           </ul>
         </div>
       </nav>
@@ -84,6 +94,7 @@
     <script src="./views/insekt.view.js"></script>
     <script src="./views/forening.view.js"></script>
     <script src="./views/rabatt.view.js"></script>
+    <script src="./views/login.view.js"></script>
     <script src="./views/admin.view.js"></script>
 
     <script src="./app.js"></script>

@@ -7,9 +7,15 @@ drop table vaxter;
 drop table rabatter;
 drop table foreningar;
 drop table vaxt_db;
+drop table users;
 
 
 
+create table users (
+	username varchar(64),
+	password varchar(64),
+	PRIMARY KEY (username)
+);
 
 create table foreningar (
 	id int NOT NULL AUTO_INCREMENT,
@@ -286,7 +292,7 @@ INSERT INTO vaxter values (null, 1, "Bergskörsbär", "bergskorsbar2.jpg" , "
 "Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras."
 , "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
 
--- 
+--
 -- INSERT INTO vaxter values (null, 2, "Prakthäggmispel", "prakthaggmispel.jpg" , "
 -- 	969.00,613.91 987.00,613.00 987.00,613.00
 -- 	             987.00,613.00 1002.00,612.00 1002.00,612.00

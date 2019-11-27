@@ -11,8 +11,9 @@ const insekt_db = orm.insekt;
 const attraherar_db = orm.attraherar;
 const mulm_db = orm.mulm;
 const alla_vaxter_db = orm.vaxt_db;
+const userDb = orm.user;
 
-
+const userModel = require('./models/user.model');
 const forening = require('./models/forening.model');
 const rabatt = require('./models/rabatt.model');
 const vaxt = require('./models/vaxt.model');
@@ -24,6 +25,11 @@ const ekosystem_obalanserad_perenn = "I den här rabatten finns det endast peren
 /**
  * Creates objects with the given params.
  */
+
+
+exports.addUser = (username, password) => userDb.create(new userModel(username, userDb.generateHash(password)))
+.catch(function(error) {
+});
 
 exports.check_ekosystem = (vaxter) => {
   let perenn = false;

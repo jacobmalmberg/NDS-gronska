@@ -1,5 +1,7 @@
 const model = require("../model.js");
 const express = require('express');
+const bcrypt = require('bcrypt');
+const passport = require('.././boilerplate/passport.js');
 const nodemailer = require('nodemailer');
 const formidable = require('formidable')
 
@@ -12,6 +14,41 @@ const transporter = nodemailer.createTransport({
     pass: '1234gronska'
   }
 });
+
+
+// Auth middleware to check if user is authed or not.
+const authMiddleware = (req, res, next) => {
+  // checks if we are authed or not
+  // from https://blog.jscrambler.com/vue-js-authentication-system-with-node-js-backend
+  if (!req.isAuthenticated()) {
+    res.status(401).send('You are not authenticated');
+  } else {
+    return next();
+  }
+};
+
+// Endpoint for logging in
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      // incorrect user
+      return res.status(401).json({ error: 'Cant log in' });
+      // return res.status(401).send([user, "Cannot log in", info]);
+    }
+
+    req.login(user, (err) => {
+      const { username } = req.user;
+      console.log(username);
+      res.json({ url: '/admin' }); // go to profile
+
+    });
+  })(req, res, next);
+});
+
 
 
 router.get('/forening', function (req, res) {
@@ -36,7 +73,7 @@ router.get('/forening', function (req, res) {
   });
 });
 
-router.post('/changeRabatt', function (req, res) {
+router.post('/changeRabatt', authMiddleware, function (req, res) {
   let array = req.body;
   let id;
   let attrakt_array= []
@@ -167,7 +204,7 @@ router.get('/insekter/:id', function (req, res) {
 
 });
 
-router.get('/admin', function (req, res) {
+router.get('/admin', authMiddleware, function (req, res) {
   let id=1;
   //console.log(id);
   let vaxter;

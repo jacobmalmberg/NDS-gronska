@@ -122,7 +122,7 @@ Vue.component('route-forening', {
     							<div style="font-size:4vh;">Information</div>
                   På gården finns det {{this.vaxter}} växter och {{this.mulmar}} mulm.
 
-    					<div :class=mobileRabatt style="height: 20vh;">
+    					<div :class=mobileRabatt style=" margin-bottom: 1em; height: 20vh;">
                 <div style="font-size:4vh;">
                   Var ligger gården?
                 </div>
@@ -138,7 +138,7 @@ Vue.component('route-forening', {
       							<h1 style="font-size:3vh;">Information</h1>
                     På gården finns det {{this.vaxter}} växter och {{this.mulmar}} mulm.
       					</div>
-      					<div :class=desktopRabatt style= " display: flex; flex-direction: column; width: 48%;height:25vh; ">
+      					<div :class=desktopRabatt style= " margin-bottom: 2em; display: flex; flex-direction: column; width: 48%;height:25vh; ">
                   <div :class=desktopRabatt style="font-size:3vh;">
                     <h1 style="font-size:3vh;">Var ligger gården</h1>
                   </div>

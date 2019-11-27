@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const bcrypt = require('bcrypt');
 const sequelize = new Sequelize('intnetdb', 'intnet', '1234Skola', {
   host: 'localhost',
   dialect: 'mysql',
@@ -35,6 +36,33 @@ sequelize.authenticate()
 //     type: Sequelize.STRING
 //   }
 // });
+
+// Table for users;
+const User = sequelize.define('user', {
+  username: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
+  password: {
+    type: Sequelize.STRING,
+  }
+
+}, {
+  timestamps: false,
+
+});
+
+// methods for hashing
+User.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+};
+
+User.prototype.validPassword = function (password) {
+  // check if password is correct (instance method)
+  return bcrypt.compareSync(password, this.password);
+};
+
+
 
 
 const Forening = sequelize.define("foreningar", {
@@ -267,6 +295,7 @@ module.exports.insekt = Insekt;
 module.exports.attraherar = Attraherar;
 module.exports.mulm = mulm;
 module.exports.vaxt_db = vaxt_db;
+module.exports.user = User;
 
 
 

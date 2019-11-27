@@ -33,12 +33,14 @@ Vue.component('route-admin', {
       svgY: null,
       poly: "154.36,107.16 160.92,113.97 160.92,123.0 160.92,131.6 154.94,138.23 148.0,142.53 135.57,150.25 120.33,152.16 106.0,152.0 93.92,151.85 76.36,147.49 67.0,139.67 55.63,130.16 54.86,117.25 66.02,107.18 69.06,104.44 72.33,102.54 76.0,100.78 83.89,97.02 91.48,95.71 100.0,94.42 114.7,92.63 134.13,95.38 147.0,102.88",
       polygonOrg:" 1025.36,684.16 1031.92,690.97 1031.92,700.0 1031.92,708.6 1025.94,715.23 1019.0,719.53 1006.57,727.25 991.33,729.16 977.0,729.0 964.92,728.85 947.36,724.49 938.0,716.67 926.63,707.16 925.86,694.25 937.02,684.18 940.06,681.44 943.33,679.54 947.0,677.78 954.89,674.02 962.48,672.71 971.0,671.42 985.7,669.63 1005.13,672.38 1018.0,679.88",
-      addList: []
+      addList: [],
+      changed: false
     }
   },
   methods: {
 
     postChanges(url = ``) {
+      this.changed=true;
       // Default options are marked with *
         return fetch(url, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -53,6 +55,22 @@ Vue.component('route-admin', {
     redirect() {
 			this.$router.push();
 		},
+
+    go() {
+      let rabatt_id = this.rabatt.id;
+      console.log(this.rabatt.id);
+
+      this.$root.rabatt = rabatt_id;
+      this.highlight = undefined;
+      this.typ = undefined;
+      this.$router.push({
+        name: 'rabatt',
+        params: {
+          id: rabatt_id,
+        },
+      });
+
+    },
 
     returnImg(){
       this.bild = "/assets/" + this.value.bildnamn;
@@ -212,6 +230,12 @@ Vue.component('route-admin', {
 
 
   created() {
+    document.getElementById('navbarIn').style.display = 'flex';
+    let outList= document.getElementsByClassName('navbarOut');
+    for (let i = 0; i <outList.length; i++){
+      outList[i].style.display = 'none';
+    }
+
     this.$root.rabatt = undefined;
     this.$root.vaxt_id = undefined;
     this.$root.typ = undefined;
@@ -324,7 +348,7 @@ Vue.component('route-admin', {
     <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
 
             <div>
-              <h1 style="font-size:4vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Adminläge.</h1>
+              <h1 style="font-size:4vh; text-align:center; margin-bottom: 1em; margin-top: 1em;">Adminläge.</h1>
             </div>
 
 
@@ -353,7 +377,7 @@ Vue.component('route-admin', {
 
               <div style= "width: 23%; ">
 
-                <div >
+                <div v-if="this.rabattView != true && this.changed == false" >
                   <h1 style="font-size:3vh;"><label class="typo__label">Välj växt</label></h1>
                   <multiselect style="margin-bottom: 2em;" v-model="value" track-by="namn" label="namn" selectLabel="" placeholder="Växt" :options="options" :searchable="false" :allow-empty="false">
                     <template slot="singleLabel" slot-scope="{ option }">{{ option.namn}}</template>
@@ -366,13 +390,18 @@ Vue.component('route-admin', {
                       {{vaxt.namn}}
                     </div>
                   </div>
-                  <button v-if="this.addList.length > 0" v-on:click="postChanges('/api/changeRabatt')" type="submit" class="btn btn-success">Spara ändringar</button>
+                  <button v-if="this.addList.length > 0 && this.changed == false" v-on:click="postChanges('/api/changeRabatt')" type="submit" class="btn btn-success">Spara ändringar</button>
                 </div>
+                <div v-if="this.rabattView == true ">
+                  <h1 style="font-size:3vh;"><label class="typo__label">Välj rabatt</label></h1>
+                </div>
+
               </div>
+
 
             </div>
 
-            <div v-if="this.value != null" style = "display: flex; flex-direction: row; justify-content: space-between;">
+            <div v-if="this.value != null && this.changed == false" style = "display: flex; flex-direction: row; justify-content: space-between;">
               <div style = "width: 48%;">
 
               <h1 style="font-size:3vh;">Polygon.</h1>
@@ -392,6 +421,18 @@ Vue.component('route-admin', {
 
             <div v-if="this.rabattView == true" style=" text-align: center; margin-top: 1em; ">
               Tryck på en rabatt för att ändra den!
+            </div>
+
+            <div style="text-align: center; margin-bottom: 1em;" v-if="this.changed != false">
+              <h4 style= "font-size: 2vh;">
+              Ändringarna har sparats.
+              <a style="color: blue; cursor: pointer;" v-on:click="go()">
+              Tryck här för att gå till rabatten.
+              </a>
+
+
+
+              </h4>
             </div>
 
 
