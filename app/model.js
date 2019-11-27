@@ -45,6 +45,26 @@ exports.check_ekosystem = (vaxter) => {
 };
 
 
+
+exports.skapaVaxter = (vaxtLista) => vaxt_db.bulkCreate(vaxtLista)
+.then(result =>{
+  return result;
+});
+
+exports.skapaAttraktion = (obj) => attraherar_db.bulkCreate(obj)
+  .then(result =>{
+    return result;
+});
+
+// exports.skapaAttraktion = (obj) => attraherar_db.bulkCreate({
+//   insekts_id: obj.insekts_id,
+//   vaxt_id: obj.vaxt_id,
+//   mulm_id: null
+//   })
+//   .then(result =>{
+//     return result;
+// });
+
 exports.get_alla_vaxter_i_rabatter = (rabatt_list) => vaxt_db.findAll(
   {where: {
     rabatt_id: {

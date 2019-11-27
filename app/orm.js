@@ -173,6 +173,9 @@ const vaxt_db = sequelize.define("vaxt_db",{
   },
   typ: {
     type: Sequelize.STRING
+  },
+  polygonbild: {
+    type: Sequelize.STRING
   }
 }, {
   timestamps: false,

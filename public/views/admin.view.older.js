@@ -6,7 +6,6 @@ Vue.component('route-admin', {
     return {
       rabattlista: null,
       rabatt: null,
-      selectedCursor: `url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='128px' height='128px' viewBox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve'%3E %3Cpath d='M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4 L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1 c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1 c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z'/%3E %3C/svg%3E"), pointer`,
 
       mobileRabatt: 'mobileRabatt',
       desktopRabatt: 'desktopRabatt',
@@ -37,19 +36,6 @@ Vue.component('route-admin', {
     }
   },
   methods: {
-
-    postChanges(url = ``) {
-      // Default options are marked with *
-        return fetch(url, {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            //https://github.com/github/fetch/issues/505
-            headers: {
-              "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify(this.addList) // body data type must match "Content-Type" header
-        })
-        .then(response => response.json()); // parses response to JSON
-    },
     redirect() {
 			this.$router.push();
 		},
@@ -61,11 +47,8 @@ Vue.component('route-admin', {
     },
 
     returnImgToken(){
-      if(this.value != null){
-
-        this.polygonbild = "/assets/" + this.value.polygonbild;
-        return this.polygonbild;
-      }
+      this.polygonbild = "/assets/" + this.value.polygonbild;
+      return this.polygonbild;
 
     },
 
@@ -92,21 +75,6 @@ Vue.component('route-admin', {
 
       return polygon;
     },
-
-
-    createVaxt(poly) {
-
-      let vaxt = Object.assign({}, this.value);
-
-      console.log(this.adjustPolygon())
-      vaxt.polygon = this.adjustPolygon();
-      vaxt.rabatt_id = this.rabatt.id;
-      vaxt.id = null;
-      delete vaxt.polygonbild;
-      console.log(vaxt);
-      this.addList.push(vaxt);
-    },
-
     say: function (rabatt) {
       this.rabattView = false;
       this.rabatt=rabatt;
@@ -175,7 +143,7 @@ Vue.component('route-admin', {
     },
 
     handleMouseClick(e) {
-      if (this.rabattView == false){
+      if (this.rabatt == false){
 
         var
         t = e.target,
@@ -186,6 +154,7 @@ Vue.component('route-admin', {
 
         svgP = this.svgPoint(target, x, y);
 
+
         this.svgX = svgP.x;
         this.svgY = svgP.y;
 
@@ -194,13 +163,17 @@ Vue.component('route-admin', {
 
 
 
+
         // this.rectlista.push(rect);
         target.appendChild(poly);
-        console.log(target);
-        //console.log(this.rectlista)
 
-        this.createVaxt(poly);
-
+        vaxt=this.value;
+        vaxt.polygon = poly;
+        vaxt.rabatt_id = this.rabatt.id;
+        vaxt.null = null;
+        delete vaxt.polygonbild;
+        console.log(vaxt.polygon);
+        this.addList.push(vaxt);
 
       }
 
@@ -324,7 +297,7 @@ Vue.component('route-admin', {
     <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
 
             <div>
-              <h1 style="font-size:4vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Adminläge.</h1>
+              <h1 style="font-size:3vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Adminläge.</h1>
             </div>
 
 
@@ -332,7 +305,7 @@ Vue.component('route-admin', {
 
             <div style = "margin-bottom: 2em; display: flex; flex-direction: row; justify-content: space-between;">
               <div  style = "width: 75%;">
-                <div class="url" v-bind:style="{cursor: returnImgToken()}">
+                <div class="url">
                   <svg id="mysvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                   :viewBox=viewBox preserveAspectRatio="xMidYMid meet">
                   <image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
@@ -343,7 +316,7 @@ Vue.component('route-admin', {
                   </g>
 
 
-                  <g id="local" transform="scale(4)" >
+                  <g id="local" transform="scale(4)">
 
                   </g>
 
@@ -351,33 +324,30 @@ Vue.component('route-admin', {
                 </div>
               </div>
 
-              <div style= "width: 23%; ">
+              <div  style= "width: 23%; ">
 
-                <div >
-                  <h1 style="font-size:3vh;"><label class="typo__label">Välj växt</label></h1>
-                  <multiselect style="margin-bottom: 2em;" v-model="value" track-by="namn" label="namn" selectLabel="" placeholder="Växt" :options="options" :searchable="false" :allow-empty="false">
+                <div>
+                  <label class="typo__label">Välj växt</label>
+                  <multiselect v-model="value" track-by="namn" label="namn" selectLabel="" placeholder="Växt" :options="options" :searchable="false" :allow-empty="false">
                     <template slot="singleLabel" slot-scope="{ option }">{{ option.namn}}</template>
                   </multiselect>
 
-                  <div style="margin-bottom: 2em; min-height: 20vh;" v-if="this.addList.length > 0" >
-                    <h1 style="font-size:3vh;">Tillagda växter.</h1>
-
-                    <div  v-for="vaxt in addList">
-                      {{vaxt.namn}}
-                    </div>
+                </div>
+                <div v-if="this.addList.length > 0" >
+                  <div v-for="vaxt in addList" style="flex:1;">
+                  {{vaxt.namn}}
                   </div>
-                  <button v-if="this.addList.length > 0" v-on:click="postChanges('/api/changeRabatt')" type="submit" class="btn btn-success">Spara ändringar</button>
                 </div>
               </div>
 
             </div>
-
+            <p id="coords">co-ordinates</p>
             <div v-if="this.value != null" style = "display: flex; flex-direction: row; justify-content: space-between;">
               <div style = "width: 48%;">
 
               <h1 style="font-size:3vh;">Polygon.</h1>
 
-              <img :src=this.returnImgToken() alt="Nature" class="responsive" style = "width: 50%;height: auto;">
+              <img :src=this.returnImgToken() alt="Nature" class="responsive" style = "width: 25%;height: auto;">
 
 
               </div>

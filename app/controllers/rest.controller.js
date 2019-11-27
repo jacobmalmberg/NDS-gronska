@@ -36,6 +36,40 @@ router.get('/forening', function (req, res) {
   });
 });
 
+router.post('/changeRabatt', function (req, res) {
+  let array = req.body;
+  let id;
+  let attrakt_array= []
+  let obj={};
+  obj.insekts_id=1;
+  obj.mulm=null
+  let j=0;
+  for( let i =0; i<array.length; i++){
+    if (array[i].namn == 'Stäppsalvia'){
+      let obj={};
+      obj.insekts_id=1;
+      obj.mulm=null
+      obj.vaxt_id=5+i+j; //5 om ta bort mittrabatt, 6 om vänst, 4 om höger
+
+      attrakt_array.push(obj);
+    }
+  }
+
+  model.skapaVaxter(array).then(result =>{
+    console.log(result)
+    if(attrakt_array.length > 0){
+      model.skapaAttraktion(attrakt_array)
+      .then(result =>{
+        console.log(result)
+      });
+    }
+  });
+  //console.log(array);
+  //https://codepen.io/Atinux/pen/qOvawK/
+  //https://flaviocopes.com/express-forms-files/
+
+});
+
 
 
 // router.get('/rabatter/:rabatt', function (req, res) {
