@@ -40,7 +40,7 @@ Vue.component('route-login', {
         }).catch(() => {
           this.user='';
           this.password='';
-          self.errorMessage = 'Felaktig användare eller lösenord';
+          self.errorMessage = 'Felaktiga uppgifter';
           // console.log(this.errorMessage);
         });
     },
@@ -55,10 +55,15 @@ Vue.component('route-login', {
 
   template: `
     <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between; align-items: center;">
-      <h1 style="font-size: 4vh; margin-bottom: 1em;"> Logga in</h1>
+      <h1 style="font-size: 4vh; margin-bottom: 1em; margin-top: 1em;"> Logga in</h1>
 
-      <div style="text-align: center; margin-bottom: 1em;" v-if="errorMessage != '' ">
-        <h4 style= "font-size: 3vh; color: red;">{{errorMessage}}</h4>
+
+      <div v-if="this.errorMessage !=''"  class="alert alert-danger" role="alert">
+
+
+      <i class="fas fa-exclamation-circle"></i>
+
+        {{errorMessage}}
       </div>
       <div :class=desktopRabatt style="width: 50%">
 

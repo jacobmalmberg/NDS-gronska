@@ -94,11 +94,15 @@ Vue.component('route-insekt', {
 
 
 	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
-
+	<div style="margin-bottom:1em;" >
+		<button type="button" class="theBackBtn btn btn-outline-secondary" v-on:click="go(0)">
+			<i class="fas fa-chevron-left"></i> Tillbaka
+		</button>
+	</div>
 
 	<div :class=mobileRabatt>
 
-		<div :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
+		<div :class=mobileRabatt style="margin-bottom: 1em;">
 			<u><h1 style="font-size:3vh;">{{this.namn}}</h1></u>
 		</div>
 
@@ -150,7 +154,7 @@ Vue.component('route-insekt', {
 
 
 		<div :class=desktopRabatt>
-				<div :class=desktopRabatt style = "margin-top: 3em; display: flex; flex-direction: row; justify-content: space-between;">
+				<div :class=desktopRabatt style = "margin-top: 2em; display: flex; flex-direction: row; justify-content: space-between;">
 
 					<div :class=desktopRabatt  style = "width: 48%;">
 							<img v-bind:src="'/assets/' + this.bild" alt="Nature" class="responsive" style = "width: 100%;height: auto;">

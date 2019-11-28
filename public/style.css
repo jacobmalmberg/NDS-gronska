@@ -56,3 +56,9 @@ circle {
   stroke: #f00;
   fill: #ff0;
 }
+
+
+.theBackBtn:not(.no-hover):hover { background-color:
+  #fff;
+  color: #868e96;
+}

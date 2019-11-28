@@ -24,7 +24,9 @@ Vue.component('route-rabatt', {
 			attraherar: [],
 			infoDiv: 'infoDiv',
 			mobileRabatt: 'mobileRabatt',
-			desktopRabatt: 'desktopRabatt'
+			desktopRabatt: 'desktopRabatt',
+			theBackBtn: 'theBackBtn',
+			theBtn: 1
 
 		}
 	},
@@ -59,8 +61,8 @@ Vue.component('route-rabatt', {
 				})
 				.then(response => response.json()); // parses response to JSON
 		},
-		redirect() {
-			this.$router.push();
+		redirect(path) {
+			this.$router.push(path);
 		},
 
 
@@ -138,6 +140,23 @@ Vue.component('route-rabatt', {
 				// console.log(this.errorMessage);
 			});
 		},
+
+		backBtn() {
+			this.theBtn += 2;
+
+			this.$root.vaxt_id = undefined;
+			this.$root.typ = undefined;
+			if (this.highlight == undefined){
+				//window.history.back();
+				this.redirect('/forening/garphyttan');
+
+			} else{
+
+				this.highlight = undefined;
+			}
+
+		},
+
 
 	},
 	created() {
@@ -252,8 +271,14 @@ Vue.component('route-rabatt', {
 
 	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
 
+	<div style="margin-bottom:1em;" >
+		<button type="button" class="theBackBtn btn btn-outline-secondary" v-on:click="backBtn()" :key="theBtn">
+			<i class="fas fa-chevron-left"></i> Tillbaka
+		</button>
+	</div>
 
 		<div :class=mobileRabatt>
+
 			<div :class=mobileRabatt>
 				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 					<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
@@ -401,7 +426,7 @@ Vue.component('route-rabatt', {
 
 
 		<div :class=desktopRabatt>
-				<div :class=desktopRabatt style = "margin-top: 3em; display: flex; flex-direction: row; justify-content: space-between;">
+				<div :class=desktopRabatt style = "margin-top: 2em; display: flex; flex-direction: row; justify-content: space-between;">
 
 					<div :class=desktopRabatt style = "width: 48%;">
 						<div v-if="this.highlight !== undefined">
