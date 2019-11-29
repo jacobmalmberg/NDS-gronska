@@ -4,13 +4,16 @@ Vue.component('route-foreningar', {
       foreningar: null,
 
       mobileRabatt: 'mobileRabatt',
-      desktopRabatt: 'desktopRabatt'
+      desktopRabatt: 'desktopRabatt',
+      gardar: 'gardar',
+      centeredText: 'centeredText',
+      centeredTextNot: 'centeredTextNot'
 
     }
   },
   methods: {
-    redirect() {
-			this.$router.push();
+    redirect(path) {
+			this.$router.push(path);
 		},
     say: function (message) {
       this.rabatt=message;
@@ -78,26 +81,69 @@ Vue.component('route-foreningar', {
 //   <area style="border: 5px red solid;" target="" alt="hej" title="hej" href="google.com" coords="50,50,100,100" shape="rect"> viewBox="0 0 2111 1219">
 // </map>
 
+// <div :style="{backgroundImage: 'url('+require('./assets/'+forening.bildnamn)+')'}">
+// <div :style="{background-image: 'url('forening.bildnamn')'}">
+
+// <div :class="gardar" v-for="forening in foreningar" :style="'background-image: url(' +'./assets/brf/' +forening.bildnamn+')'"  >
+//     asd
+// </div>
+
+// <div style="display: flex;  flex-direction: row; flex-wrap: wrap;">
+//   <div style="display: inline-flex; position: relative; cursor: pointer; width: 33%;"  v-for="forening in foreningar">
+//     <img style="width: 100%;"  v-bind:src="'/assets/brf/' + forening.bildnamn" alt="Nature"  >
+//     <div :class=centeredText>
+//       {{forening.namn}}
+//     </div>
+//   </div>
+// </div>
+
+
   template: `
-    <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
+  <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
+      <div>
+        <h1 style="font-size:4vh; text-align:center; margin-bottom: 2em; margin-top: 1em;">Innergårdar i stadsdelen.</h1>
+      </div>
 
-        <div>
-          <h1 style="font-size:3vh; text-align:center; margin-bottom: 2em; margin-top: 1em;">Våra innergårdar.</h1>
-        </div>
-        <div  style="display: flex; flex-direction: row; flex-wrap: wrap; ">
-          <div v-for="forening in foreningar">
-          <div :style="{backgroundImage: 'url('+require('./assets/cars/'+forening.bildnamn)+')'}">
+    <div :class=desktopRabatt>
+      <div class="d-flex flex-wrap" >
+        <div style="  display: inline-flex; position: relative;  width: 33%;"  v-for="forening in foreningar">
+          <div style="cursor: pointer;" v-if="forening.namn == 'Garphyttan'" v-on:click="redirect('/forening/garphyttan/')">
+              <img style="width: 100%;"  v-bind:src="'/assets/brf/' + forening.bildnamn" alt="Nature" >
+              <div :class=centeredText>
+              {{forening.namn}}
+              </div>
           </div>
-            <img  style = "flex: 50%; max-width: 20vh;"  v-bind:src="'/assets/' + forening.bildnamn" alt="Nature" class="responsive" >
 
-            </img>
-            {{forening.namn}}
-
+          <div v-else style="cursor: not-allowed;" >
+              <img  style="width: 100%; opacity: 0.3;"  v-bind:src="'/assets/brf/' + forening.bildnamn" alt="Nature" >
+              <div  :class=centeredTextNot>
+              {{forening.namn}}
+              </div>
           </div>
         </div>
-
-
-
+      </div>
     </div>
+
+    <div :class=mobileRabatt>
+        <div style=" display: inline-flex; position: relative;flex:1; margin-bottom:1em;"  v-for="forening in foreningar">
+          <div  v-if="forening.namn == 'Garphyttan'" v-on:click="redirect('/forening/garphyttan/')" >
+              <img style="width: 100%;"  v-bind:src="'/assets/brf/' + forening.bildnamn" alt="Nature" >
+              <div :class=centeredText>
+              {{forening.namn}}
+              </div>
+          </div>
+
+          <div v-else style="cursor: not-allowed;" >
+              <img  style="width: 100%; opacity: 0.3;"  v-bind:src="'/assets/brf/' + forening.bildnamn" alt="Nature" >
+              <div  :class=centeredTextNot>
+              {{forening.namn}}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
 	`
 });

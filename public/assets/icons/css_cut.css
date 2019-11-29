@@ -1,0 +1,12 @@
+<i class="fas fa-exclamation-circle"></i>
+<i class="fas fa-chevron-left"></i> Tillbaka
+
+.fa-exclamation-circle:before {
+  content: "\f06a"; }
+
+  .fa-chevron-left:before {
+    content: "\f053"; }
+
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900; }

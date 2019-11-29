@@ -6,6 +6,8 @@ const routes = [
 	{ path: '/forening/garphyttan',  name:'forening', component: Vue.component('route-forening') },
 	{ path: '/admin',  name:'admin', component: Vue.component('route-admin') },
 	{ path: '/login',  name:'login', component: Vue.component('route-login') },
+	{ path: '/syfte',  name:'syfte', component: Vue.component('route-syfte') },
+	{ path: '/omoss',  name:'omoss', component: Vue.component('route-omoss') },
 	{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
 	//{ path: '/rabatt/:id', component: Vue.component('route-rabatt') },
 	{ path: '/insekt/:id', component: Vue.component('route-insekt') },
