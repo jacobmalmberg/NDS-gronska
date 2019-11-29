@@ -1,7 +1,8 @@
 
 
 const routes = [
-	{ path: '/', redirect: '/forening/garphyttan' },
+	{ path: '/', redirect: '/foreningar' },
+	{ path: '/foreningar',  name:'foreningar', component: Vue.component('route-foreningar') },
 	{ path: '/forening/garphyttan',  name:'forening', component: Vue.component('route-forening') },
 	{ path: '/admin',  name:'admin', component: Vue.component('route-admin') },
 	{ path: '/login',  name:'login', component: Vue.component('route-login') },

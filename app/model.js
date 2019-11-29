@@ -100,6 +100,11 @@ exports.get_alla_vaxter = () => alla_vaxter_db.findAll()
 });
 
 
+exports.get_alla_foreningar= () => forening_db.findAll()
+.then(result =>{
+  return result;
+});
+
 
 
 exports.get_attraktion_vaxt = (id_in) => attraherar_db.findAll(

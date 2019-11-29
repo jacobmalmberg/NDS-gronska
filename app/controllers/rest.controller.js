@@ -50,6 +50,14 @@ router.post('/login', (req, res, next) => {
 });
 
 
+router.get('/foreningar', function (req, res) {
+  const rabatter = model.get_alla_foreningar()
+  .then(result =>{
+    rabatt = result;
+    res.json(result);
+    });
+});
+
 
 router.get('/forening', function (req, res) {
   let id=1;

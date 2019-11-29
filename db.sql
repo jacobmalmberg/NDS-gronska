@@ -115,7 +115,13 @@ create table attraherar (
 
 
 INSERT INTO foreningar values (null, "Högviltsgatan", "hogviltsgatan.png");
-
+INSERT INTO foreningar values (null, "Sonfjallet", "hogviltsgatan.png");
+INSERT INTO foreningar values (null, "Gård 3", "hogviltsgatan.png");
+INSERT INTO foreningar values (null, "Gård 4", "hogviltsgatan.png");
+INSERT INTO foreningar values (null, "Gård 5", "hogviltsgatan.png");
+INSERT INTO foreningar values (null, "Gård 6", "hogviltsgatan.png");
+INSERT INTO foreningar values (null, "Gård 7", "hogviltsgatan.png");
+INSERT INTO foreningar values (null, "Gård 8", "hogviltsgatan.png");
 
 INSERT INTO rabatter values (null, 1, 1285, 579, 475, 220, "
                 1362.00,602.14 1337.00,591.09 1337.00,591.09
