@@ -31,7 +31,7 @@ Vue.component('route-omoss', {
             <p>Vår projektgrupp består av fyra masterstudenter på Civilingenjörsprogrammet i Industriell Ekonomi på KTH.
               Det här projektet görs på uppdrag av Stockholms Stad och utgör en del av vårt sista år på utbildningen.
             </p>
-            <p>
+            
         </div>
 
         <div :class=desktopRabatt style= "width: 48%; text-align:justify; ">

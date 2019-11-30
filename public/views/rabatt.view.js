@@ -160,27 +160,9 @@ Vue.component('route-rabatt', {
 
 	},
 	created() {
-		//this.viewBox = "" + this.rabatt.x +" "+this.rabatt.y + " " +this.rabatt.width +
-		// if (this.rabatt_in === undefined) {
-		// 	this.$router.push({ name: 'forening' });
-		// }
+
 		let vaxt;
 
-		// if (this.highlight === undefined) {
-		// 	vaxt = false;
-		// 	console.log("undef hi")
-		// } else{
-		// 	vaxt = this.highlight;
-		// 	console.log("vaxt")
-		// }
-		// console.log(vaxt)
-		//
-		// if (this.id === undefined){
-		// 	console.log("här");
-		// 	this.id = 1;
-		// 	this.highlight = 2;
-		// 	this.typ='vaxt';
-		// }
 		this.id = this.$root.rabatt;
 		this.highlight = this.$root.vaxt_id;
 		this.typ = this.$root.typ;
@@ -227,43 +209,6 @@ Vue.component('route-rabatt', {
 	},
 
 
-	activated() {
-		console.log("activated");
-
-	},
-
-
-	//
-	// <h1 style="font-size:4vh;">Meddelande</h1>
-	// 	<input class="form-control" type="text" v-model="text" required  placeholder="Feedback här">
-	// <h1 style="font-size:4vh;">Från</h1>
-	// 	<input class="form-control " type="email" v-model="from" required placeholder="Din email">
-//<img :src="this.bild" alt="Nature" class="responsive" style = "width: 100%; height: auto;">
-//<input class="btn btn-primary" type="submit" value="Skicka feedback">
-
-
-// <div v-if="this.rabatt !== null && this.highlight === undefined">
-// 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
-// 		<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-// 			<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#00F" opacity="1"></polygon>
-// 			<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
-// 	</svg>
-//
-// </div>
-
-// <div style="margin-top: 1em; margin-bottom: 1em;":class=desktopRabatt v-else>
-// 	<u><h1 style="font-size:3vh;">Om rabatten</h1></u>
-// </div>
-
-// <div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
-// 	<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
-// </div>
-//
-// <div :class=mobileRabatt style="margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
-// 	<li v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)">
-// 		<a style=" color: blue; cursor: pointer;"> {{vaxt.namn}} </a>
-// 	</li>
-// </div>
 	template: `
 
 
@@ -571,62 +516,6 @@ Vue.component('route-rabatt', {
 
 
 
-	`,
-	beforeRouteLeave(to, from, next) {
-		if(to.path != "/insekt/1"){
-			console.log("destror");
-			// destroy the vue listeners, etc
-			this.$destroy();
+	`
 
-			// remove the element from the DOM
-
-
-		}
-		next();
-
-},
-// beforeRouteEnter(to, from, next) {
-// 	console.log("entered");
-// 	console.log(to);
-// 	console.log(from);
-// 	//console.log(to.params);
-// 	let a = {};
-//
-// 	if(from.path == "/insekter/1"){
-// 		from.path = "/abra";
-// 		// this.$router.push({
-// 			// name: 'rabatt',
-// 			// params: {
-// 			// 	id: 1,
-// 			// 	highlight: 1
-// 		// 	},
-// 		// });
-//
-// 		next({
-// 			name: 'rabatt',
-// 			params: {
-// 				id: 1,
-// 				vaxt: 2
-// 			},
-// 		});
-// 		//next()
-// 	//}
-// } else if (Object.keys(to.params).length == 0 && from.path != "/rabatt") {
-// 		console.log("hej");
-// 		to.params = {
-// 			id: 1,
-// 			vaxt: 2
-// 		};
-// 		next({
-// 			name: 'rabatt',
-// 			params: {
-// 				id: 1,
-// 				vaxt: 2
-// 			},
-// 		});
-//
-// 	}
-// 	next();
-//
-// },
 });

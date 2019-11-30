@@ -51,8 +51,6 @@ Vue.component('route-insekt', {
 		fetch(`/api/insekter/${this.id}`)
 			.then(res => res.json())
 			.then(data => {
-				console.log(data);
-				console.log(data[0].status);
 
 				this.bild = data[0].bildnamn;
 				this.namn = data[0].namn;
@@ -61,10 +59,8 @@ Vue.component('route-insekt', {
 				this.levnadssatt = data[0].levnadssatt;
 				this.status = data[0].status;
 				this.hotad = data[0].hotad;
-				console.log(this.text);
 
 			})
-			console.log("map: ", google.maps)
 
 			if (screen.width > 1281) {
 				this.map = new google.maps.Map(document.getElementById('myMap'), {

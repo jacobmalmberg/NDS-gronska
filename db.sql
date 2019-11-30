@@ -346,7 +346,7 @@ INSERT INTO vaxter values (null, 3, "Klätterhortensia", "klatterhortensia.jpg" 
 "Klätterväxt som är vackert förgrenad. Har grova grenar och frodig grönska. Blommar fint i skuggan och har stora vita blad. Fäster bra direkt på murar, väggar och plank. God boplats för fåglar."
 , "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord", "Perenn");
 
-INSERT INTO insekter values (null, "Stortapetserarbi", "bi.jpg",
+INSERT INTO insekter values (null, "Stortapetserarbi", "bi2.jpg",
 "Stortapetserarbiet är ett stort bi med en kroppslängd på 14 till 17 millimeter. Honan har en kraftig, svart kropp med brungul till mörkbrun behåring, samt på tergiternas (ovansidans bakkroppssegment) bakkanter täta, blekgula hårremmar, som ger bakkroppen ett randigt utseende. Som alla buksamlarbin har hon en tät pollenborste på buken, framtill orangeröd och mot bakkroppsspetsen svart. Hanens kropp ger ett kortare och kompaktare intryck än honans, men det finns också andra utseendemässiga skillnader mellan hanen och honan, varav de mest märkbara är att hanen har en längre, gul- till gråbrun päls än honan, och gulvita, påtagligt breda framfötter (artnamnet lagopoda betyder harfot – auktorn Linné tyckte fötterna såg ut som harfötter). De stora fötterna används för att hålla honan stilla under parningen.
 ",
 "Detta bi finns i Europa (med undantag av Brittiska öarna) österut till Kaukasus och genom delar av Centralasien bort till Japan, samt i Nordafrika. I Sverige förekom arten tidigare från Skåne över Bohuslän till Gästrikland samt på Öland och Gotland. Den har emellertid gått tillbaka sedan 1950-talet och finns numera endast i Stockholm, östra Skåne (där den beräknas snart dö ut) samt på Öland och Gotland och betraktas därför som sårbar. Nedgången har varit mycket kraftig.",
@@ -380,7 +380,7 @@ kraftiga och rödbruna till färgen. Grundfärgen på kroppen
 
 
 
-INSERT INTO mulm values (null, 1, "mulm.png","
+INSERT INTO mulm values (null, 1, "mulm.jpg","
 	1578.00,710.00 1578.00,764.00 1578.00,764.00
              1578.00,764.00 1542.00,764.00 1542.00,764.00
              1542.00,764.00 1542.00,710.00 1542.00,710.00
