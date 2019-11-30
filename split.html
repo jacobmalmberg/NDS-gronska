@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to display the array values after the split.</p>
+
+<button onclick="myFunction(871, 577)">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction(x, y) {
+  var str = "154.36,107.16 160.92,113.97 160.92,123.0";
+  var koordLista = str.split(" ");
+  var out="";
+  //for index, s in enumerate(koordLista):
+  for (i = 0; i < koordLista.length; i++) {
+      a = koordLista[i].split(",");
+      console.log(a[0]);
+      console.log(a[1]);
+      aFix = parseFloat(a[0]) + parseFloat(x);
+      bFix = parseFloat(a[1]) + parseFloat(y);
+      out+=" "+aFix.toString()+","+bFix.toString();
+    }
+
+  document.getElementById("demo").innerHTML = out;
+}
+</script>
+
+</body>
+</html>

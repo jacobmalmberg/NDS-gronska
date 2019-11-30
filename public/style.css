@@ -1,83 +1,101 @@
-.html, body {
-  margin: 0;
-  padding: 0;
-  border: 0;
+
+
+@media screen and (min-width: 1px) {
+  body {
+    background-color: white;
+    color: black;
+  }
 }
 
-span.text-blue {
-  color: #red;
+.infoDiv {
+  background-color: white;
+  color: black;
 }
 
-button:focus {
-  outline: 0;
+@media screen and (min-width: 1281px) {
+  div.mobileRabatt {
+    display: none;
+  }
 }
 
-.navbar .container {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
+@media screen and (max-width: 1280px) {
+  div.desktopRabatt {
+    display: none;
+  }
+  p.header{
+    font-weight: bold;
+  }
+  .navbarmob{
+    display:none;
+  }
+}
+
+@keyframes mymove {
+  div.anim{
+    from {background-color: red;}
+    to {background-color: blue;}
+  }
+}
+
+[v-cloak] {
+  display: none !important;
+}
+
+
+body {
+    overflow-y: scroll;
+}
+
+
+rect {
+  fill: #006da1;
+}
+
+circle {
+  stroke-width: 5;
+  stroke: #f00;
+  fill: #ff0;
+}
+
+
+.theBackBtn:not(.no-hover):hover { background-color:
+  #fff;
+  color: #868e96;
+}
+
+.gardar {
+
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 100%;
-}
-
-.navbar-brand-centered {
-  position: absolute;
-  left: 50%;
-  display: block;
-  width: 160px;
-  text-align: center;
-  background-color: transparent;
-}
-
-.navbar>.container .navbar-brand-centered, .navbar>.container-fluid .navbar-brand-centered {
-  margin-left: -80px;
-}
-
-.navbar {
-  border-bottom: 0;
-}
-
-.navbar-default .navbar-nav>li:not(.active)>a:not(.unresponsive):hover {
-  background-color: #0E0E0E;
-}
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus {
-  background-color: #3873FF;
-  color: #FFFFFF;
-}
-
-.navbar-default .navbar-nav>.active>a:hover {
-  background-color: #1C65EB;
-}
-
-.nav.navbar-nav.navbar-right>li>.unresponsive:hover {
-  color: #777777;
-  cursor: default;
+  height: 0;
+  padding-top: 66.64%; /* (img-height / img-width * container-width) */
+              /* (853 / 1280 * 100) */
 }
 
 
-
-br {
-  clear:left;
-  margin: 0;
-  padding: 0;
+.centeredText {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 3em;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    cursor: pointer;
 
 }
 
-}
-input[type=text]{
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+.centeredTextNot {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 3em;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    cursor: not-allowed;
 
-label{
-  float:left;
-  text-align:left;
-  margin:auto;
-  width: 150px;
-  padding: 2px;
 }

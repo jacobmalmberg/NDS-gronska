@@ -1,8 +1,16 @@
+
+
 const routes = [
-	{ path: '/', redirect: '/forening' },
-	{ path: '/forening',  name:'forening', component: Vue.component('route-forening') },
-	//{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
-	{ path: '/rabatt/:id', component: Vue.component('route-rabatt') },
+	{ path: '/', redirect: '/foreningar' },
+	{ path: '/foreningar',  name:'foreningar', component: Vue.component('route-foreningar') },
+	{ path: '/forening/garphyttan',  name:'forening', component: Vue.component('route-forening') },
+	{ path: '/admin',  name:'admin', component: Vue.component('route-admin') },
+	{ path: '/login',  name:'login', component: Vue.component('route-login') },
+	{ path: '/syfte',  name:'syfte', component: Vue.component('route-syfte') },
+	{ path: '/omoss',  name:'omoss', component: Vue.component('route-omoss') },
+	{ path: '/rabatt', name:'rabatt', component: Vue.component('route-rabatt'), props: true },
+	//{ path: '/rabatt/:id', component: Vue.component('route-rabatt') },
+	{ path: '/insekt/:id', component: Vue.component('route-insekt') },
 ];
 
 // Create VueRouter
@@ -11,11 +19,19 @@ const router = new VueRouter({
 	routes
 });
 
+
+Vue.component('vue-multiselect', window.VueMultiselect.default);
+
 // Create VueApp
 // Docs: https://vuejs.org/v2/guide
 const app = new Vue({
 	// el: '#app' // can't use element property with VueRouter
 	router,
+	data: {
+		rabatt: undefined,
+		vaxt_id: undefined,
+		typ: undefined
+	},
 	methods: {
 		redirect(target) {
 			// Used in the navigation

@@ -4,7 +4,9 @@ Vue.component('route-forening', {
       rabattlista: null,
       rabatt: null,
       x: 1288,
-      y: 578
+      y: 578,
+      mobileRabatt: 'mobileRabatt',
+      desktopRabatt: 'desktopRabatt'
 
     }
   },
@@ -14,27 +16,57 @@ Vue.component('route-forening', {
 		},
     say: function (message) {
       this.rabatt=message;
-      console.log("rabattid"+ this.rabatt.id);
       //this.$router.push(`/api/rabatt/${this.rabatt}`);
       //this.$router.push({name: 'rabatt', params: {rabatt: message.id}});
-      this.$router.push(`/rabatt/${this.rabatt.id}`);
+      //this.$router.push(`/rabatt/${this.rabatt.id}`);
+      if (this.$root.rabatt != this.rabatt.id){
+        this.$root.rabatt = this.rabatt.id;
+        this.$root.vaxt_id = undefined;
+        this.$root.typ = undefined;
+      }
+
+
+      this.$router.push({
+        name: 'rabatt',
+        params: {
+          id: this.rabatt.id,
+        },
+      });
     }
   },
   created() {
+
 
     fetch(`/api/forening`)
       .then(res => res.json())
       .then(data => {
         //console.log(data)
-        this.rabattlista = data;
-        this.time_slots = data.time_slots;
-        console.log(this.rabattlista)
+        this.rabattlista = data.rabattlista;
+        this.vaxter=data.vaxter.length;
+        this.mulmar=data.mulmar.length;
+
+        console.log("map: ", google.maps)
+        if (screen.width > 1281) {
+  				this.map = new google.maps.Map(document.getElementById('myMap'), {
+  					center: {lat:59.3557179, lng: 18.083744717},
+  					zoom: 15
+  				});
+  				var uluru = {lat: 59.355909, lng: 18.085933};
+  				var marker = new google.maps.Marker({position: uluru, map: this.map});
+
+  			} else{
+  				this.map = new google.maps.Map(document.getElementById('myMapMobile'), {
+  					center: {lat:59.3557179, lng: 18.083744717},
+  					zoom: 15
+  				});
+  				var uluru = {lat: 59.355909, lng: 18.085933};
+  				var marker = new google.maps.Marker({position: uluru, map: this.map});
+  			}
       })
     ;
     //ImageMap('img[usemap]');
     //imageMapResize();
     //resize();
-    console.log("booking");
 
 
   },
@@ -71,17 +103,53 @@ Vue.component('route-forening', {
 
   template: `
     <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
+
             <div>
-              <h1 style="font-size:3vh; text-align:center; margin-bottom: 2em; margin-top: 2em;">Välkommen till Högviltsgatans BRF.</h1>
+              <h1 style="font-size:4vh; text-align:center; margin-bottom: 2em; margin-top: 1em;">Välkommen till Garphyttans innergård.</h1>
             </div>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2111 1219">
               <image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-                <polygon v-for="rabatt in rabattlista" v-on:click="say(rabatt)" style="cursor: pointer;" :points="rabatt.polygon" fill="#fff" opacity="0.5"></polygon>
+                <polygon v-for="rabatt in rabattlista" v-on:click="say(rabatt)" style="cursor: pointer;" :points="rabatt.polygon" fill="#006600">
+                <animate attributeType="CSS" attributeName="opacity"
+                values="0.2;1;0.2" dur="2s" repeatCount="indefinite" /></polygon>
 
             </svg>
-            <div style=" text-align: center; margin-top: 2em;">
+            <div style=" text-align: center; margin-top: 1em; ">
         			Tryck på en rabatt för att få veta mer!
         		</div>
+
+            <div :class=mobileRabatt style = "margin-top: 1em; ">
+    							<div style="font-size:4vh;">Information</div>
+                  På gården finns det {{this.vaxter}} växter och {{this.mulmar}} mulm.
+
+    					<div :class=mobileRabatt style=" margin-bottom: 1em; height: 20vh;">
+                <div style="font-size:4vh;">
+                  Var ligger gården?
+                </div>
+                <div :class=mobileRabatt id="myMapMobile" style="height:200%; ">
+                </div>
+      				</div>
+            </div>
+
+
+              <div :class=desktopRabatt style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
+
+      					<div :class=desktopRabatt style = "width: 48%; text-align:justify;">
+      							<h1 style="font-size:3vh;">Information</h1>
+                    På gården finns det {{this.vaxter}} växter och {{this.mulmar}} mulm.
+      					</div>
+      					<div :class=desktopRabatt style= " margin-bottom: 2em; display: flex; flex-direction: column; width: 48%;height:25vh; ">
+                  <div :class=desktopRabatt style="font-size:3vh;">
+                    <h1 style="font-size:3vh;">Var ligger gården</h1>
+                  </div>
+                  <div :class=desktopRabatt id="myMap" style="flex: 1;" >
+                  </div>
+        				</div>
+
+
+      				</div>
+
+
     </div>
 	`
 });
