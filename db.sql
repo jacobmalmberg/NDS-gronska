@@ -117,7 +117,7 @@ create table attraherar (
 INSERT INTO foreningar values (null, "Garphyttan", "garphyttan.jpg");
 INSERT INTO foreningar values (null, "Sonfjället", "sonfjallet.jpg");
 INSERT INTO foreningar values (null, "Abisko", "abisko.jpg");
-INSERT INTO foreningar values (null, "Haren", "haren.jpg");
+INSERT INTO foreningar values (null, "Gotska Sandön", "haren.jpg");
 INSERT INTO foreningar values (null, "Sjöfallet", "sjofallet.jpg");
 INSERT INTO foreningar values (null, "Tuleskogen", "tuleskogen.jpg");
 
