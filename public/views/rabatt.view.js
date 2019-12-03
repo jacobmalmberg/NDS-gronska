@@ -310,10 +310,10 @@ Vue.component('route-rabatt', {
 
 			<div :class=mobileRabatt v-if="this.attraherar.length > 0" style = "margin-bottom:1em;" >
 			<h1 style="font-size:3vh;">Attraherar</h1>
-				<div  v-for="a in this.attraherar" v-on:click="insekt(a)" style="flex:1;">
+				<div  v-for="a in this.attraherar"  style="flex:1;">
 
 
-					<a style="color: blue; cursor: pointer;">
+					<a v-on:click="insekt(a)" style="color: blue; cursor: pointer;">
 					{{a.namn}} </a>
 				</div>
 
@@ -465,8 +465,8 @@ Vue.component('route-rabatt', {
 
 					<div :class=desktopRabatt v-if="this.attraherar.length > 0" style= "width: 48%; ">
 					<h1 style="font-size:3vh;">Attraherar</h1>
-						<div v-for="a in this.attraherar" v-on:click="insekt(a)" style="flex:1;">
-							<a style="color: blue; cursor: pointer;">
+						<div v-for="a in this.attraherar"  style="flex:1;">
+							<a v-on:click="insekt(a)" style="color: blue; cursor: pointer;">
 							{{a.namn}} </a>
 						</div>
 

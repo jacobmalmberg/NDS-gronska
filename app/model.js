@@ -20,7 +20,7 @@ const vaxt = require('./models/vaxt.model');
 
 
 const ekosystem_balanserad = "I den här rabatten finns det både perenner och ettårsväxter. Tillsammans bildar dessa ett litet ekosystem, där ettårsväxterna bryts ner i slutet av livscykeln och göder jorden för perennerna. Konstgödsel behöver därmed inte tillsättas. "
-const ekosystem_obalanserad_perenn = "I den här rabatten finns det endast perenner. Ifall ettårsväxter hade planterats tillsammans här, hade dessa kunna fungera som gödsel åt perennerna. Konstgödsel hade då inte behövts tillsättas. "
+const ekosystem_obalanserad_perenn = "I den här rabatten finns det endast perenner. Ifall ettårsväxter hade planterats tillsammans med perennerna här, hade dessa kunna fungera som gödsel åt perennerna. Konstgödsel hade då inte behövts tillsättas. "
 
 /**
  * Creates objects with the given params.

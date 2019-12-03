@@ -12,6 +12,26 @@
   color: black;
 }
 
+@media (pointer:fine) {
+  div.mobileRabatt {
+    display: none;
+  }
+}
+
+@media (pointer:coarse) {
+  div.desktopRabatt {
+    display: none;
+  }
+  p.header{
+    font-weight: bold;
+  }
+  .navbarmob{
+    display:none;
+  }
+}
+
+
+/*
 @media screen and (min-width: 1281px) {
   div.mobileRabatt {
     display: none;
@@ -28,7 +48,7 @@
   .navbarmob{
     display:none;
   }
-}
+} */
 
 @keyframes mymove {
   div.anim{

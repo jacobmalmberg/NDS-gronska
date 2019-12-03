@@ -90,7 +90,7 @@ router.post('/changeRabatt', authMiddleware, function (req, res) {
   obj.mulm=null
   let j=0;
   for( let i =0; i<array.length; i++){
-    if (array[i].namn == 'Stäppsalvia'){
+    if (array[i].namn == 'Stäppsalvia' || array[i].namn == 'Kirgislök' ){
       let obj={};
       obj.insekts_id=1;
       obj.mulm=null

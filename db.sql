@@ -262,7 +262,7 @@ INSERT INTO vaxter values (null, 1, "Jättedaggkåpa", "jattedaggkapa.jpg" , "
 	             1312.79,677.31 1316.44,669.90 1316.91,663.00
 	             1317.46,655.06 1316.20,647.60 1314.00,640.00
 	             1314.00,640.00 1334.00,638.18 1334.00,638.18
-", "En rikligt blommande perenn. Lättodlad. Bra marktäckare som lever länge. Svagt doftande blomning. Bör klippas ner efter blomning så att den kan blomma igen. Kommer ursprunligen från karpaterna.
+", "En rikligt blommande perenn. Lättodlad. Bra marktäckare som lever länge. Den hjälper därmed till att hålla ogräs borta. Svagt doftande blomning. Bör klippas ner efter blomning så att den kan blomma igen. Kommer ursprunligen från karpaterna.
 ", "Medel", "Omväxlande sol/moln", "30-40 cm.", "Juni", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
 
 INSERT INTO vaxter values (null, 1, "Stäppsalvia" ,"stappsalvia.jpg" , "
@@ -294,7 +294,7 @@ INSERT INTO vaxter values (null, 1, "Bergskörsbär", "bergskorsbar2.jpg" , "
 	             1423.70,717.94 1427.48,716.54 1432.00,715.47
 	             1436.72,714.81 1440.46,714.88 1445.00,716.56
 ",
-"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras."
+"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
 , "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
 
 --
@@ -386,9 +386,9 @@ INSERT INTO mulm values (null, 1, "mulm.jpg","
              1542.00,764.00 1542.00,710.00 1542.00,710.00
              1542.00,710.00 1578.00,710.00 1578.00,710.00
 ",
-"Mulmen finns till för att simulera ekosystemet i en nydöd ek. Hit lockar eklevande insekter. Vissa av dessa är idag utrotningshotade i Sverige.
+"Mulmen finns till för att simulera ekosystemet i en nydöd ek. Hit lockas eklevande insekter.
 
-Mulm är det lösa material som ansamlas inuti ihåliga träd. Den består framför allt murken ved. Där finns också ofta exkrementer från insekter, fåglar, gamla fågelbon samt rester av döda djur. I mulmen lever en artrik och särpräglad fauna, bestående av bland annat skalbaggar och klokrypare. Välkända arter är läderbagge och mulmknäppare.
+Mulm är det lösa material som ansamlas inuti ihåliga träd. Den består framför allt murken ved. Där finns också ofta exkrementer från insekter, fåglar, gamla fågelbon samt rester av döda djur. I mulmen lever en artrik och särpräglad fauna.
 ",
 "Fyll på periodvis med kvistar, löv och döda fåglar."
 );
@@ -400,7 +400,7 @@ INSERT INTO vaxt_db values (null, "Jättedaggkåpa", "jattedaggkapa.jpg" , "
 
 -71.23,-15.01 -64.23,-14.28 -64.23,-14.28 -64.23,-14.28 -43.23,-13.02 -43.23,-13.02 -43.23,-13.02 -22.23,-10.13 -22.23,-10.13 -22.23,-10.13 -13.23,-10.13 -13.23,-10.13 4.76,-7.69 3.97,-5.38 23.77,-8.46 30.41,-9.5 42.22,-13.54 47.77,-17.23 57.52,-23.71 67.18,-33.72 79.77,-33.15 88.78,-32.74 90.16,-28.05 91.52,-20.19 92.01,-17.38 92.44,-15.06 92.26,-12.19 91.92,-6.96 91.13,-1.77 88.41,2.8 84.34,9.64 66.34,21.96 58.77,25.23 45.51,30.97 42.49,30.45 28.77,32.09 28.77,32.09 11.77,33.72 11.77,33.72 11.77,33.72 -24.23,30.81 -24.23,30.81 -24.23,30.81 -34.23,30.18 -34.23,30.18 -34.23,30.18 -51.23,31.81 -51.23,31.81 -59.45,31.85 -78.32,33.45 -85.13,28.96 -92.44,24.12 -88.79,16.71 -88.32,9.81 -87.77,1.87 -89.03,-5.59 -91.23,-13.19 -91.23,-13.19 -71.23,-15.01 -71.23,-15.01
 
-"	, "En rikligt blommande perenn. Lättodlad. Bra marktäckare som lever länge. Svagt doftande blomning. Bör klippas ner efter blomning så att den kan blomma igen. Kommer ursprunligen från karpaterna.
+"	, "En rikligt blommande perenn. Lättodlad. Bra marktäckare som lever länge. Den hjälper därmed till att hålla ogräs borta. Svagt doftande blomning. Bör klippas ner efter blomning så att den kan blomma igen. Kommer ursprunligen från karpaterna.
 ", "Medel", "Omväxlande sol/moln", "30-40 cm.", "Juni", "Trädgårdsgödsel", "Näringsrik jord", "Perenn",
 "daggkapa_token.png");
 
@@ -421,7 +421,7 @@ INSERT INTO vaxt_db values (null, "Bergskörsbär", "bergskorsbar2.jpg" , "
 21.52,-12.93 26.53,1.51 17.62,11.76 13.21,16.82 5.75,19.25 -0.85,18.85 -19.67,17.69 -26.54,-1.68 -15.52,-12.73 -12.15,-16.12 -8.37,-17.52 -3.85,-18.59 0.87,-19.25 4.61,-19.18 9.15,-17.5
 
 ",
-"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras."
+"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
 , "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn",
 "bergskorsbar_token.png");
 
@@ -431,16 +431,16 @@ INSERT INTO vaxt_db values (null, "Prakthäggmispel", "prakthaggmispel.jpg" , "
 -54.5,-9.59 -36.5,-10.5 -36.5,-10.5 -36.5,-10.5 -21.5,-11.5 -21.5,-11.5 -21.5,-11.5 21.5,-11.5 21.5,-11.5 21.5,-11.5 42.5,-10.5 42.5,-10.5 42.5,-10.5 54.5,-9.59 54.5,-9.59 70.64,-8.48 87.41,-7.86 102.5,-1.5 102.5,-1.5 102.5,1.5 102.5,1.5 87.41,7.86 70.64,8.48 54.5,9.59 54.5,9.59 42.5,10.5 42.5,10.5 42.5,10.5 21.5,11.5 21.5,11.5 21.5,11.5 -21.5,11.5 -21.5,11.5 -21.5,11.5 -33.5,10.54 -33.5,10.54 -33.5,10.54 -44.5,10.54 -44.5,10.54 -44.5,10.54 -54.5,9.59 -54.5,9.59 -70.64,8.48 -87.41,7.86 -102.5,1.5 -102.5,1.5 -102.5,-1.5 -102.5,-1.5 -87.41,-7.86 -70.64,-8.48 -54.5,-9.59
 
 ",
-"Lämplig som friväxande häck. Fullkomligt översållas med skira vita blommor tidig vår. Nya bladskott är röda och står i stark kontrast till buskens vita blommor. Snabbväxt och lättodlad."
+"Lämplig som friväxande häck. Fullkomligt översållas med skira vita blommor tidig vår. Nya bladskott är röda och står i stark kontrast till buskens vita blommor. Snabbväxt och lättodlad. Frukterna viktiga för småfåglar."
 , "Medel", "Sol till halvskugga", "4-5 m", "April-Maj", "Trädgårdsgödsel & naturgödsel", "Näringsrik & mullrik jord", "Perenn",
 "prakthaggmispel_token.png");
 
-INSERT INTO vaxt_db values (null, "Kirgislök", "kirgislok.jpg" , "
+INSERT INTO vaxt_db values (null, "Kirgislök", "kirgislok2.jpg" , "
 
 46.47,-15.23 53.03,-8.42 53.03,0.61 53.03,9.21 47.05,15.84 40.11,20.14 27.68,27.86 12.44,29.77 -1.89,29.61 -13.97,29.46 -31.53,25.1 -40.89,17.28 -52.26,7.77 -53.03,-5.14 -41.87,-15.21 -38.83,-17.95 -35.56,-19.85 -31.89,-21.61 -24.0,-25.37 -16.41,-26.68 -7.89,-27.97 6.81,-29.76 26.24,-27.01 39.11,-19.51
 
 ",
-"En växt som är lika vacker som den är hög. Blommar med stora boll-liknande blommor. Trivs tillsammans med perenner."
+"En växt som är lika vacker som den är hög. Blommar med stora boll-liknande blommor. Trivs tillsammans med perenner. Kirgislök är viktig för bin."
 , "Lite", "Sol tll halvskugga", "80-100 cm", "Maj", "Benmjöl", "Näringsrik", "Annuell",
 "kirgislok_token.png");
 

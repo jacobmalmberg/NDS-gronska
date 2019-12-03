@@ -100,8 +100,12 @@ Vue.component('route-foreningar', {
 
   template: `
   <div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
+
       <div>
-        <h1 style="font-size:4vh; text-align:center; margin-bottom: 2em; margin-top: 1em;">Innergårdar i stadsdelen.</h1>
+        <h1 style=" font-size:4vh; text-align:center; margin-bottom: 1em; margin-top: 1em;">Välkommen till tjänsten för Norra Djurgårdsstadens innergårdar!</h1>
+      </div>
+      <div style="text-align:center; margin-bottom: 2em;">
+      För att få veta mer om grönskan på en innergård, tryck på innergårdens namn!
       </div>
 
     <div :class=desktopRabatt>

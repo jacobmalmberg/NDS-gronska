@@ -20,6 +20,7 @@ Vue.component('route-omoss', {
 
       <p>Vår projektgrupp består av fyra masterstudenter på Civilingenjörsprogrammet i Industriell Ekonomi på KTH.
         Det här projektet görs på uppdrag av Stockholms Stad och utgör en del av vårt sista år på utbildningen.
+        Ni kan nå oss på adressen <a style="color: blue; cursor: pointer;" href="mailto:ndsgronska@hmail.com">ndsgronska@gmail.com</a>.
       </p>
       <img v-bind:src="'/assets/KTH_logotype.jpg'" alt="Nature" class="responsive" style = "width: 100%;height: auto;">
       </div>
@@ -30,8 +31,9 @@ Vue.component('route-omoss', {
 
             <p>Vår projektgrupp består av fyra masterstudenter på Civilingenjörsprogrammet i Industriell Ekonomi på KTH.
               Det här projektet görs på uppdrag av Stockholms Stad och utgör en del av vårt sista år på utbildningen.
+              Ni kan nå oss på adressen <a style="color: blue; cursor: pointer;" href="mailto:ndsgronska@hmail.com">ndsgronska@gmail.com</a>.
             </p>
-            
+
         </div>
 
         <div :class=desktopRabatt style= "width: 48%; text-align:justify; ">
