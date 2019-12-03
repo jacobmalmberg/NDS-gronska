@@ -256,6 +256,13 @@ Vue.component('route-rabatt', {
 				Ytskikt: {{this.rabatt.ytskikt}}.
 			</div>
 
+
+			<div style="margin-bottom: 1em;" :class=mobileRabatt id="Ekosystem" v-if="this.rabatt !== null && this.highlight === undefined">
+					<h1 style="font-size:3vh;">Rabattens ekosystem.</h1>
+					{{this.rabattext}} <a v-bind:href=this.ndslink> {{this.ndslink}} </a>
+
+			</div>
+
 			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 				<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
 				<div :class=mobileRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; flex-direction: column; justify-content: space-between; margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
@@ -327,11 +334,6 @@ Vue.component('route-rabatt', {
 
 
 
-			<div :class=mobileRabatt id="Ekosystem" v-if="this.rabatt !== null && this.highlight === undefined">
-					<h1 style="font-size:3vh;">Rabattens ekosystem.</h1>
-					{{this.rabattext}} <a v-bind:href=this.ndslink> {{this.ndslink}} </a>
-
-			</div>
 
 			<div :class=mobileRabatt id="feedback" v-if="this.highlight !== undefined && this.sent === null">
 
