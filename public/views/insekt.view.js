@@ -132,10 +132,15 @@ Vue.component('route-insekt', {
 		</div>
 
 
-		<div v-if="this.namn != 'Bredbandad ekbarkbock'" :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
+		<div v-if="this.namn == 'Stortapetserarbi'" :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
 			<h1 style="font-size:3vh;">Var trivs insekten?</h1>
-			Stortapetserarbi attraheras av stäppsalvia samt honungsblomma. I Norra Djurgårdsstaden finns stäppsalvia på Garphyttans innergård.
-			<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till rabatten som innehåller stäppsalvia.</a>
+			Stortapetserarbi attraheras av stäppsalvia samt kirgislök. I Norra Djurgårdsstaden finns dessa växter på Garphyttans innergård.
+			<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till växten du kom ifrån.</a>
+		</div>
+		<div v-else-if="this.namn == 'Klinttapetserarbi'" :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
+			<h1 style="font-size:3vh;">Var trivs insekten?</h1>
+			Klinttapetserarbi attraheras av Oktoberaster. I Norra Djurgårdsstaden finns Oktoberaster på Garphyttans innergård.
+			<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till växten du kom ifrån.</a>
 		</div>
 		<div v-else :class=mobileRabatt style="margin-top: 1em; margin-bottom: 1em;">
 			<h1 style="font-size:3vh;">Var trivs insekten?</h1>
@@ -203,10 +208,15 @@ Vue.component('route-insekt', {
 
 				<div :class=desktopRabatt style = "margin-top: 1em; display: flex; flex-direction: row; justify-content: space-between;">
 
-					<div v-if="this.namn!= 'Bredbandad ekbarkbock'" :class=desktopRabatt style = "width: 48%; text-align:justify;">
+					<div v-if="this.namn == 'Stortapetserarbi'" :class=desktopRabatt style = "width: 48%; text-align:justify;">
 							<h1 style="font-size:3vh;">Var trivs insekten?</h1>
-							Stortapetserarbi attraheras av stäppalvia samt honungsblomma. I Norra Djurgårdsstaden finns stäppsalvia på Garphyttans innergård.
-							<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till rabatten som innehåller stäppsalvia.</a>
+							Stortapetserarbi attraheras av stäppsalvia samt kirgislök. I Norra Djurgårdsstaden finns dessa växter på Garphyttans innergård.
+							<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till växten du kom ifrån.</a>
+					</div>
+					<div v-else-if="this.namn == 'Klinttapetserarbi'" :class=desktopRabatt style = "width: 48%; text-align:justify;">
+							<h1 style="font-size:3vh;">Var trivs insekten?</h1>
+							Klinttapetserarbi attraheras av Oktoberaster. I Norra Djurgårdsstaden finns Oktoberaster på Garphyttans innergård.
+							<a style="color: blue; cursor: pointer;" v-on:click="go(1)">Klicka här för att komma till växten du kom ifrån.</a>
 					</div>
 					<div v-else :class=desktopRabatt style = "width: 48%; text-align:justify;">
 							<h1 style="font-size:3vh;">Var trivs insekten?</h1>

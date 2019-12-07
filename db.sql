@@ -240,6 +240,101 @@ INSERT INTO rabatter values (null, 1, 325, 629, 185, 155, "
 
 
 
+INSERT INTO rabatter values (null, 1, 589, 624, 246, 172, "
+	791.42,641.00 800.86,675.00 800.86,675.00
+		800.86,675.00 833.00,791.00 833.00,791.00
+		833.00,791.00 783.00,791.00 783.00,791.00
+		783.00,791.00 766.00,790.00 766.00,790.00
+		766.00,790.00 716.00,790.00 716.00,790.00
+		716.00,790.00 688.00,790.00 688.00,790.00
+		688.00,790.00 676.00,790.95 676.00,790.95
+		676.00,790.95 657.00,790.95 657.00,790.95
+		657.00,790.95 642.00,790.00 642.00,790.00
+		642.00,790.00 601.00,790.00 601.00,790.00
+		601.00,786.82 600.15,776.96 602.60,775.02
+		604.19,773.77 608.01,774.00 610.00,774.00
+		610.00,774.00 624.00,774.00 624.00,774.00
+		624.00,774.00 639.00,775.00 639.00,775.00
+		639.00,775.00 675.00,775.00 675.00,775.00
+		675.00,775.00 675.00,769.00 675.00,769.00
+		675.10,761.80 677.58,757.55 680.20,751.00
+		680.20,751.00 691.74,725.00 691.74,725.00
+		691.74,725.00 708.79,694.00 708.79,694.00
+		708.79,694.00 728.72,671.00 728.72,671.00
+		734.60,664.24 741.22,656.16 748.00,650.44
+		748.00,650.44 766.00,636.47 766.00,636.47
+		766.00,636.47 786.00,625.00 786.00,625.00
+		786.00,625.00 791.42,641.00 791.42,641.00
+", 600, "Mull");
+
+
+INSERT INTO rabatter values (null, 1, 1186, 330, 218, 159, "
+	1201.00,333.04 1213.00,334.00 1213.00,334.00
+	             1213.00,334.00 1239.00,334.00 1239.00,334.00
+	             1239.00,334.00 1254.00,335.00 1254.00,335.00
+	             1254.00,335.00 1275.00,335.00 1275.00,335.00
+	             1275.00,335.00 1274.00,345.00 1274.00,345.00
+	             1274.00,345.00 1274.00,356.00 1274.00,356.00
+	             1274.00,356.00 1273.00,370.04 1273.00,370.04
+	             1273.00,370.04 1288.00,370.04 1288.00,370.04
+	             1288.00,370.04 1300.00,371.00 1300.00,371.00
+	             1300.00,371.00 1322.00,371.00 1322.00,371.00
+	             1322.00,371.00 1321.09,360.00 1321.09,360.00
+	             1321.09,360.00 1319.00,333.00 1319.00,333.00
+	             1319.00,333.00 1391.00,333.00 1391.00,333.00
+	             1391.00,333.00 1399.40,334.60 1399.40,334.60
+	             1399.40,334.60 1401.17,345.00 1401.17,345.00
+	             1401.17,345.00 1402.00,360.00 1402.00,360.00
+	             1402.00,360.00 1403.00,373.96 1403.00,373.96
+	             1403.00,373.96 1387.00,373.96 1387.00,373.96
+	             1387.00,373.96 1375.00,373.00 1375.00,373.00
+	             1375.00,373.00 1350.00,373.00 1350.00,373.00
+	             1350.00,373.00 1350.00,441.00 1350.00,441.00
+	             1350.00,441.00 1351.00,457.00 1351.00,457.00
+	             1351.00,457.00 1351.00,488.00 1351.00,488.00
+	             1351.00,488.00 1292.00,488.00 1292.00,488.00
+	             1292.00,488.00 1275.00,489.00 1275.00,489.00
+	             1275.00,489.00 1243.00,489.00 1243.00,489.00
+	             1243.00,489.00 1243.00,475.00 1243.00,475.00
+	             1243.00,475.00 1244.00,460.00 1244.00,460.00
+	             1244.00,460.00 1244.00,417.00 1244.00,417.00
+	             1244.00,417.00 1245.00,401.00 1245.00,401.00
+	             1245.00,401.00 1245.00,369.00 1245.00,369.00
+	             1245.00,369.00 1209.00,370.00 1209.00,370.00
+	             1209.00,370.00 1190.00,371.00 1190.00,371.00
+	             1190.00,371.00 1190.00,354.00 1190.00,354.00
+	             1190.00,354.00 1189.00,333.04 1189.00,333.04
+	             1189.00,333.04 1201.00,333.04 1201.00,333.04
+", 500, "Inget");
+
+
+
+-- "M 791.42,641.00
+--            C 791.42,641.00 800.86,675.00 800.86,675.00
+--              800.86,675.00 833.00,791.00 833.00,791.00
+--              833.00,791.00 783.00,791.00 783.00,791.00
+--              783.00,791.00 766.00,790.00 766.00,790.00
+--              766.00,790.00 716.00,790.00 716.00,790.00
+--              716.00,790.00 688.00,790.00 688.00,790.00
+--              688.00,790.00 676.00,790.95 676.00,790.95
+--              676.00,790.95 657.00,790.95 657.00,790.95
+--              657.00,790.95 642.00,790.00 642.00,790.00
+--              642.00,790.00 601.00,790.00 601.00,790.00
+--              601.00,786.82 600.15,776.96 602.60,775.02
+--              604.19,773.77 608.01,774.00 610.00,774.00
+--              610.00,774.00 624.00,774.00 624.00,774.00
+--              624.00,774.00 639.00,775.00 639.00,775.00
+--              639.00,775.00 675.00,775.00 675.00,775.00
+--              675.00,775.00 675.00,769.00 675.00,769.00
+--              675.10,761.80 677.58,757.55 680.20,751.00
+--              680.20,751.00 691.74,725.00 691.74,725.00
+--              691.74,725.00 708.79,694.00 708.79,694.00
+--              708.79,694.00 728.72,671.00 728.72,671.00
+--              734.60,664.24 741.22,656.16 748.00,650.44
+--              748.00,650.44 766.00,636.47 766.00,636.47
+--              766.00,636.47 786.00,625.00 786.00,625.00
+--              786.00,625.00 791.42,641.00 791.42,641.00 Z"
+
 
 INSERT INTO vaxter values (null, 1, "Jättedaggkåpa", "jattedaggkapa.jpg" , "
 	1334.00,638.18 1341.00,638.91 1341.00,638.91
@@ -296,6 +391,82 @@ INSERT INTO vaxter values (null, 1, "Bergskörsbär", "bergskorsbar2.jpg" , "
 ",
 "Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
 , "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
+
+INSERT INTO vaxter values (null,5,  "Jättetåtel", "jattetatel2.jpg" , "
+ 1267.00,338.00 1267.00,366.00 1267.00,366.00
+	             1267.00,366.00 1194.00,366.00 1194.00,366.00
+	             1194.00,366.00 1194.00,338.00 1194.00,338.00
+	             1194.00,338.00 1267.00,338.00 1267.00,338.00
+
+
+",
+"Trivs bra i solen men tycker även om skugga. Fuktig jord är bäst för växten, även om den klarar sig väl i de flesta jordar. Har purpurfärgade vippor. Bra marktäckare som skyddar jorden från uttorkning. "
+
+, "Medel", "Blandat", "100-150 cm", "Juli", "Trädgårdsgödsel", "Näringsrik & mullrik jord", "Perenn"
+);
+
+
+
+INSERT INTO vaxter VALUES (NULL,5,"Jättetåtel","jattetatel2.jpg","
+	1395.80712890625,339.5096130371094 1395.80712890625,367.5096130371094 1395.80712890625,367.5096130371094 1395.80712890625,367.5096130371094 1322.80712890625,367.5096130371094 1322.80712890625,367.5096130371094 1322.80712890625,367.5096130371094 1322.80712890625,339.5096130371094 1322.80712890625,339.5096130371094 1322.80712890625,339.5096130371094 1395.80712890625,339.5096130371094 1395.80712890625,339.5096130371094
+	",
+	"Trivs bra i solen men tycker även om skugga. Fuktig jord är bäst för växten, även om den klarar sig väl i de flesta jordar. Har purpurfärgade vippor. Bra marktäckare som skyddar jorden från uttorkning. "
+
+	, "Medel", "Blandat", "100-150 cm", "Juli", "Trädgårdsgödsel", "Näringsrik & mullrik jord", "Perenn"
+	);
+
+	INSERT INTO vaxter values (null,4,  "Oktoberaster", "oktoberaster_2.jpg" , "
+
+		777.66,689.04 789.00,708.66 777.36,725.00
+		             770.16,735.11 759.06,739.26 747.00,738.99
+		             725.54,738.49 707.74,718.74 717.83,699.00
+		             719.61,695.52 722.10,692.76 725.00,690.18
+		             730.38,685.42 735.17,683.98 742.00,682.46
+		             748.56,681.56 753.64,681.80 760.00,683.72
+
+
+	",
+	"En vacker växt som passar perfekt som snittblomma. På hösten förökar sig växten genom delning. Vacker höstblomma som har ett buskigt växtsätt. Blommar rikligt. Suger mycket vatten."
+
+	, "Lite", "Soligt", "35-40 cm", "September", "Trädgårdsgödsel", "Näringsrik jord", "Perenn"
+	);
+
+
+
+INSERT INTO vaxter values (null, 4, "Bergskörsbär", "bergskorsbar2.jpg" , "
+805.0291552734375,756.1052783203126 810.0391552734375,770.5452783203125 801.1291552734375,780.7952783203125 796.7191552734375,785.8552783203126 789.2591552734375,788.2852783203125 782.6591552734375,787.8852783203125 763.8391552734375,786.7252783203126 756.9691552734375,767.3552783203126 767.9891552734375,756.3052783203125 771.3591552734375,752.9152783203125 775.1391552734375,751.5152783203125 779.6591552734375,750.4452783203125 784.3791552734375,749.7852783203125 788.1191552734375,749.8552783203126 792.6591552734375,751.5352783203125
+	",
+	"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
+	, "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
+
+
+
+
+	-- INSERT INTO vaxter values (null,5,  "Oktoberaster", "oktoberaster_2.jpg" , "
+	--
+	-- 	1328.587607421875,421.84142578125 1339.927607421875,441.46142578125 1328.287607421875,457.80142578125 1321.087607421875,467.91142578125 1309.987607421875,472.06142578125 1297.927607421875,471.79142578125 1276.467607421875,471.29142578125 1258.667607421875,451.54142578125 1268.757607421875,431.80142578125 1270.537607421875,428.32142578125 1273.027607421875,425.56142578125 1275.927607421875,422.98142578125 1281.307607421875,418.22142578125 1286.097607421875,416.78142578125 1292.927607421875,415.26142578125 1299.487607421875,414.36142578125 1304.567607421875,414.60142578125 1310.927607421875,416.52142578125
+	--
+	--
+	--
+	-- ",
+	-- "En vacker växt som passar perfekt som snittblomma. På hösten förökar sig växten genom delning. Vacker höstblomma som har ett buskigt växtsätt. Blommar rikligt. Suger mycket vatten."
+	--
+	-- , "Lite", "Soligt", "35-40 cm", "September", "Trädgårdsgödsel", "Näringsrik jord", "Perenn"
+	-- );
+	--
+
+
+	INSERT INTO vaxter values (null, 5, "Stäppsalvia" ,"stappsalvia.jpg" , "
+
+		 1287.53408203125,383.796875 1293.53408203125,383.796875 1293.53408203125,383.796875 1299.62408203125,383.826875 1307.74408203125,386.476875 1311.71408203125,391.406875 1313.33408203125,393.416875 1313.82408203125,397.256875 1314.33408203125,399.796875 1315.28408203125,404.526875 1317.55408203125,413.356875 1317.05408203125,417.796875 1317.05408203125,417.796875 1313.21408203125,438.796875 1313.21408203125,438.796875 1313.40408203125,442.256875 1317.67408203125,452.076875 1319.13408203125,455.796875 1320.30408203125,458.796875 1321.84408203125,461.586875 1319.89408203125,464.626875 1316.14408203125,470.486875 1310.69408203125,471.346875 1304.53408203125,471.966875 1304.53408203125,471.966875 1273.53408203125,472.796875 1273.53408203125,472.796875 1273.53408203125,472.796875 1277.53408203125,445.796875 1277.53408203125,445.796875 1277.53408203125,445.796875 1276.53408203125,428.796875 1276.53408203125,428.796875 1276.43408203125,419.366875 1277.43408203125,418.476875 1280.72408203125,409.796875 1281.58408203125,407.546875 1284.48408203125,400.426875 1284.16408203125,398.376875 1284.16408203125,398.376875 1276.53408203125,384.796875 1276.53408203125,384.796875 1276.53408203125,384.796875 1287.53408203125,383.796875 1287.53408203125,383.796875
+
+	",
+	"En doftrik perenn. Trivs bäst i solen i väldränerad jord. Passar bra i blandade rabatter. Lockar till sig bin och fjärilar. Bör klippas ner efter blomning så att den kan blomma igen.
+	", "Medel", "Soligt", "40-60 cm", "Juni-Augusti", "Trädgårdsgödsel", "Väldränerad jord", "Perenn");
+
+
+
+
 
 --
 -- INSERT INTO vaxter values (null, 2, "Prakthäggmispel", "prakthaggmispel.jpg" , "
@@ -374,9 +545,35 @@ kraftiga och rödbruna till färgen. Grundfärgen på kroppen
 "Akut hotad"
 );
 
+INSERT INTO insekter values (null, "Klinttapetserarbi", "klintbi.jpg",
+"Arten är ett 11–13 mm stort tapetserarbi. Kroppen är svart med huvudsakligen ljusgrå–ljusbrun behåring. Bakkroppssegmenten är på sidorna försedda med relativt breda, vita hårfransar som på det femte segmentet bildar ett komplett band. Skutellen är hos honan i profil tydligt välvd och sjätte ryggplåten är försedd med tydlig, tät silvervit behåring som syns bäst snett från sidan. Arten är snarlik ett flertal andra svenska arter av tapetserarbin och förväxlas ofta t.ex. med det allmänna och utbredda ängstapetserarbiet Megachile versicolor eller rosentapetserarbiet Megachile centuncularis. Hanen kan bestämmas med hjälp av detaljer i könsorganens utformning men även dessa är mycket lika närstående arter varför referensmaterial ofta krävs.
+",
+"
+Klinttapetserarbiets världsutbredning omfattar stora delar av Europa men arten förefaller vara ganska lokal. I Sverige omfattar artens aktuella utbredning idag Öland och olika delar av Uppland. Troligen finns också en population kring Döderhult i Småland. Övriga fynd är mest av sporadisk karaktär och det är tveksamt om de representerar lokala livskraftiga populationer. Historiskt har arten haft en avsevärt mycket större utbredning med till synes stabila populationer över stora delar av södra Sverige upp till Värmland, Dalsland och Gästrikland. Tillbakagången är signifikant för flera av de stora vildbiarter som nyttjar väddklint som huvudsaklig pollenkälla och klinttapetserarbiet uppvisar den kanske mest påtagliga tillbakagången av alla vildbin som är knutna till klintar.
+",
+"Den svenska population beräknas vara endast 15% av populationen på 1950-talet. Främsta hotet är det moderna, storskaliga jordbruket.
+",
+"Litteratur anger att arten födosöker på många växtarter Boet anläggs i befintliga håligheter under stenar och flygtiden varar från mitten av juni till mitten av augusti.
+",
+
+"Sårbar."
+);
 
 
-
+--
+-- create table insekter (
+-- 	id int NOT NULL AUTO_INCREMENT,
+-- 	namn varchar(64),
+-- 	bildnamn varchar(64),
+-- 	kennetecken LONGTEXT,
+-- 	utbredning LONGTEXT,
+-- 	status LONGTEXT,
+-- 	levnadssatt  LONGTEXT,
+-- 	hotad varchar(64),
+-- 	PRIMARY KEY (id)
+--
+-- );
+--
 
 
 
@@ -395,6 +592,8 @@ Mulm är det lösa material som ansamlas inuti ihåliga träd. Den består framf
 
 INSERT INTO attraherar values (null, 1, 2, null);
 INSERT INTO attraherar values (null, 2, null, 1);
+INSERT INTO attraherar values (null, 3, 6, null);
+INSERT INTO attraherar values (null, 1, 8, null);
 
 INSERT INTO vaxt_db values (null, "Jättedaggkåpa", "jattedaggkapa.jpg" , "
 
@@ -453,3 +652,25 @@ INSERT INTO vaxt_db values (null, "Klätterhortensia", "klatterhortensia.jpg" , 
 "Klätterväxt som är vackert förgrenad. Har grova grenar och frodig grönska. Blommar fint i skuggan och har stora vita blad. Fäster bra direkt på murar, väggar och plank. God boplats för fåglar."
 , "Medel", "Skuggigt", "4-7 m", "Juni och Juli", "Rododendrongödsel", "Näringsrik & mullrik jord", "Perenn",
 "klatterhortensia_token.png");
+
+INSERT INTO vaxt_db values (null, "Jättetåtel", "jattetatel2.jpg" , "
+
+
+36.5,-14.0 36.5,14.0 36.5,14.0 36.5,14.0 -36.5,14.0 -36.5,14.0 -36.5,14.0 -36.5,-14.0 -36.5,-14.0 -36.5,-14.0 36.5,-14.0 36.5,-14.0
+
+
+",
+"Trivs bra i solen men tycker även om skugga. Fuktig jord är bäst för växten, även om den klarar sig väl i de flesta jordar. Har purpurfärgade vippor. Bra marktäckare som skyddar jorden från uttorkning. "
+
+, "Medel", "Blandat", "100-150 cm", "Juli", "Trädgårdsgödsel", "Näringsrik & mullrik jord", "Perenn",
+"jattetatel_token.jpg");
+
+INSERT INTO vaxt_db values (null, "Oktoberaster", "oktoberaster_2.jpg" , "
+
+29.29,-21.37 40.63,-1.75 28.99,14.59 21.79,24.7 10.69,28.85 -1.37,28.58 -22.83,28.08 -40.63,8.33 -30.54,-11.41 -28.76,-14.89 -26.27,-17.65 -23.37,-20.23 -17.99,-24.99 -13.2,-26.43 -6.37,-27.95 0.19,-28.85 5.27,-28.61 11.63,-26.69
+
+",
+"En vacker växt som passar perfekt som snittblomma. På hösten förökar sig växten genom delning. Vacker höstblomma som har ett buskigt växtsätt. Blommar rikligt. Suger mycket vatten."
+
+, "Lite", "Soligt", "35-40 cm", "September", "Trädgårdsgödsel", "Näringsrik jord", "Perenn",
+"oktoberaster_token.jpg");

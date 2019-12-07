@@ -94,8 +94,14 @@ router.post('/changeRabatt', authMiddleware, function (req, res) {
       let obj={};
       obj.insekts_id=1;
       obj.mulm=null
-      obj.vaxt_id=5+i+j; //5 om ta bort mittrabatt, 6 om vänst, 4 om höger
+      obj.vaxt_id=10+i+j; //5 om ta bort mittrabatt, 6 om vänst, 4 om höger
 
+      attrakt_array.push(obj);
+    } else if(array[i].namn == 'Oktoberaster'){
+      let obj={};
+      obj.insekts_id=3;
+      obj.mulm=null
+      obj.vaxt_id=10+i+j; //5 om ta bort mittrabatt, 6 om vänst, 4 om höger
       attrakt_array.push(obj);
     }
   }
