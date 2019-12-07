@@ -294,7 +294,7 @@ INSERT INTO vaxter values (null, 1, "Bergskörsbär", "bergskorsbar2.jpg" , "
 	             1423.70,717.94 1427.48,716.54 1432.00,715.47
 	             1436.72,714.81 1440.46,714.88 1445.00,716.56
 ",
-"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
+"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
 , "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn");
 
 --
@@ -421,7 +421,7 @@ INSERT INTO vaxt_db values (null, "Bergskörsbär", "bergskorsbar2.jpg" , "
 21.52,-12.93 26.53,1.51 17.62,11.76 13.21,16.82 5.75,19.25 -0.85,18.85 -19.67,17.69 -26.54,-1.68 -15.52,-12.73 -12.15,-16.12 -8.37,-17.52 -3.85,-18.59 0.87,-19.25 4.61,-19.18 9.15,-17.5
 
 ",
-"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten. Trivs bra i ett varmt läge med näringsrik jord. Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
+"Ett nätt träd med bred, rundad krona. Blommar med enkla, rosa blommor. Frukterna är mörkröda och kommer på hösten.  Behöver inte beskäras. Blommorna bryts ner när de har fallit och göder på så sätt perennerna."
 , "Medel", "Soligt & skyddat", "9-12 m", "Maj", "Trädgårdsgödsel", "Näringsrik jord", "Perenn",
 "bergskorsbar_token.png");
 
