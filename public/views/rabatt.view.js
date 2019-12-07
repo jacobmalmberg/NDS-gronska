@@ -214,7 +214,7 @@ Vue.component('route-rabatt', {
 
 
 
-	<div class="container" style = "display: flex; flex-direction: column; flex:1; justify-content: space-between;">
+	<div class="container" style = " display: flex; flex-direction: column; flex:1; justify-content: space-between;">
 
 	<div style="margin-bottom:1em;" >
 		<button type="button" class="theBackBtn btn btn-outline-secondary" v-on:click="backBtn()" :key="theBtn">
@@ -335,7 +335,7 @@ Vue.component('route-rabatt', {
 
 
 
-			<div :class=mobileRabatt id="feedback" v-if="this.highlight !== undefined && this.sent === null">
+			<div style="margin-bottom: 2em;" :class=mobileRabatt id="feedback" v-if="this.highlight !== undefined && this.sent === null">
 
 					<h1 style="font-size:3vh;">Ge feedback!</h1>
 					Fyll i formuläret så skickas det till bostadsrättsföreningens grönansvariga. <p>
@@ -365,7 +365,7 @@ Vue.component('route-rabatt', {
 
 			</div>
 
-			<div :class=mobileRabatt  v-else-if="this.highlight !== undefined && this.sent !== null">
+			<div style="margin-bottom: 2em;" :class=mobileRabatt  v-else-if="this.highlight !== undefined && this.sent !== null">
 				<h1 style="font-size:3vh;">Tack för din feedback!</h1>
 			</div>
 
@@ -478,7 +478,7 @@ Vue.component('route-rabatt', {
 
 
 
-				<div :class=desktopRabatt id="feedback" v-if="this.highlight !== undefined && this.sent === null">
+				<div style="margin-bottom: 2em;" :class=desktopRabatt id="feedback" v-if="this.highlight !== undefined && this.sent === null">
 
 						<h1 style="font-size:3vh;">Ge feedback!</h1>
 						Fyll i formuläret så skickas det till bostadsrättsföreningens grönansvariga. <p>
@@ -502,13 +502,13 @@ Vue.component('route-rabatt', {
 							<input type="file" name="bild" accept="image/" @change="onFileChange">
 						</div>
 
-							<button type="submit" class="btn btn-success">Skicka feedback</button>
+							<button  type="submit" class="btn btn-success">Skicka feedback</button>
 						</form>
 
 
 				</div>
 
-				<div :class=desktopRabatt v-else-if="this.highlight !== undefined && this.sent !== null">
+				<div style="margin-bottom: 2em;":class=desktopRabatt v-else-if="this.highlight !== undefined && this.sent !== null">
 					<h1 style="font-size:3vh;">Tack för din feedback!</h1>
 				</div>
 		</div>
