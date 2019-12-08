@@ -148,7 +148,7 @@ Vue.component('route-rabatt', {
 			this.$root.typ = undefined;
 			if (this.highlight == undefined){
 				//window.history.back();
-				this.redirect('/forening/garphyttan');
+				this.redirect('/förening/garphyttan');
 
 			} else{
 
@@ -291,11 +291,11 @@ Vue.component('route-rabatt', {
 			</div>
 
 
-			<div :class=mobileRabatt v-if="this.highlight !== undefined" style = "display: flex; flex-direction: row; justify-content: space-between; margin-bottom:1em;">
-				<div :class=mobileRabatt style = "width: 48%;">
+			<div :class=mobileRabatt v-if="this.highlight !== undefined" style = "display: flex; flex-direction: column; justify-content: space-between; margin-bottom:1em;">
+				<div :class=mobileRabatt style="margin-bottom:1em;">
 					<img :src="this.bild" alt="Nature" class="responsive" style = "width: 100%;height: auto;">
 				</div>
-				<div :class=mobileRabatt style= "width: 48%; ">
+				<div :class=mobileRabatt>
 
 				<div :class=mobileRabatt>
 				<div v-if="this.typ == 'vaxt'">

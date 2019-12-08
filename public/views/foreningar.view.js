@@ -111,7 +111,7 @@ Vue.component('route-foreningar', {
     <div :class=desktopRabatt>
       <div class="d-flex flex-wrap" >
         <div style="  display: inline-flex; position: relative;  width: 33%;"  v-for="forening in foreningar">
-          <div style="cursor: pointer;" v-if="forening.namn == 'Garphyttan'" v-on:click="redirect('/forening/garphyttan/')">
+          <div style="cursor: pointer;" v-if="forening.namn == 'Garphyttan'" v-on:click="redirect('/förening/garphyttan/')">
               <img style="width: 100%;"  v-bind:src="'/assets/brf/' + forening.bildnamn" alt="Nature" >
               <div :class=centeredText>
               {{forening.namn}}
@@ -130,7 +130,7 @@ Vue.component('route-foreningar', {
 
     <div :class=mobileRabatt>
         <div style=" display: inline-flex; position: relative;flex:1; margin-bottom:1em;"  v-for="forening in foreningar">
-          <div  v-if="forening.namn == 'Garphyttan'" v-on:click="redirect('/forening/garphyttan/')" >
+          <div  v-if="forening.namn == 'Garphyttan'" v-on:click="redirect('/förening/garphyttan/')" >
               <img style="width: 100%;"  v-bind:src="'/assets/brf/' + forening.bildnamn" alt="Nature" >
               <div :class=centeredText>
               {{forening.namn}}
