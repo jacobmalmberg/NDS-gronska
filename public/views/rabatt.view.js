@@ -7,7 +7,7 @@ Vue.component('route-rabatt', {
 			viewBoxStor: "0 0 2111 1000",
 			highlight: this.$route.params.vaxt,
 			bild: null,
-			vaxtlista: null,
+			vaxtlista: [],
 			mulmlista: null,
 			text: null,
 			meddelande: null,
@@ -74,6 +74,10 @@ Vue.component('route-rabatt', {
 		say: function (message, vaxt) {
 
 			this.highlight=message;
+			//console.log(this.highlight.namn);
+			//this.vaxtlista.push(message);
+			//console.log(this.vaxtlista);
+
 			this.$root.vaxt_id = message.id;
 
 
@@ -184,7 +188,17 @@ Vue.component('route-rabatt', {
 			.then(res => res.json())
 			.then(data => {
 				this.rabatt= data.rabatt[0];
-				this.vaxtlista = data.vaxter;
+				this.vaxtlista =data.vaxter;
+				//this.vaxtlista = [...new Set(data.vaxter.map(item => item.namn))];
+				let unique = {};
+				this.namnlista = [];
+				for( let i in data.vaxter ){
+				 if( typeof(unique[data.vaxter[i].namn]) == "undefined"){
+				  this.namnlista.push(data.vaxter[i]);
+				 }
+				 unique[data.vaxter[i].namn] = 0;
+				}
+				console.log(this.vaxtlista);
 				this.mulmlista = data.mulm;
 				this.ekosystem = data.text;
 				this.rabattext = this.ekosystem +this.ndstext;
@@ -208,8 +222,15 @@ Vue.component('route-rabatt', {
 
 	},
 
+	//
+	// <polygon v-for="mulm in mulmlista" v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+	// 	<animate attributeType="CSS" attributeName="opacity"
+	// 	values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" /></polygon>
+	// 	<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
 
 	template: `
+
+
 
 
 
@@ -225,18 +246,41 @@ Vue.component('route-rabatt', {
 		<div :class=mobileRabatt>
 
 			<div :class=mobileRabatt>
-				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
-					<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-
-					<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
+				<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
+				<g v-if="this.highlight == undefined">
+					<g v-for="vaxt in vaxtlista">
+					<polygon  v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
 						<animate attributeType="CSS" attributeName="opacity"
-						values="0.2;1;0.2" dur="2s" repeatCount="indefinite" /></polygon>
-						<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
-						<polygon v-for="mulm in mulmlista" v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+						values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+						</polygon>
+					</g>
+					<g v-for="mulm in mulmlista">
+					<polygon  v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+						<animate attributeType="CSS" attributeName="opacity"
+						values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+						</polygon>
+					</g>
+				</g>
+				<g v-else>
+					<g v-for="vaxt in vaxtlista">
+						<polygon v-if="highlight.namn == vaxt.namn" style="cursor: not-allowed;" :points="vaxt.polygon" fill="#F00"/>
+						<polygon v-else v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
 							<animate attributeType="CSS" attributeName="opacity"
-							values="0.2;1;0.2" dur="2s" repeatCount="indefinite" /></polygon>
-							<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
-				</svg>
+							values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+						</polygon>
+					</g>
+					<g v-for="mulm in mulmlista">
+						<polygon v-if="highlight.bildnamn == 'mulm.jpg'" style="cursor: not-allowed;" :points="mulm.polygon" fill="#F00"/>
+						<polygon v-else v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+							<animate attributeType="CSS" attributeName="opacity"
+							values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+						</polygon>
+					</g>
+
+				</g>
+
+			</svg>
 
 			</div>
 
@@ -266,7 +310,7 @@ Vue.component('route-rabatt', {
 			<div :class=mobileRabatt v-if="this.rabatt !== null && this.highlight === undefined">
 				<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
 				<div :class=mobileRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; flex-direction: column; justify-content: space-between; margin-bottom:1em;" v-if="this.rabatt !== null && this.highlight === undefined">
-					<div :class=mobileRabatt v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="flex:1; margin-bottom:1em;">
+					<div :class=mobileRabatt v-for="vaxt in namnlista" v-on:click="say(vaxt,1)" style="flex:1; margin-bottom:1em;">
 						<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 100%; height: auto;">
 						<br>
 						<a style="color: blue; cursor: pointer;"> {{vaxt.namn}} </a>
@@ -397,17 +441,44 @@ Vue.component('route-rabatt', {
 						</div>
 					</div>
 
+
+
+
 					<div :class=desktopRabatt style= "width: 48%; ">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :viewBox="this.viewBox">
 							<image width="2111" height="1219" xlink:href="./assets/hogviltsgatan.png"></image>
-							<polygon v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
-								<animate attributeType="CSS" attributeName="opacity"
-								values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" /></polygon>
-								<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
-								<polygon v-for="mulm in mulmlista" v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+							<g v-if="this.highlight == undefined">
+								<g v-for="vaxt in vaxtlista">
+								<polygon  v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
 									<animate attributeType="CSS" attributeName="opacity"
-									values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" /></polygon>
-									<polygon v-if="this.highlight !== undefined" style="cursor: not-allowed;" :points="this.highlight.polygon" fill="#F00" opacity="1"></polygon>
+									values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+									</polygon>
+								</g>
+								<g v-for="mulm in mulmlista">
+								<polygon  v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+									<animate attributeType="CSS" attributeName="opacity"
+									values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+									</polygon>
+								</g>
+							</g>
+							<g v-else>
+								<g v-for="vaxt in vaxtlista">
+									<polygon v-if="highlight.namn == vaxt.namn" style="cursor: not-allowed;" :points="vaxt.polygon" fill="#F00"/>
+									<polygon v-else v-on:click="say(vaxt,1)" style="cursor: pointer;" :points="vaxt.polygon" fill="#006600">
+										<animate attributeType="CSS" attributeName="opacity"
+										values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+									</polygon>
+								</g>
+								<g v-for="mulm in mulmlista">
+									<polygon v-if="highlight.bildnamn == 'mulm.jpg'" style="cursor: not-allowed;" :points="mulm.polygon" fill="#F00"/>
+									<polygon v-else v-on:click="say(mulm,0)" style="cursor: pointer;" :points="mulm.polygon" fill="#000000">
+										<animate attributeType="CSS" attributeName="opacity"
+										values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite" />
+									</polygon>
+								</g>
+
+							</g>
+
 						</svg>
 
 						<div :class=desktopRabatt v-if="this.highlight !== undefined">
@@ -430,15 +501,15 @@ Vue.component('route-rabatt', {
 						<h1 style="font-size:3vh;">Växter i denna rabatt.</h1>
 
 						<div :class=desktopRabatt style="margin-bottom:1em; display: flex; flex-wrap: wrap; justify-content: space-between;" v-if="this.rabatt !== null && this.highlight === undefined">
-							<div v-for="vaxt in vaxtlista" v-on:click="say(vaxt,1)" style="flex:1;">
+							<div v-for="vaxt in namnlista" v-on:click="say(vaxt,1)" style="flex:1;">
 								<a style="color: blue; cursor: pointer;">
-								<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 75%;height: auto;">
+								<img v-bind:src="'/assets/' + vaxt.bildnamn" alt="Nature" class="responsive" style = "max-width: 50%;height: auto;">
 								<br>
 								{{vaxt.namn}} </a>
 							</div>
 							<div v-for="mulm in mulmlista" v-on:click="say(mulm,2)" style="flex:1;">
 								<a style="color: blue; cursor: pointer;">
-								<img v-bind:src="'/assets/' + mulm.bildnamn" alt="Nature" class="responsive" style = "max-width: 75%;height: auto;">
+								<img v-bind:src="'/assets/' + mulm.bildnamn" alt="Nature" class="responsive" style = "max-width: 50%;height: auto;">
 								<br>
 								Mulm </a>
 							</div>

@@ -75,16 +75,15 @@ Vue.component('route-syfte', {
              mångfald. Att ha en innergård med mycket grönska och växter
             bidrar inte bara till att skapa en fin och trevlig miljö att bo i, utan
             uppfyller också ett antal viktiga mer funktionella syften. Växterna kyler av gården,
-             skapar möjlighet för insekter att leva och må bra. Vidare suger växterna upp mycket
+             skapar möjlighet för insekter att leva och må bra. Växterna suger även upp mycket
              vatten, och bidrar på så sätt till att förhindra översvämningar.</p>
 
             <p>
-            Vidare så bidrar variationen på växtlighet på innergårdarna till
+            Vidare så bidrar variationen av växtlighet på innergårdarna till
             den biologiska mångfalden. I planeringen av gårdarna har man
             använt sig av ett verktyg kallat Grönytefaktor, som ställer krav
             på att man har en variation av insekts- och djurvänliga växter
-            och installationer, samt att en viss procentsats av innergården
-            måste vara särskilt ekologisk. Av den anledningen kan man på
+            och installationer. Av den anledningen kan man på
             många innergårdar se saker som bihotell, fågelholkar och i
             vissa fall lådor med döda fåglar, som är nyttiga för vissa typer
             av insekter.</p>
