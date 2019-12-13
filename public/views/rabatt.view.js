@@ -147,6 +147,7 @@ Vue.component('route-rabatt', {
 
 		backBtn() {
 			this.theBtn += 2;
+			this.attraherar = [];
 
 			this.$root.vaxt_id = undefined;
 			this.$root.typ = undefined;
